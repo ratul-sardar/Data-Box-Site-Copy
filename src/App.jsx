@@ -1,3 +1,4 @@
+import Hero from "./components/sections/Hero/Hero";
 import NavBar from "./components/ui/NavBar/NavBar";
 
 export default function App() {
@@ -6,7 +7,9 @@ export default function App() {
       <header>
         <NavBar></NavBar>
       </header>
-      <main></main>
+      <main>
+        <Hero></Hero>
+      </main>
       <footer></footer>
     </>
   );

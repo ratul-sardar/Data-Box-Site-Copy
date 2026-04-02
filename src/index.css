@@ -2,6 +2,14 @@
 @plugin "daisyui";
 
 @theme {
+    --background-image-main-linear: linear-gradient(
+        90deg,
+        rgba(142, 82, 197, 1) 0%,
+        rgba(210, 107, 130, 1) 100%
+    );
+    --color-brand: #4d71f1;
+    --color-brandHover: #405ed1;
+    --color-white: #ffffff;
 }
 
 @layer components {
@@ -26,4 +34,8 @@
     p {
         font-size: 1rem;
     }
+}
+
+* {
+    font-family: "Geist", sans-serif;
 }
