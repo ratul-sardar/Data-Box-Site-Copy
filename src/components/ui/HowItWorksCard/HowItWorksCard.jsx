@@ -2,7 +2,7 @@ import ButtonSm from "../Button/ButtonSm";
 
 export default function HowItWorksCard({ card }) {
   const {
-    icon = "",
+    // icon = "",
     title = "Connect",
     description = "Connect all your tools, so your data lives in one place, and not in silos.",
     features = [
