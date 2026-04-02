@@ -1,5 +1,6 @@
 import Hero from "./components/sections/Hero/Hero";
 import Info from "./components/sections/Hero/Info/Info";
+import HowItWorks from "./components/sections/HowItWorks/HowItWorks";
 import WhyUs from "./components/sections/WhyUs/WhyUs";
 import NavBar from "./components/ui/NavBar/NavBar";
 
@@ -13,6 +14,7 @@ export default function App() {
         <Hero></Hero>
         <Info></Info>
         <WhyUs></WhyUs>
+        <HowItWorks></HowItWorks>
       </main>
       <footer></footer>
     </>

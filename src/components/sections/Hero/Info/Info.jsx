@@ -1,4 +1,5 @@
 import { MoveUp, TrendingUp, TrendingDown } from "lucide-react";
+import ButtonSm from "../../../ui/Button/ButtonSm";
 
 const cardInfo = [
   {
@@ -72,12 +73,9 @@ export default function Info() {
 
                   {/* Bottom row */}
                   <div className="flex items-center gap-4">
-                    <a
-                      href={card.ctaLink}
-                      className="flex items-center gap-1.5 bg-white rounded-xl px-4 py-2.5 text-violet-600 font-semibold text-sm shadow-sm hover:shadow-md transition-shadow whitespace-nowrap"
-                    >
+                    <ButtonSm ctaLink={card.ctaLink}>
                       Read case study →
-                    </a>
+                    </ButtonSm>
                     <div className="ml-auto">
                       <img
                         src={card.logoLink}
