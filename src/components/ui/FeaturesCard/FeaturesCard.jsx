@@ -1,17 +1,17 @@
 import { useState } from "react";
 
-export default function FeaturesCard({ cardContents }) {
+export default function FeaturesCard({ card }) {
   const [overlay, setOverlay] = useState(false);
 
   const {
-    icon,
+    icon = "null",
     title = "Card Title",
     descriptoin = `A card component has a figure, a body part, and inside body there
       are title and actions parts`,
     hoverText = `Databox is an absolute must in my tech stack. It allows me to
       track metrics that matter to me in a way that other reporting
       tools don't.`,
-  } = cardContents;
+  } = card;
 
   function handleMouseIn() {
     setOverlay(true);
@@ -28,7 +28,7 @@ export default function FeaturesCard({ cardContents }) {
       <div
         onMouseEnter={handleMouseIn}
         onMouseOut={handleMouseOut}
-        className={`relative card bg-base-100 w-full card-lg shadow-sm z-10 overflow-hidden`}
+        className={`relative card bg-base-100 w-full card-lg shadow-md rounded-2xl z-10 overflow-hidden`}
       >
         {/* Overlay*/}
         {overlay && (
@@ -43,7 +43,7 @@ export default function FeaturesCard({ cardContents }) {
         )}
 
         <div className="card-body gap-0">
-          <span className="inline-block text-5xl mb-6">{`${icon}`}</span>
+          <span className="inline-block text-5xl mb-6">{icon}</span>
 
           <h2 className="card-title mb-4">{title}</h2>
           <p>{descriptoin}</p>

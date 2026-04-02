@@ -3,6 +3,8 @@ import backgroundImage from "../../../assets/background-desktop.svg";
 import FeaturesCard from "../../ui/FeaturesCard/FeaturesCard";
 import { LuNetwork } from "react-icons/lu";
 
+//<LuNetwork />
+
 // Card Contents
 const cardContents = [
   {
