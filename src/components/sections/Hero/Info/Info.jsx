@@ -33,7 +33,7 @@ export default function Info() {
     <>
       <section className="">
         <div className="cssContainer">
-          <header className="">
+          <header className="header">
             <h2 className="max-w-175">
               <span className="linearText">
                 20,000+ scaling teams & agencies
