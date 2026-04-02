@@ -88,7 +88,7 @@ const cardInfo = [
 export default function HowItWorks() {
   return (
     <>
-      <section className="bg-blue">
+      <section id="howItWorks" className="">
         <div className="cssContainer ">
           <header className="header">
             <h2 className="max-w-200 mx-auto ">
