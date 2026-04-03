@@ -6,6 +6,7 @@ import Info from "./components/sections/Hero/Info/Info";
 import HowItWorks from "./components/sections/HowItWorks/HowItWorks";
 import Insights from "./components/sections/Insights/Insights";
 import WhyUs from "./components/sections/WhyUs/WhyUs";
+import Footer from "./components/ui/Footer/Footer";
 import NavBar from "./components/ui/NavBar/NavBar";
 
 export default function App() {
@@ -24,7 +25,9 @@ export default function App() {
         <Achivements></Achivements>
         <Faq></Faq>
       </main>
-      <footer></footer>
+      <footer>
+        <Footer></Footer>
+      </footer>
     </>
   );
 }
