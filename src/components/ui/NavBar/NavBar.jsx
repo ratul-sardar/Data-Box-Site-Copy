@@ -11,7 +11,7 @@ export default function NavBar() {
     <>
       <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 relative">
         <div className="w-11/12 max-w-7xl mx-auto flex items-center justify-between h-20">
-          
+
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <a href="/" className="flex items-center">
@@ -26,7 +26,7 @@ export default function NavBar() {
 
           {/* Right side buttons */}
           <div className="hidden lg:flex items-center gap-4">
-            <a href="#" className="text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+            <a href="#" className="text-sm font-medium text-gray-700 hover:text-brand transition-colors hover:bg-gray-50 px-4 py-2 rounded-lg">
               Login
             </a>
             <a href="#" className="text-sm font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 px-4 py-2 rounded-lg transition-colors">
@@ -39,7 +39,7 @@ export default function NavBar() {
 
           {/* Mobile menu button */}
           <div className="flex lg:hidden items-center gap-4">
-             <button
+            <button
               type="button"
               className="text-gray-500 hover:text-gray-700"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -85,21 +85,21 @@ export default function NavBar() {
                     </span>
                   </summary>
                   <div className="text-gray-600 mt-2 pl-4 flex flex-col gap-3 pb-3">
-                     <div className="text-xs font-semibold uppercase text-gray-400 mb-1">By Industry</div>
-                     {menuData.solutions.industry.map((item, idx) => (
-                        <a key={idx} href={item.link} className="block hover:text-brand text-sm">{item.title}</a>
-                     ))}
-                     <div className="text-xs font-semibold uppercase text-gray-400 mt-3 mb-1">By Role</div>
-                     {menuData.solutions.role.map((item, idx) => (
-                        <a key={idx} href={item.link} className="block hover:text-brand text-sm">{item.title}</a>
-                     ))}
+                    <div className="text-xs font-semibold uppercase text-gray-400 mb-1">By Industry</div>
+                    {menuData.solutions.industry.map((item, idx) => (
+                      <a key={idx} href={item.link} className="block hover:text-brand text-sm">{item.title}</a>
+                    ))}
+                    <div className="text-xs font-semibold uppercase text-gray-400 mt-3 mb-1">By Role</div>
+                    {menuData.solutions.role.map((item, idx) => (
+                      <a key={idx} href={item.link} className="block hover:text-brand text-sm">{item.title}</a>
+                    ))}
                   </div>
                 </details>
               </div>
 
               {/* AI */}
               <div className="py-2 border-b border-gray-50">
-                <a href="#" className="flex items-center gap-1 font-medium text-gray-900 py-2">
+                <a href="#" className="flex items-center gap-1 font-medium text-gray-900 py-2 cursor-pointer hover:text-brand transition-colors">
                   AI <Sparkles size={16} className="text-purple-500" />
                 </a>
               </div>
@@ -115,12 +115,12 @@ export default function NavBar() {
                   </summary>
                   <div className="text-gray-600 mt-2 pl-4 flex flex-col gap-3 pb-3 text-sm">
                     {menuData.integrations.columns.map((col, i) => (
-                       <React.Fragment key={i}>
-                          <div className="text-xs font-semibold uppercase text-gray-400 mt-1 mb-1">{col.title}</div>
-                          {col.items.slice(0, 4).map((item, j) => (
-                             <a key={j} href="#" className="block hover:text-brand">{item}</a>
-                          ))}
-                       </React.Fragment>
+                      <React.Fragment key={i}>
+                        <div className="text-xs font-semibold uppercase text-gray-400 mt-1 mb-1">{col.title}</div>
+                        {col.items.slice(0, 4).map((item, j) => (
+                          <a key={j} href="#" className="block hover:text-brand">{item}</a>
+                        ))}
+                      </React.Fragment>
                     ))}
                     <a href="#" className="font-medium text-brand mt-2 block">See all Integrations</a>
                   </div>
@@ -138,12 +138,12 @@ export default function NavBar() {
                   </summary>
                   <div className="text-gray-600 mt-2 pl-4 flex flex-col gap-3 pb-3 text-sm">
                     {menuData.resources.columns.map((col, i) => (
-                       <React.Fragment key={i}>
-                          <div className="text-xs font-semibold uppercase text-gray-400 mt-1 mb-1">{col.title}</div>
-                          {col.items.map((item, j) => (
-                             <a key={j} href="#" className="block hover:text-brand">{item}</a>
-                          ))}
-                       </React.Fragment>
+                      <React.Fragment key={i}>
+                        <div className="text-xs font-semibold uppercase text-gray-400 mt-1 mb-1">{col.title}</div>
+                        {col.items.map((item, j) => (
+                          <a key={j} href="#" className="block hover:text-brand">{item}</a>
+                        ))}
+                      </React.Fragment>
                     ))}
                   </div>
                 </details>
@@ -158,15 +158,15 @@ export default function NavBar() {
 
               {/* Mobile Actions */}
               <div className="pt-6 pb-2 flex flex-col gap-3">
-                 <a href="#" className="text-center font-medium text-gray-700 bg-gray-50 border border-gray-200 px-4 py-3 rounded-lg w-full">
-                   Book a Demo
-                 </a>
-                 <a href="#" className="text-center font-medium text-white bg-brand px-4 py-3 rounded-lg w-full">
-                   Try It Free
-                 </a>
-                 <a href="#" className="text-center font-medium text-gray-700 py-2 mt-2 w-full">
-                   Login
-                 </a>
+                <a href="#" className="text-center font-medium text-gray-700 bg-gray-50 border border-gray-200 px-4 py-3 rounded-lg w-full">
+                  Book a Demo
+                </a>
+                <a href="#" className="text-center font-medium text-white bg-brand px-4 py-3 rounded-lg w-full">
+                  Try It Free
+                </a>
+                <a href="#" className="text-center font-medium text-gray-700 py-2 mt-2 w-full">
+                  Login
+                </a>
               </div>
 
             </div>

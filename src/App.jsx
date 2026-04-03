@@ -6,6 +6,7 @@ import Hero from "./components/sections/Hero/Hero";
 import Info from "./components/sections/Hero/Info/Info";
 import HowItWorks from "./components/sections/HowItWorks/HowItWorks";
 import Insights from "./components/sections/Insights/Insights";
+import InteractiveCards from "./components/sections/InteractiveCards/InteractiveCards";
 import WhoItsFor from "./components/sections/WhoItsFor/WhoItsFor";
 import WhyUs from "./components/sections/WhyUs/WhyUs";
 import Footer from "./components/ui/Footer/Footer";
@@ -26,6 +27,7 @@ export default function App() {
         <HowItWorks></HowItWorks>
         <Features></Features>
         <WhoItsFor></WhoItsFor>
+        <InteractiveCards></InteractiveCards>
         <Insights></Insights>
         <Achivements></Achivements>
         <Faq></Faq>
