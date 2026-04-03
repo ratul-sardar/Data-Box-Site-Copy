@@ -9,13 +9,14 @@ import Insights from "./components/sections/Insights/Insights";
 import WhoItsFor from "./components/sections/WhoItsFor/WhoItsFor";
 import WhyUs from "./components/sections/WhyUs/WhyUs";
 import Footer from "./components/ui/Footer/Footer";
-import NavBar from "./components/ui/NavBar/NavBar";
+import Navbar from "./components/ui/NavBar/NavBar";
+
 
 export default function App() {
   return (
     <>
       <header className="sticky top-0 bg-black/15 border-b border-gray-300 backdrop-blur-sm z-50">
-        <NavBar></NavBar>
+        <Navbar></Navbar>
       </header>
       <main>
         <Hero></Hero>
