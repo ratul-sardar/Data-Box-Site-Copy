@@ -18,7 +18,7 @@ export default function FeaturesCard({ card }) {
     console.log("mouse just got in");
   }
 
-  function handleMouseOut() {
+  function handleMouseLeave() {
     setOverlay(false);
     console.log("mouse just got out");
   }
@@ -27,20 +27,24 @@ export default function FeaturesCard({ card }) {
     <>
       <div
         onMouseEnter={handleMouseIn}
-        onMouseOut={handleMouseOut}
+        onMouseLeave={handleMouseLeave}
         className={`relative card bg-base-100 w-full card-lg shadow-md rounded-2xl z-10 overflow-hidden`}
       >
         {/* Overlay*/}
-        {overlay && (
-          <div
-            onMouseEnter={handleMouseIn}
-            onMouseOut={handleMouseOut}
-            className="absolute w-full h-full bg-main-linear p-8 z-20 duration-300 ease-in"
-          >
+        {/* {overlay && (
+          <div className="absolute w-full h-full bg-main-linear p-8 z-20 duration-300 ease-in">
             <p className="text-5xl mb-3 text-white">"</p>
             <p className="text-white text-[18px] ">{hoverText}</p>
           </div>
-        )}
+        )}*/}
+
+        <div
+          className={`absolute w-full h-full bg-main-linear p-8 z-20 transition-opacity duration-200 ease-in
+            ${overlay ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        >
+          <p className="text-5xl mb-3 text-white">"</p>
+          <p className="text-white text-[18px] ">{hoverText}</p>
+        </div>
 
         <div className="card-body gap-0">
           <span className="inline-block text-5xl mb-6">{icon}</span>

@@ -85,7 +85,7 @@ export default function Footer() {
             </h3>
 
             {/* Cta*/}
-            <div className="flex gap-4">
+            <div className="flex max-sm:flex-col gap-4">
               <PrimaryButton link={"#"}>Try It Free</PrimaryButton>
               <PrimaryButton
                 link={"#"}
