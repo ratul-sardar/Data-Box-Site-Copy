@@ -151,7 +151,7 @@ const InteractiveCards = () => {
         </div>
 
         {/* Cta*/}
-        <div className="">
+        <div className="flex justify-center mt-12">
           <PrimaryButton brand={true}>Try It Free</PrimaryButton>
         </div>
       </div>
