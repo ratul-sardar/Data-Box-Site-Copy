@@ -6,16 +6,18 @@ import Hero from "./components/sections/Hero/Hero";
 import Info from "./components/sections/Hero/Info/Info";
 import HowItWorks from "./components/sections/HowItWorks/HowItWorks";
 import Insights from "./components/sections/Insights/Insights";
+import InteractiveCards from "./components/sections/InteractiveCards/InteractiveCards";
 import WhoItsFor from "./components/sections/WhoItsFor/WhoItsFor";
 import WhyUs from "./components/sections/WhyUs/WhyUs";
 import Footer from "./components/ui/Footer/Footer";
-import NavBar from "./components/ui/NavBar/NavBar";
+import Navbar from "./components/ui/NavBar/NavBar";
+
 
 export default function App() {
   return (
     <>
       <header className="sticky top-0 bg-black/15 border-b border-gray-300 backdrop-blur-sm z-50">
-        <NavBar></NavBar>
+        <Navbar></Navbar>
       </header>
       <main>
         <Hero></Hero>
@@ -25,6 +27,7 @@ export default function App() {
         <HowItWorks></HowItWorks>
         <Features></Features>
         <WhoItsFor></WhoItsFor>
+        <InteractiveCards></InteractiveCards>
         <Insights></Insights>
         <Achivements></Achivements>
         <Faq></Faq>

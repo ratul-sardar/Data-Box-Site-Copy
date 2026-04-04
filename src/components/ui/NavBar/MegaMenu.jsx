@@ -1,0 +1,84 @@
+import React, { useState, useRef, useEffect } from 'react';
+import MenuItem from './MenuItem';
+import { ProductPanel, SolutionsPanel, IntegrationsPanel, ResourcesPanel } from './MenuPanels';
+
+export default function MegaMenu() {
+  const [activeMenu, setActiveMenu] = useState(null);
+  const timeoutRef = useRef(null);
+
+  const handleMouseEnter = (menuName) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setActiveMenu(menuName);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setActiveMenu(null);
+    }, 150); // slight delay to allow moving mouse into dropdown
+  };
+
+  // Close on ESC key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setActiveMenu(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Close when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest('.mega-menu-container')) {
+        setActiveMenu(null);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="mega-menu-container flex items-center h-full z-50">
+      <ul className="flex items-center gap-2 h-full menu-horizontal px-1 relative">
+        <li className="h-full" onMouseEnter={() => handleMouseEnter('product')} onMouseLeave={handleMouseLeave}>
+          <MenuItem title="Product" menuKey="product" activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+        </li>
+        <li className="h-full" onMouseEnter={() => handleMouseEnter('solutions')} onMouseLeave={handleMouseLeave}>
+          <MenuItem title="Solutions" menuKey="solutions" activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+        </li>
+        <li className="h-full" onMouseEnter={() => handleMouseEnter('ai')} onMouseLeave={handleMouseLeave}>
+          {/* AI is just a link without a dropdown in the screenshot but has a little sparkle icon, wait, databox AI has a special icon */}
+          <MenuItem title="AI" activeMenu={activeMenu} setActiveMenu={setActiveMenu} hideIcon />
+        </li>
+        <li className="h-full" onMouseEnter={() => handleMouseEnter('integrations')} onMouseLeave={handleMouseLeave}>
+          <MenuItem title="Integrations" menuKey="integrations" activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+        </li>
+        <li className="h-full" onMouseEnter={() => handleMouseEnter('resources')} onMouseLeave={handleMouseLeave}>
+          <MenuItem title="Resources" menuKey="resources" activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+        </li>
+        <li className="h-full">
+          <div className="relative flex items-center h-full">
+            <a href="#" className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+              Pricing
+            </a>
+          </div>
+        </li>
+      </ul>
+
+      {/* Mega Menu Dropdown Container */}
+      <div
+        className={`absolute top-[100%] left-1/2 -translate-x-1/2 w-[90vw] max-w-[1100px] mt-2 bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] border border-gray-100 transition-all duration-300 ease-out origin-top max-h-[85vh] overflow-y-auto ${activeMenu && activeMenu !== 'ai' ? 'opacity-100 translate-y-0 visible pointer-events-auto' : 'opacity-0 -translate-y-2 invisible pointer-events-none'
+          }`}
+        onMouseEnter={() => handleMouseEnter(activeMenu)}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div className="p-8">
+          {activeMenu === 'product' && <ProductPanel />}
+          {activeMenu === 'solutions' && <SolutionsPanel />}
+          {activeMenu === 'integrations' && <IntegrationsPanel />}
+          {activeMenu === 'resources' && <ResourcesPanel />}
+        </div>
+      </div>
+    </div>
+  );
+}
