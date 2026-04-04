@@ -1,9 +1,18 @@
+import {
+  Blocks,
+  PlugZap,
+  Route,
+  ScanEye,
+  ScanSearch,
+  Waypoints,
+  Workflow,
+} from "lucide-react";
 import PrimaryButton from "../../ui/Button/PrimaryButton";
 import HowItWorksCard from "../../ui/HowItWorksCard/HowItWorksCard";
 
 const cardInfo = [
   {
-    icon: "",
+    icon: <PlugZap size={92} />,
     title: "Connect",
     description:
       "Connect all your tools, so your data lives in one place, and not in silos.",
@@ -14,10 +23,9 @@ const cardInfo = [
     ],
     ctaText: "Explore Connect →",
     ctaLink: "#",
-    color: "purple",
   },
   {
-    icon: "",
+    icon: <Blocks size={92} />,
     title: "Prepare",
     description:
       "Clean, standardize, and merge raw data for deeper data analysis.",
@@ -28,10 +36,9 @@ const cardInfo = [
     ],
     ctaText: "Explore Prepare →",
     ctaLink: "#",
-    color: "red",
   },
   {
-    icon: "",
+    icon: <ScanEye size={92} />,
     title: "Visualize",
     description:
       "Easily build beautiful dashboards with clear data visualizations.",
@@ -43,10 +50,9 @@ const cardInfo = [
     ],
     ctaLink: "#",
     ctaText: "Explore Visualize →",
-    color: "blue",
   },
   {
-    icon: "",
+    icon: <ScanSearch size={92} />,
     title: "Analyze",
     description: "Understand how your business is performing.",
     features: [
@@ -57,10 +63,9 @@ const cardInfo = [
     ],
     ctaLink: "#",
     ctaText: "Explore Analyze →",
-    color: "orange",
   },
   {
-    icon: "",
+    icon: <Workflow size={92} />,
     title: "Report & Automate",
     description:
       "Automatically share data with your team, in the format you prefer.",
@@ -71,17 +76,15 @@ const cardInfo = [
     ],
     ctaLink: "#",
     ctaText: "Explore Report & Automate →",
-    color: "purple",
   },
   {
-    icon: "",
+    icon: <Waypoints size={92} />,
     title: "Plan",
     description:
       "Use your data to make better decisions and set better targets.",
     features: ["Set and track goals", "Forecast future results"],
     ctaLink: "#",
     ctaText: "Explore Connect →",
-    color: "green",
   },
 ];
 

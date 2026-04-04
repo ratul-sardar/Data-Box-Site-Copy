@@ -8,7 +8,6 @@ import HowItWorks from "./components/sections/HowItWorks/HowItWorks";
 import Insights from "./components/sections/Insights/Insights";
 import InteractiveCards from "./components/sections/InteractiveCards/InteractiveCards";
 import Testimonials from "./components/sections/Testimonial/Testimonial";
-import WhoItsFor from "./components/sections/WhoItsFor/WhoItsFor";
 import WhyUs from "./components/sections/WhyUs/WhyUs";
 import Footer from "./components/ui/Footer/Footer";
 import Navbar from "./components/ui/NavBar/NavBar";

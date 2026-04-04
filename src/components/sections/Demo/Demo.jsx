@@ -6,6 +6,7 @@ import {
   BrainCircuit,
   ArrowRight,
 } from "lucide-react";
+import PrimaryButton from "../../ui/Button/PrimaryButton";
 
 export default function Demo() {
   return (
@@ -81,15 +82,11 @@ export default function Demo() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <button className="flex items-center gap-2 bg-[#5570f1] hover:bg-[#445cd6] text-white px-6 py-3 rounded-lg font-medium transition-colors">
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <PrimaryButton link={"#"} brand={true}>
               Learn more
-              <ArrowRight size={18} />
-            </button>
-
-            <button className="bg-white hover:bg-gray-50 text-gray-900 px-6 py-3 rounded-lg font-bold border border-transparent transition-colors shadow-sm">
-              Watch Full Video
-            </button>
+            </PrimaryButton>
+            <PrimaryButton link={"#"}>Watch Full Video</PrimaryButton>
           </div>
         </div>
       </div>

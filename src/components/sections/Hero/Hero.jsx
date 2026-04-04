@@ -4,25 +4,36 @@ import { motion, AnimatePresence } from "framer-motion";
 import PrimaryButton from "../../ui/Button/PrimaryButton";
 
 import AIAnalyst from "../../../assets/hero-explore-key-feature-image/genie-chat-with-prompt-selection-and-floating-integrations-2x.png";
-import Dashboards from '../../../assets/hero-explore-key-feature-image/dashboards-2x.png';
-import Reports from '../../../assets/hero-explore-key-feature-image/reports-2x.png';
+import Dashboards from "../../../assets/hero-explore-key-feature-image/dashboards-2x.png";
+import Reports from "../../../assets/hero-explore-key-feature-image/reports-2x.png";
 import MetricsKPIs from "../../../assets/hero-explore-key-feature-image/metric-builder-2x.png";
 import GoalsOKRs from "../../../assets/hero-explore-key-feature-image/goals-2x.png";
 import Forecasts from "../../../assets/hero-explore-key-feature-image/forecasts-2x.png";
 import Mcp from "../../../assets/hero-explore-key-feature-image/mcp.png";
 import Integrations from "../../../assets/hero-explore-key-feature-image/integrations-2x.png";
 import DataPreparation from "../../../assets/hero-explore-key-feature-image/datasets-2x.png";
+import {
+  BrainCog,
+  ChartColumnIncreasing,
+  DatabaseZap,
+  FileText,
+  KeyboardIcon,
+  Plug,
+  Save,
+  Target,
+  Wallpaper,
+} from "lucide-react";
 
 const features = [
-  { title: "AI Analyst", icon: "🤖", image: AIAnalyst },
-  { title: "Dashboards", icon: "📊", image: Dashboards },
-  { title: "Reports", icon: "📄", image: Reports },
-  { title: "Metrics & KPIs", icon: "🔢", image: MetricsKPIs },
-  { title: "Goals & OKRs", icon: "🎯", image: GoalsOKRs },
-  { title: "Forecasts", icon: "📈", image: Forecasts },
-  { title: "MCP", icon: "💾", image: Mcp },
-  { title: "Integrations", icon: "🔌", image: Integrations },
-  { title: "Data Preparation", icon: "🛠️", image: DataPreparation },
+  { title: "AI Analyst", icon: <BrainCog />, image: AIAnalyst },
+  { title: "Dashboards", icon: <Wallpaper />, image: Dashboards },
+  { title: "Reports", icon: <FileText />, image: Reports },
+  { title: "Metrics & KPIs", icon: <KeyboardIcon />, image: MetricsKPIs },
+  { title: "Goals & OKRs", icon: <Target />, image: GoalsOKRs },
+  { title: "Forecasts", icon: <ChartColumnIncreasing />, image: Forecasts },
+  { title: "MCP", icon: <Save />, image: Mcp },
+  { title: "Integrations", icon: <Plug />, image: Integrations },
+  { title: "Data Preparation", icon: <DatabaseZap />, image: DataPreparation },
 ];
 
 export default function Hero() {
@@ -79,7 +90,7 @@ export default function Hero() {
             {/* Item 3*/}
             <p className="text-xs lg:text-sm">based on 1,000+ reviews</p>
           </div>
-          <h1 className="max-w-3xl mx-auto">
+          <h1 className="max-w-220 mx-auto">
             <span className="linearText">AI-powered</span> analytics for teams
             that need answers now
           </h1>
@@ -102,7 +113,7 @@ export default function Hero() {
 
         {/* Interactive Feature Section */}
         <div
-          className="relative mt-16 w-full"
+          className="relative w-full"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -126,30 +137,37 @@ export default function Hero() {
             </div>
 
             {/* Right Side: Feature cards panel */}
-            <div className="bg-white/95 backdrop-blur-md p-6 lg:p-8 md:p-5 rounded-2xl shadow-2xl w-[340px] lg:w-[440px] absolute right-0 lg:right-10 md:right-2 top-1/2 -translate-y-1/2 z-10 border border-gray-100">
-              <h2 className="text-xl lg:text-2xl font-bold text-gray-800 mb-6 text-center">
+            <div className="bg-white/95 backdrop-blur-md p-6 lg:p-8 md:p-5 rounded-2xl shadow-2xl w-[340px] lg:w-[440px] absolute right-0 lg:right-10 md:right-2 top-1/2 -translate-y-1/2 z-10 border border-gray-100 flex flex-col items-center">
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-800 mb-6 text-center">
                 Explore Key Features
-              </h2>
+              </h3>
 
               <div className="grid grid-cols-3 gap-3 mb-6">
                 {features.map((feature, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveFeature(idx)}
-                    className={`group flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-300 hover:scale-105 ${activeFeature === idx
-                      ? "bg-purple-50 border-purple-200 shadow-md ring-1 ring-purple-400"
-                      : "bg-white border-gray-100 hover:bg-gray-50"
-                      }`}
+                    className={`group flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-300 cursor-pointer shadow-xm ${
+                      activeFeature === idx
+                        ? "bg-purple-50 border-purple-200 shadow-md ring-1 ring-purple-400"
+                        : "bg-white border-gray-100 hover:bg-gray-50"
+                    }`}
                   >
                     <span
-                      className={`text-2xl mb-2 transition-transform duration-300 ${activeFeature === idx ? "scale-110 grayscale-0" : "group-hover:scale-110 grayscale"
-                        }`}
+                      className={`text-2xl mb-2 transition-transform duration-300 ${
+                        activeFeature === idx
+                          ? "scale-110 grayscale-0"
+                          : "group-hover:scale-110 grayscale"
+                      }`}
                     >
                       {feature.icon}
                     </span>
                     <span
-                      className={`text-[11px] lg:text-xs font-semibold leading-tight text-center transition-colors duration-300 ${activeFeature === idx ? "text-purple-600" : "text-gray-500"
-                        }`}
+                      className={`text-[11px] lg:text-xs font-semibold leading-tight text-center transition-colors duration-300 ${
+                        activeFeature === idx
+                          ? "text-purple-600"
+                          : "text-gray-500"
+                      }`}
                     >
                       {feature.title}
                     </span>
@@ -163,16 +181,19 @@ export default function Hero() {
                   <button
                     key={idx}
                     onClick={() => setActiveFeature(idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${activeFeature === idx ? "w-8 bg-purple-500" : "w-1.5 bg-gray-300 hover:bg-gray-400"
-                      }`}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeFeature === idx
+                        ? "w-8 bg-purple-500"
+                        : "w-1.5 bg-gray-300 hover:bg-gray-400"
+                    }`}
                     aria-label={`Go to feature ${idx + 1}`}
                   />
                 ))}
               </div>
 
-              <button className="w-full bg-brand text-white py-3 rounded-xl font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-md hover:shadow-lg">
+              <PrimaryButton link={"#"} brand={true}>
                 Try It Free
-              </button>
+              </PrimaryButton>
             </div>
           </div>
 
@@ -211,7 +232,9 @@ export default function Hero() {
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="text-3xl mb-2">{features[activeFeature].icon}</div>
+                  <div className="text-3xl mb-2">
+                    {features[activeFeature].icon}
+                  </div>
                   <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-brand">
                     {features[activeFeature].title}
                   </h3>
@@ -225,8 +248,11 @@ export default function Hero() {
                 <button
                   key={idx}
                   onClick={() => setActiveFeature(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${activeFeature === idx ? "w-6 bg-purple-500" : "w-1.5 bg-gray-300"
-                    }`}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeFeature === idx
+                      ? "w-6 bg-purple-500"
+                      : "w-1.5 bg-gray-300"
+                  }`}
                   aria-label={`Slide ${idx + 1}`}
                 />
               ))}
@@ -238,15 +264,20 @@ export default function Hero() {
                 <button
                   key={idx}
                   onClick={() => setActiveFeature(idx)}
-                  className={`flex-shrink-0 snap-center w-[120px] h-[110px] flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-300 ${activeFeature === idx
-                    ? "bg-purple-50 border-purple-300 shadow-md transform scale-105 z-10"
-                    : "bg-white border-gray-100 opacity-70 hover:opacity-100"
-                    }`}
+                  className={`flex-shrink-0 snap-center w-[120px] h-[110px] flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-300 ${
+                    activeFeature === idx
+                      ? "bg-purple-50 border-purple-300 shadow-md transform scale-105 z-10"
+                      : "bg-white border-gray-100 opacity-70 hover:opacity-100"
+                  }`}
                 >
-                  <span className={`text-3xl mb-2 transition-all duration-300 ${activeFeature === idx ? "scale-110 grayscale-0" : "grayscale"}`}>
+                  <span
+                    className={`text-3xl mb-2 transition-all duration-300 ${activeFeature === idx ? "scale-110 grayscale-0" : "grayscale"}`}
+                  >
                     {feature.icon}
                   </span>
-                  <span className={`text-[11px] font-semibold leading-tight text-center ${activeFeature === idx ? "text-purple-700" : "text-gray-500"}`}>
+                  <span
+                    className={`text-[11px] font-semibold leading-tight text-center ${activeFeature === idx ? "text-purple-700" : "text-gray-500"}`}
+                  >
                     {feature.title}
                   </span>
                 </button>
@@ -254,9 +285,9 @@ export default function Hero() {
             </div>
 
             <div className="px-2 mt-2">
-              <button className="w-full bg-brand text-white py-3.5 rounded-xl font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg active:scale-[0.98]">
+              <PrimaryButton link={"#"} brand={true}>
                 Try It Free
-              </button>
+              </PrimaryButton>
             </div>
           </div>
         </div>

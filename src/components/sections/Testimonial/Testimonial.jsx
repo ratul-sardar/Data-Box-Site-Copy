@@ -111,7 +111,7 @@ const TestimonialCard = ({ testimonial }) => {
 export default function Testimonials() {
   return (
     <section id="testimonial" className="">
-      <div className="cssContainer">
+      <div className="cssContainer pb-0">
         {/* Section Heading */}
 
         <header className="header">
@@ -119,46 +119,45 @@ export default function Testimonials() {
             Why customers <span className="linearText">love Databox</span>
           </h2>
         </header>
-
-        {/* Carousel Container */}
-        <Swiper
-          // Swiper configurations
-          modules={[Autoplay, Pagination]}
-          spaceBetween={30} // gap between cards
-          slidesPerView={1} // mobile default
-          loop={true} // infinite loop
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-            dynamicBullets: true, // matching the compact dots in image
-          }}
-          // Responsiveness Breakpoints
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
-            },
-            1280: {
-              slidesPerView: 4,
-            },
-            1536: {
-              slidesPerView: 5, // Matching the wide view in the screenshot
-            },
-          }}
-          className="mySwiper !pb-14" // Extra padding at bottom for pagination dots
-        >
-          {testimonialsData.map((testimonial) => (
-            <SwiperSlide key={testimonial.id} className="h-full">
-              <TestimonialCard testimonial={testimonial} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
       </div>
+      {/* Carousel Container */}
+      <Swiper
+        // Swiper configurations
+        modules={[Autoplay, Pagination]}
+        spaceBetween={30} // gap between cards
+        slidesPerView={1} // mobile default
+        loop={true} // infinite loop
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+          dynamicBullets: true, // matching the compact dots in image
+        }}
+        // Responsiveness Breakpoints
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+          1280: {
+            slidesPerView: 4,
+          },
+          1536: {
+            slidesPerView: 5, // Matching the wide view in the screenshot
+          },
+        }}
+        className="mySwiper !pb-14" // Extra padding at bottom for pagination dots
+      >
+        {testimonialsData.map((testimonial) => (
+          <SwiperSlide key={testimonial.id} className="h-full">
+            <TestimonialCard testimonial={testimonial} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </section>
   );
 }

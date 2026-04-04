@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import ButtonSm from "../../ui/Button/ButtonSm";
+import {
+  Briefcase,
+  ChartColumnIncreasing,
+  Megaphone,
+  Users,
+  UserStar,
+} from "lucide-react";
 
 const cardData = [
   {
@@ -7,48 +15,53 @@ const cardData = [
     title: "Business Analysts",
     color: "bg-purple-500",
     textColor: "text-white",
-    icon: "📊",
+    icon: <ChartColumnIncreasing size={80} />,
     details: [
       "Build dashboards and reports much faster than with enterprise solutions",
       "Remove yourself as the bottleneck and empower your team",
       "Organize your company's performance by team",
     ],
+    ctaLink: "#",
   },
   {
     id: 2,
     title: "Executives",
     color: "bg-gray-200",
     textColor: "text-gray-800",
-    icon: "💼",
+    icon: <Briefcase size={80} />,
     details: ["High-level overview", "Strategic planning", "Real-time KPIs"],
+    ctaLink: "#",
   },
   {
     id: 3,
     title: "Functional Leaders",
     color: "bg-blue-100",
     textColor: "text-blue-800",
-    icon: "👥",
+    icon: <UserStar size={80} />,
     details: [
       "Departmental tracking",
       "Resource allocation",
       "Team performance",
     ],
+    ctaLink: "#",
   },
   {
     id: 4,
     title: "Team Contributors",
     color: "bg-green-100",
     textColor: "text-green-800",
-    icon: "👤",
+    icon: <Users size={80} />,
     details: ["Task management", "Individual metrics", "Collaboration tools"],
+    ctaLink: "#",
   },
   {
     id: 5,
     title: "Agencies & Consultants",
     color: "bg-orange-100",
     textColor: "text-orange-800",
-    icon: "📢",
+    icon: <Megaphone size={80} />,
     details: ["Client reporting", "External access", "White-label solutions"],
+    ctaLink: "#",
   },
 ];
 
@@ -124,9 +137,12 @@ const InteractiveCards = () => {
                             ))}
                           </ul>
 
-                          <button className="mt-6 md:mt-8 px-5 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-md rounded-lg text-xs md:text-sm font-medium transition-colors">
+                          <ButtonSm
+                            ctaLink={card.ctaLink}
+                            className={"w-fit mt-6"}
+                          >
                             Learn More →
-                          </button>
+                          </ButtonSm>
                         </motion.div>
                       )}
                     </AnimatePresence>

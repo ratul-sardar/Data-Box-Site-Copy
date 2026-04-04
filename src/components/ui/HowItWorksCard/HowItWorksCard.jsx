@@ -2,7 +2,7 @@ import ButtonSm from "../Button/ButtonSm";
 
 export default function HowItWorksCard({ card }) {
   const {
-    // icon = "",
+    icon = "",
     title = "Connect",
     description = "Connect all your tools, so your data lives in one place, and not in silos.",
     features = [
@@ -12,39 +12,19 @@ export default function HowItWorksCard({ card }) {
     ],
     ctaText = "Explore Connect →",
     ctaLink = "#",
-    color = "",
   } = card;
 
   return (
     <>
       <div
-        className={`card rounded-3xl border border-gray-200/10 w-full shadow-sm bg-${color}-500/10`}
+        className={`card rounded-3xl border border-gray-200/10 w-full shadow-sm text-purple-500`}
       >
         <div className="card-body gap-4 px-6 py-8">
           {/* Icon */}
-          <div>
-            <svg
-              width="36"
-              height="36"
-              viewBox="0 0 36 36"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M22 8l6 6-3 3-2-2-8 8 2 2-3 3-6-6 3-3 2 2 8-8-2-2 3-3z"
-                stroke="#7c3aed"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                fill="none"
-              />
-              <circle cx="26" cy="10" r="2" fill="#7c3aed" />
-              <circle cx="10" cy="26" r="2" fill="#7c3aed" />
-            </svg>
-          </div>
+          <div>{icon}</div>
 
           {/* Title */}
-          <h3 className="card-title mt-2 text-2xl font-bold text-purple-500">
+          <h3 className="card-title mt-2 text-2xl font-bold text-black">
             {title}
           </h3>
 
