@@ -139,7 +139,7 @@ const InteractiveCards = () => {
                 {/* Optional subtle icon for closed cards on desktop (Bottom) */}
                 {!isActive && (
                   <div
-                    className={`mt-auto hidden md:flex justify-center ${card.iconColor} opacity-30 grayscale`}
+                    className={`mt-auto hidden md:flex justify-center ${card.iconColor} `}
                   >
                     {card.icon}
                   </div>
