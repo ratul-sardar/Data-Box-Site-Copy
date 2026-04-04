@@ -64,94 +64,96 @@ const cardData = [
 ];
 
 const InteractiveCards = () => {
-  const [activeId, setActiveId] = useState(2);
+  const [activeId, setActiveId] = useState(2); // Executives open by default on desktop
 
   return (
     <section id="interactiveCards" className="">
       <div className="cssContainer">
-        <header className="header"></header>
-        {/* Content*/}
-        <div className="max-w-7xl mx-auto px-4">
-          {/* Layout: Vertical stack on mobile/tablet, Horizontal on desktop */}
-          <div className="flex flex-col md:flex-row gap-4 h-auto md:h-[600px]">
-            {cardData.map((card) => {
-              const isActive = activeId === card.id;
+        {/* Restored Original Heading Section */}
+        <header className="header">
+          <h2 className="max-w-200 mx-auto">
+            <span className="linearText">Self-serve analytics </span>
+            for people who are tired of doing reporting
+          </h2>
+        </header>
 
-              return (
-                <motion.div
-                  key={card.id}
-                  layout
-                  onClick={() => setActiveId(card.id)}
-                  className={`relative cursor-pointer rounded-3xl p-6 md:p-10 overflow-hidden flex flex-col transition-all duration-500 ease-in-out ${
-                    card.color
-                  } ${isActive ? "md:flex-[3]" : "md:flex-1"}`}
-                >
-                  {/* Header: Title and Top-Right Icon */}
-                  <div className="flex justify-between items-start">
-                    <h3
-                      className={`text-xl md:text-2xl font-bold leading-tight max-w-[140px] ${card.textColor}`}
-                    >
-                      {card.title}
-                    </h3>
+        {/* Updated Cards Grid */}
+        <div className="flex flex-col md:flex-row gap-4 h-auto md:h-[600px] mt-12">
+          {cardData.map((card) => {
+            const isActive = activeId === card.id;
 
-                    {/* Icon on the Right:
-                      1. Visible on mobile (since all are "open")
-                      2. On Desktop, only visible if isActive is true
-                  */}
-                    <div
-                      className={`transition-opacity duration-300 ${card.iconColor}
-                    ${isActive ? "opacity-100 block" : "opacity-0 md:hidden lg:hidden"}
-                    block`} // 'block' ensures it shows on mobile/tablet
-                    >
-                      {card.icon}
-                    </div>
-                  </div>
-
-                  {/* Content: Visible on Mobile, Conditional on Desktop */}
-                  <div
-                    className={`mt-10 flex-1 ${isActive ? "block" : "hidden md:hidden"} md:block`}
+            return (
+              <motion.div
+                key={card.id}
+                layout
+                onClick={() => setActiveId(card.id)}
+                className={`relative cursor-pointer rounded-3xl p-6 md:p-10 overflow-hidden flex flex-col transition-all duration-500 ease-in-out ${
+                  card.color
+                } ${isActive ? "md:flex-[3]" : "md:flex-1"}`}
+              >
+                {/* Header: Title and Top-Right Icon */}
+                <div className="flex justify-between items-start">
+                  <h3
+                    className={`text-xl md:text-2xl font-bold leading-tight max-w-[140px] ${card.textColor}`}
                   >
-                    {/* Mobile/Tablet Static View */}
-                    <div className="md:hidden">
-                      <CardContent card={card} />
-                    </div>
+                    {card.title}
+                  </h3>
 
-                    {/* Desktop Animated View */}
-                    <div className="hidden md:block">
-                      <AnimatePresence mode="wait">
-                        {isActive && (
-                          <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -10 }}
-                            transition={{ duration: 0.4 }}
-                          >
-                            <CardContent card={card} />
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
+                  {/* Icon: Visible on Mobile/Tab (always open),
+                      but on Desktop only visible if isActive is true */}
+                  <div
+                    className={`transition-opacity duration-300 ${card.iconColor}
+                    ${isActive ? "opacity-100 block" : "opacity-0 md:hidden"}
+                    block`}
+                  >
+                    {card.icon}
+                  </div>
+                </div>
+
+                {/* Content: Visible on Mobile/Tab, Conditional on Desktop */}
+                <div
+                  className={`mt-10 flex-1 ${isActive ? "block" : "hidden md:hidden"} md:block`}
+                >
+                  {/* Mobile View: Content always rendered */}
+                  <div className="md:hidden">
+                    <CardContent card={card} />
                   </div>
 
-                  {/* Optional: Icon at the bottom for CLOSED cards on Desktop (per original image) */}
-                  {/* If you want NO icons at all when closed, simply delete this <div> below */}
-                  {!isActive && (
-                    <div
-                      className={`mt-auto hidden md:flex justify-center ${card.iconColor} opacity-40 grayscale hover:grayscale-0 transition-all`}
-                    >
-                      {card.icon}
-                    </div>
-                  )}
-                </motion.div>
-              );
-            })}
-          </div>
+                  {/* Desktop View: Content animated via AnimatePresence */}
+                  <div className="hidden md:block">
+                    <AnimatePresence mode="wait">
+                      {isActive && (
+                        <motion.div
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -10 }}
+                          transition={{ duration: 0.4 }}
+                        >
+                          <CardContent card={card} />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+
+                {/* Optional subtle icon for closed cards on desktop (Bottom) */}
+                {!isActive && (
+                  <div
+                    className={`mt-auto hidden md:flex justify-center ${card.iconColor} opacity-30 grayscale`}
+                  >
+                    {card.icon}
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 };
 
+// Reusable content component to keep the main map clean
 const CardContent = ({ card }) => (
   <>
     <p
@@ -162,7 +164,7 @@ const CardContent = ({ card }) => (
     <ul className={`space-y-4 ${card.textColor}`}>
       {card.details.map((item, idx) => (
         <li key={idx} className="flex items-start gap-3">
-          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-current shrink-0 opacity-60" />
+          <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-current shrink-0 opacity-60" />
           <span className="text-sm md:text-base font-medium opacity-90 leading-relaxed">
             {item}
           </span>
@@ -170,10 +172,7 @@ const CardContent = ({ card }) => (
       ))}
     </ul>
     <div className="mt-10">
-      <ButtonSm
-        ctaLink={card.ctaLink}
-        className="bg-white/30 backdrop-blur-sm hover:bg-white/50 text-white border-none py-3 px-6 rounded-xl font-bold transition-all"
-      >
+      <ButtonSm ctaLink={card.ctaLink} className="w-fit">
         Learn More →
       </ButtonSm>
     </div>
@@ -181,89 +180,3 @@ const CardContent = ({ card }) => (
 );
 
 export default InteractiveCards;
-import PrimaryButton from "../../ui/Button/PrimaryButton";
-import HowItWorksCard from "../../ui/HowItWorksCard/HowItWorksCard";
-
-const cardInfo = [
-  {
-    icon: "",
-    title: "Connect",
-    description:
-      "Connect all your tools, so your data lives in one place, and not in silos.",
-    features: [
-      "130+ one-click integrations",
-      "Google Sheets and Excel",
-      "Databases",
-    ],
-    ctaText: "Explore Connect →",
-    ctaLink: "#",
-    color: "purple",
-  },
-  {
-    icon: "",
-    title: "Prepare",
-    description:
-      "Clean, standardize, and merge raw data for deeper data analysis.",
-    features: [
-      "Data Preparation (Datasets)",
-      "Filters & Calculations",
-      "Merge Datasets",
-    ],
-    ctaText: "Explore Prepare →",
-    ctaLink: "#",
-    color: "red",
-  },
-  {
-    icon: "",
-    title: "Visualize",
-    description:
-      "Easily build beautiful dashboards with clear data visualizations.",
-    features: [
-      "Drag-and-drop designer",
-      "20+ visualization types",
-      "200+ pre-built templates",
-      "TV and mobile views",
-    ],
-    ctaLink: "#",
-    ctaText: "Explore Visualize →",
-    color: "blue",
-  },
-  {
-    icon: "",
-    title: "Analyze",
-    description: "Understand how your business is performing.",
-    features: [
-      "Drill-down to row-level data",
-      "Compare periods",
-      "Filter by dimension",
-      "Get AI-powered insights and summaries",
-    ],
-    ctaLink: "#",
-    ctaText: "Explore Analyze →",
-    color: "orange",
-  },
-  {
-    icon: "",
-    title: "Report & Automate",
-    description:
-      "Automatically share data with your team, in the format you prefer.",
-    features: [
-      "Page and Slide reports",
-      "Performance updates sent to Slack, email, or mobile",
-      "Share links",
-    ],
-    ctaLink: "#",
-    ctaText: "Explore Report & Automate →",
-    color: "purple",
-  },
-  {
-    icon: "",
-    title: "Plan",
-    description:
-      "Use your data to make better decisions and set better targets.",
-    features: ["Set and track goals", "Forecast future results"],
-    ctaLink: "#",
-    ctaText: "Explore Connect →",
-    color: "green",
-  },
-];
