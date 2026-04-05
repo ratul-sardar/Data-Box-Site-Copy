@@ -17,6 +17,11 @@ import {
   TableProperties,
   ArrowRight,
   Puzzle,
+  Plug,
+  Search,
+  TrendingUp,
+  Lightbulb,
+  Share2,
 } from "lucide-react";
 
 export const menuData = {
@@ -106,6 +111,51 @@ export const menuData = {
         link: "#",
       },
     ],
+    problems: [
+      {
+        title: "Centralize",
+        description: "Integrate data from all your tools.",
+        icon: Plug,
+        color: "text-green-500"
+      },
+      {
+        title: "Prepare",
+        description: "Clean, merge, and structure raw data for deeper analysis.",
+        icon: Database,
+        color: "text-gray-500"
+      },
+      {
+        title: "Visualize",
+        description: "Build interactive dashboards anyone can understand.",
+        icon: LineChart,
+        color: "text-blue-400"
+      },
+      {
+        title: "Analyze",
+        description: "Spot trends and uncover insights faster.",
+        icon: Search,
+        color: "text-yellow-500"
+      },
+      {
+        title: "Report & Automate",
+        description: "Share performance updates automatically, in any format.",
+        icon: FileText,
+        color: "text-orange-500"
+      },
+      {
+        title: "Plan",
+        description: "Manage performance deliberately against goals and objectives.",
+        icon: Target,
+        color: "text-emerald-500"
+      }
+    ],
+    whyDatabox: [
+      { text: "Measure what matters most", icon: Activity },
+      { text: "Understand performance instantly", icon: TrendingUp },
+      { text: "Draw better conclusions", icon: Lightbulb },
+      { text: "Empower your entire team to self-serve data", icon: Users },
+      { text: "Make better decisions, together", icon: Share2 }
+    ]
   },
   integrations: {
     columns: [

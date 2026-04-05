@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { menuData } from './data';
 import { ArrowRight, Sparkles, DatabaseZap } from 'lucide-react';
 
@@ -65,66 +65,110 @@ export function ProductPanel() {
 }
 
 export function SolutionsPanel() {
-  const { industry, role } = menuData.solutions;
+  const { industry, role, problems, whyDatabox } = menuData.solutions;
+  const [activeTab, setActiveTab] = useState('who-were-for');
 
   return (
     <div className="flex flex-col lg:flex-row gap-8">
       {/* Left Sidebar */}
-      <div className="w-full lg:w-56 flex lg:flex-col gap-2">
-        <button className="text-left px-4 py-3 rounded-lg bg-gray-50 font-medium text-sm text-gray-900 flex justify-between items-center group">
+      <div className="w-full lg:w-[200px] flex lg:flex-col gap-2 shrink-0">
+        <button 
+          onClick={() => setActiveTab('who-were-for')}
+          className={`text-left px-4 py-3 rounded-lg font-medium text-sm flex justify-between items-center group transition-colors ${activeTab === 'who-were-for' ? 'bg-gray-50 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}>
           Who We're For
-          <ArrowRight size={16} className="text-gray-400 group-hover:text-brand transition-colors" />
+          <ArrowRight size={16} className={`transition-colors ${activeTab === 'who-were-for' ? 'text-gray-400' : 'opacity-0 group-hover:opacity-100 text-gray-400 group-hover:text-blue-600'}`} />
         </button>
-        <button className="text-left px-4 py-3 rounded-lg hover:bg-gray-50 font-medium text-sm text-gray-600 hover:text-gray-900 transition-colors flex justify-between items-center group">
+        <button 
+          onClick={() => setActiveTab('problems-we-solve')}
+          className={`text-left px-4 py-3 rounded-lg font-medium text-sm flex justify-between items-center group transition-colors ${activeTab === 'problems-we-solve' ? 'bg-gray-50 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}>
           Problems We Solve
-          <ArrowRight size={16} className="opacity-0 group-hover:opacity-100 text-gray-400 group-hover:text-brand transition-all" />
+          <ArrowRight size={16} className={`transition-colors ${activeTab === 'problems-we-solve' ? 'text-gray-400' : 'opacity-0 group-hover:opacity-100 text-gray-400 group-hover:text-blue-600'}`} />
         </button>
       </div>
 
       <div className="flex-1 right-content">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          <div className="col-span-1 lg:col-span-2">
-            <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">BY INDUSTRY</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {industry.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div key={idx} className="flex flex-col h-full">
-                    <div className={`h-24 rounded-lg mb-4 flex items-center justify-center ${idx === 0 ? 'bg-blue-50' : 'bg-orange-50'}`}>
-                      <Icon size={32} className={idx === 0 ? 'text-brand' : 'text-orange-500'} strokeWidth={1.5} />
+        {activeTab === 'who-were-for' ? (
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+            <div className="col-span-1 lg:col-span-2">
+              <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">BY INDUSTRY</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {industry.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={idx} className="flex flex-col h-full">
+                      <div className={`h-24 rounded-lg mb-4 flex items-center justify-center ${idx === 0 ? 'bg-blue-50' : 'bg-orange-50'}`}>
+                        <Icon size={32} className={idx === 0 ? 'text-brand' : 'text-orange-500'} strokeWidth={1.5} />
+                      </div>
+                      <h3 className="font-semibold text-gray-900 text-sm mb-2">{item.title}</h3>
+                      <p className="text-gray-500 text-xs mb-4 flex-1">{item.description}</p>
+                      <a href={item.link} className="inline-block mt-auto text-center w-full py-2 px-4 rounded-md border border-gray-200 text-brand text-sm font-medium hover:border-brand transition-colors">
+                        Learn more
+                      </a>
                     </div>
-                    <h3 className="font-semibold text-gray-900 text-sm mb-2">{item.title}</h3>
-                    <p className="text-gray-500 text-xs mb-4 flex-1">{item.description}</p>
-                    <a href={item.link} className="inline-block mt-auto text-center w-full py-2 px-4 rounded-md border border-gray-200 text-brand text-sm font-medium hover:border-brand transition-colors">
-                      Learn more
-                    </a>
-                  </div>
-                )
-              })}
+                  )
+                })}
+              </div>
             </div>
-          </div>
 
-          <div className="col-span-1 lg:col-span-3 border-t lg:border-t-0 lg:border-l border-gray-100 pl-0 lg:pl-8 pt-6 lg:pt-0">
-            <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">BY ROLE</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {role.map((item, idx) => {
-                const Icon = item.icon;
-                return (
-                  <div key={idx} className="flex flex-col h-full">
-                    <div className={`h-24 rounded-lg mb-4 flex items-center justify-center bg-indigo-50`}>
-                      <Icon size={32} className="text-indigo-600" strokeWidth={1.5} />
+            <div className="col-span-1 lg:col-span-3 border-t lg:border-t-0 lg:border-l border-gray-100 pl-0 lg:pl-8 pt-6 lg:pt-0">
+              <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">BY ROLE</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {role.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={idx} className="flex flex-col h-full">
+                      <div className={`h-24 rounded-lg mb-4 flex items-center justify-center bg-indigo-50`}>
+                        <Icon size={32} className="text-indigo-600" strokeWidth={1.5} />
+                      </div>
+                      <h3 className="font-semibold text-gray-900 text-sm mb-2">{item.title}</h3>
+                      <p className="text-gray-500 text-xs mb-4 flex-1">{item.description}</p>
+                      <a href={item.link} className="inline-block mt-auto text-center w-full py-2 px-4 rounded-md border border-gray-200 text-brand text-sm font-medium hover:border-brand transition-colors">
+                        Learn more
+                      </a>
                     </div>
-                    <h3 className="font-semibold text-gray-900 text-sm mb-2">{item.title}</h3>
-                    <p className="text-gray-500 text-xs mb-4 flex-1">{item.description}</p>
-                    <a href={item.link} className="inline-block mt-auto text-center w-full py-2 px-4 rounded-md border border-gray-200 text-brand text-sm font-medium hover:border-brand transition-colors">
-                      Learn more
-                    </a>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col lg:flex-row gap-8 h-full">
+            {/* Problems Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 flex-[2.5]">
+              {problems.map((problem, idx) => {
+                const Icon = problem.icon;
+                return (
+                  <div key={idx} className="p-5 rounded-lg border border-gray-100 bg-white hover:border-gray-200 transition-colors h-full flex flex-col">
+                    <Icon size={20} className={`mb-3 ${problem.color}`} strokeWidth={2} />
+                    <h3 className="font-semibold text-gray-900 text-sm mb-2">{problem.title}</h3>
+                    <p className="text-gray-500 text-xs leading-relaxed">{problem.description}</p>
                   </div>
                 )
               })}
             </div>
+
+            {/* Why Databox Sidebar */}
+            <div className="flex-1 bg-gray-50/50 rounded-xl p-6 border border-gray-100 flex flex-col min-w-[280px]">
+              <h3 className="font-semibold text-gray-900 text-[15px] mb-6">Why Databox?</h3>
+              <ul className="space-y-[15px] mb-8">
+                {whyDatabox.map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <li key={idx} className="flex items-start gap-4 text-[13px] text-gray-600">
+                      <Icon size={18} className="text-indigo-400 shrink-0 relative top-0.5" strokeWidth={1.5} />
+                      <span className="leading-snug">{item.text}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className="mt-auto">
+                <a href="#" className="inline-flex items-center justify-center py-2 px-4 bg-white border border-gray-200 rounded-lg text-blue-600 font-medium text-sm hover:border-gray-300 transition-colors">
+                  Learn more <ArrowRight size={14} className="ml-1.5" />
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
