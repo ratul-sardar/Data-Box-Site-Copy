@@ -3,6 +3,7 @@ import Logo from "../../../assets/logo.svg";
 import { Sparkles, Menu as MenuIcon, X } from "lucide-react";
 import MegaMenu from "./MegaMenu";
 import { menuData } from "./data";
+import PrimaryButton from "../Button/PrimaryButton";
 
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -32,9 +33,7 @@ export default function NavBar() {
             <a href="#" className="text-sm font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 px-4 py-2 rounded-lg transition-colors">
               Book a Demo
             </a>
-            <a href="#" className="text-sm font-medium text-white bg-brand hover:bg-brand/90 px-4 py-2 rounded-lg shadow-sm shadow-brand/20 transition-all">
-              Try It Free
-            </a>
+            <button className="btn btn-primary bg-[#E7FE29] hover:bg-[#E7FE29] border-[#E7FE29] hover:border-[#E7FE29] text-black text-[1rem] font-semibold px-4 py-2 rounded-lg transition-colors">Try It Free</button>
           </div>
 
           {/* Mobile menu button */}
@@ -98,8 +97,8 @@ export default function NavBar() {
               </div>
 
               {/* AI */}
-              <div className="py-2 border-b border-gray-50">
-                <a href="#" className="flex items-center gap-1 font-medium text-gray-900 py-2 cursor-pointer hover:text-brand transition-colors">
+              <div className="py-2 border-b border-gray-50 ">
+                <a href="#" className="flex items-center gap-1 font-medium text-gray-900 py-2 cursor-pointer">
                   AI <Sparkles size={16} className="text-purple-500" />
                 </a>
               </div>
