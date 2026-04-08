@@ -50,7 +50,7 @@ const PricingCard = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className={`relative flex flex-col p-10 bg-white rounded-[2.5rem] shadow-2xl transition-all duration-300 hover:scale-[1.03] flex-1 min-w-[320px] ${isPopular ? 'border-[3px] border-[#a855f7] scale-[1.02]' : ''
+      className={`relative flex flex-col p-5 bg-white rounded-2xl shadow-2xl transition-all duration-300 hover:scale-[1.03] flex-1 min-w-[320px] ${isPopular ? 'border-[3px] border-[#a855f7] scale-[1.02]' : ''
         }`}
     >
       {/* Badges */}

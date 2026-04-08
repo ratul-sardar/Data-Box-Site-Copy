@@ -3,6 +3,11 @@ import { Warehouse, UserPlus } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import PricingCard from '../components/ui/PricingCard';
 import { pricingData } from '../data/pricingData';
+import logo1 from '../assets/pricing/logo1.svg'
+import logo2 from '../assets/pricing/logo2.svg'
+import logo3 from '../assets/pricing/logo3.svg'
+import logo4 from '../assets/pricing/logo4.svg'
+import logo5 from '../assets/pricing/logo5.svg'
 
 export default function Pricing() {
     const [activeTab, setActiveTab] = useState('businesses'); // 'businesses' or 'agencies'
@@ -39,12 +44,12 @@ export default function Pricing() {
                 {/* Controls */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12">
                     {/* Tabs */}
-                    <div className="flex p-1 bg-white/15 backdrop-blur-md rounded-full border border-white/20">
+                    <div className="flex p-1 bg-white/15 backdrop-blur-md gap-2.5 rounded-full border border-white/20">
                         <button
                             onClick={() => setActiveTab('businesses')}
                             className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer ${activeTab === 'businesses'
-                                    ? 'bg-white text-[#7347ea] shadow-lg'
-                                    : 'text-white hover:bg-white/10'
+                                ? 'bg-white text-[#7347ea] shadow-lg'
+                                : 'text-white hover:bg-white/10'
                                 }`}
                         >
                             <Warehouse className="w-4 h-4" />
@@ -53,8 +58,8 @@ export default function Pricing() {
                         <button
                             onClick={() => setActiveTab('agencies')}
                             className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer ${activeTab === 'agencies'
-                                    ? 'bg-white text-[#7347ea] shadow-lg'
-                                    : 'text-white hover:bg-white/10'
+                                ? 'bg-white text-[#7347ea] shadow-lg'
+                                : 'text-white hover:bg-white/10'
                                 }`}
                         >
                             <UserPlus className="w-4 h-4" />
@@ -87,7 +92,7 @@ export default function Pricing() {
                 </div>
 
                 {/* Pricing Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 items-stretch">
                     <AnimatePresence mode="popLayout">
                         {currentPlans.map((plan, index) => (
                             <PricingCard
@@ -99,6 +104,17 @@ export default function Pricing() {
                             />
                         ))}
                     </AnimatePresence>
+                </div>
+
+                <div className='pt-20'>
+                    <p className='text-white/80 text-center text-xl font-bold mb-5'>Trusted by more than 20,000 companies.</p>
+                    <div className='flex items-center justify-center gap-10'>
+                        <img src={logo1} alt="logo1" />
+                        <img src={logo2} alt="logo2" />
+                        <img src={logo3} alt="logo3" />
+                        <img src={logo4} alt="logo4" />
+                        <img src={logo5} alt="logo5" />
+                    </div>
                 </div>
             </div>
         </section>
