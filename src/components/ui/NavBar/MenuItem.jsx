@@ -15,7 +15,7 @@ export default function MenuItem({ title, menuKey, activeMenu, setActiveMenu, ch
     <div className="relative flex items-center h-full">
       <button
         onClick={handleClick}
-        className={`flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors hover:text-brand ${isOpen ? 'text-brand' : 'text-gray-700'} cursor-pointer`}
+        className={`flex items-center gap-1 px-3 py-2 text-sm transition-colors hover:text-brand font-bold ${isOpen ? 'text-brand' : 'text-gray-700'} cursor-pointer`}
         aria-expanded={isOpen}
       >
         {title}
