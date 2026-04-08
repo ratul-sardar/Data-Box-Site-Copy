@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import PrimaryButton from "../../ui/Button/PrimaryButton";
 import HowItWorksCard from "../../ui/HowItWorksCard/HowItWorksCard";
+import HowItWorksBg from "../../../assets/data-workflow.png"
 
 const cardInfo = [
   {
@@ -91,7 +92,14 @@ const cardInfo = [
 export default function HowItWorks() {
   return (
     <>
-      <section id="howItWorks" className="">
+      <section id="howItWorks" className=""
+        style={{
+          backgroundImage: `url(${HowItWorksBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <div className="cssContainer ">
           <header className="header">
             <h2 className="max-w-200 mx-auto ">

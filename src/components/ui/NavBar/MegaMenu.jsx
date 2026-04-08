@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import MenuItem from './MenuItem';
 import { ProductPanel, SolutionsPanel, IntegrationsPanel, ResourcesPanel } from './MenuPanels';
+import { Link } from 'react-router';
 
 export default function MegaMenu() {
   const [activeMenu, setActiveMenu] = useState(null);
@@ -58,9 +59,9 @@ export default function MegaMenu() {
         </li>
         <li className="h-full">
           <div className="relative flex items-center h-full">
-            <a href="#" className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+            <Link to="/pricing" className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand transition-colors">
               Pricing
-            </a>
+            </Link>
           </div>
         </li>
       </ul>

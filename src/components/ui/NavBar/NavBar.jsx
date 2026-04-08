@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router";
 import Logo from "../../../assets/logo.svg";
 import { Sparkles, Menu as MenuIcon, X } from "lucide-react";
 import MegaMenu from "./MegaMenu";
@@ -6,17 +7,29 @@ import { menuData } from "./data";
 
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 relative">
+      <nav className={`fixed top-0 z-50 left-0 right-0 transition-all duration-300 ${isScrolled ? "bg-white" : "bg-transparent"
+        }`}>
         <div className="w-11/12 max-w-7xl mx-auto flex items-center justify-between h-20">
 
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <img src={Logo} alt="Logo" className="w-32" />
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Mega Menu Navigation */}
@@ -32,9 +45,7 @@ export default function NavBar() {
             <a href="#" className="text-sm font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 px-4 py-2 rounded-lg transition-colors">
               Book a Demo
             </a>
-            <a href="#" className="text-sm font-medium text-white bg-brand hover:bg-brand/90 px-4 py-2 rounded-lg shadow-sm shadow-brand/20 transition-all">
-              Try It Free
-            </a>
+            <button className="btn btn-primary bg-[#E7FE29] hover:bg-[#E7FE29] border-[#E7FE29] hover:border-[#E7FE29] text-black text-[1rem] font-semibold px-4 py-2 rounded-lg transition-colors">Try It Free</button>
           </div>
 
           {/* Mobile menu button */}
@@ -98,8 +109,8 @@ export default function NavBar() {
               </div>
 
               {/* AI */}
-              <div className="py-2 border-b border-gray-50">
-                <a href="#" className="flex items-center gap-1 font-medium text-gray-900 py-2 cursor-pointer hover:text-brand transition-colors">
+              <div className="py-2 border-b border-gray-50 ">
+                <a href="#" className="flex items-center gap-1 font-medium text-gray-900 py-2 cursor-pointer">
                   AI <Sparkles size={16} className="text-purple-500" />
                 </a>
               </div>
@@ -149,11 +160,10 @@ export default function NavBar() {
                 </details>
               </div>
 
-              {/* Pricing */}
               <div className="py-2 border-b border-gray-50">
-                <a href="#" className="flex items-center font-medium text-gray-900 py-2">
+                <Link to="/pricing" className="flex items-center font-medium text-gray-900 py-2">
                   Pricing
-                </a>
+                </Link>
               </div>
 
               {/* Mobile Actions */}
