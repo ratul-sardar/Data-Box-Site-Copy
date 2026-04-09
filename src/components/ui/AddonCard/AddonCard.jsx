@@ -3,7 +3,7 @@ import React from "react";
 const AddonCard = ({ card }) => {
   const { icon = "", price = "", title = "", body = "", catLink = "" } = card;
   return (
-    <div className="card w-full max-w-md bg-base-100 shadow-md border border-gray-500/30">
+    <div className="card w-full max-w-md min-h-101 bg-base-100 shadow-md border border-gray-500/30">
       <div className="card-body p-8">
         {/* Header Section */}
         <div className="flex justify-between items-start">
@@ -42,9 +42,7 @@ const AddonCard = ({ card }) => {
         <h3 className="card-title text-xl font-bold mt-6 mb-2">{title}</h3>
 
         {/* Description */}
-        <p className="text-base-content/70 leading-relaxed text-[15px]">
-          {body}
-        </p>
+        <p className="text-base-content/90 leading-relaxed text-sm">{body}</p>
 
         {/* Footer Link */}
         <div className="card-actions mt-8">
