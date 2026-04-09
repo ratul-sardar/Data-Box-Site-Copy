@@ -26,9 +26,8 @@ export default function NavBar() {
   return (
     <>
       <nav
-        className={`fixed top-0 z-50 left-0 right-0 transition-all duration-300 ${
-          isScrolled ? "bg-white" : "bg-transparent"
-        }`}
+        className={`fixed top-0 z-50 left-0 right-0 transition-all duration-300 ${isScrolled ? "bg-white" : "bg-transparent"
+          }`}
       >
         <div className="w-11/12 max-w-7xl mx-auto flex items-center justify-between h-20">
           {/* Logo */}
@@ -37,7 +36,7 @@ export default function NavBar() {
               <img
                 src={Logo}
                 alt="Logo"
-                className={`w-32 transition-all duration-300 ${useWhiteText ? "brightness-0 invert" : ""}`}
+                className={`w-32 transition-all duration-300 ${useWhiteText ? "invert contrast-200" : ""}`}
               />
             </Link>
           </div>
@@ -51,11 +50,10 @@ export default function NavBar() {
           <div className="hidden xl:flex items-center gap-4">
             <a
               href="#"
-              className={`text-sm font-bold transition-colors px-4 py-2 rounded-lg ${
-                useWhiteText
-                  ? "text-white hover:text-white/80"
-                  : "text-gray-700 hover:text-brand hover:bg-gray-50"
-              }`}
+              className={`text-sm font-bold transition-colors px-4 py-2 rounded-lg ${useWhiteText
+                ? "text-white hover:text-white/80"
+                : "text-gray-700 hover:text-brand hover:bg-gray-50"
+                }`}
             >
               Login
             </a>
