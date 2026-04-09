@@ -28,15 +28,9 @@ export default function FeaturesCard({ card }) {
       <div
         onMouseEnter={handleMouseIn}
         onMouseLeave={handleMouseLeave}
-        className={`relative card bg-base-100 w-full card-lg shadow-md rounded-2xl z-10 overflow-hidden`}
+        className={`relative card bg-base-200/65 w-full card-lg shadow-md rounded-2xl z-10 overflow-hidden`}
       >
         {/* Overlay*/}
-        {/* {overlay && (
-          <div className="absolute w-full h-full bg-main-linear p-8 z-20 duration-300 ease-in">
-            <p className="text-5xl mb-3 text-white">"</p>
-            <p className="text-white text-[18px] ">{hoverText}</p>
-          </div>
-        )}*/}
 
         <div
           className={`absolute w-full h-full bg-main-linear p-8 z-20 transition-opacity duration-200 ease-in
@@ -47,7 +41,9 @@ export default function FeaturesCard({ card }) {
         </div>
 
         <div className="card-body gap-0">
-          <span className="inline-block text-5xl mb-6">{icon}</span>
+          <span className="inline-block text-5xl mb-6 text-[#9061f9]">
+            {icon}
+          </span>
 
           <h2 className="card-title mb-4">{title}</h2>
           <p>{descriptoin}</p>

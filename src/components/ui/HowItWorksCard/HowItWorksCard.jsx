@@ -17,7 +17,7 @@ export default function HowItWorksCard({ card }) {
   return (
     <>
       <div
-        className={`card rounded-3xl border border-gray-200/10 w-full shadow-sm text-purple-500`}
+        className={`card rounded-3xl bg-base-100/65 border border-gray-200/10 w-full shadow-sm text-purple-500`}
       >
         <div className="card-body gap-4 px-6 py-8">
           {/* Icon */}
