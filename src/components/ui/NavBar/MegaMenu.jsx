@@ -64,7 +64,7 @@ export default function MegaMenu({ isScrolled }) {
         </li>
         <li className="h-full">
           <div className="relative flex items-center h-full">
-            <Link to="/pricing" className={`flex items-center gap-1 px-3 py-2 text-sm font-bold transition-colors ${useWhiteText ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-brand'
+            <Link to="/pricing" onClick={() => setActiveMenu(null)} className={`flex items-center gap-1 px-3 py-2 text-sm font-bold transition-colors ${useWhiteText ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-brand'
               }`}>
               Pricing
             </Link>
@@ -80,10 +80,10 @@ export default function MegaMenu({ isScrolled }) {
         onMouseLeave={handleMouseLeave}
       >
         <div className="p-8">
-          {activeMenu === 'product' && <ProductPanel />}
-          {activeMenu === 'solutions' && <SolutionsPanel />}
-          {activeMenu === 'integrations' && <IntegrationsPanel />}
-          {activeMenu === 'resources' && <ResourcesPanel />}
+          {activeMenu === 'product' && <ProductPanel closeMenu={() => setActiveMenu(null)} />}
+          {activeMenu === 'solutions' && <SolutionsPanel closeMenu={() => setActiveMenu(null)} />}
+          {activeMenu === 'integrations' && <IntegrationsPanel closeMenu={() => setActiveMenu(null)} />}
+          {activeMenu === 'resources' && <ResourcesPanel closeMenu={() => setActiveMenu(null)} />}
         </div>
       </div>
     </div>

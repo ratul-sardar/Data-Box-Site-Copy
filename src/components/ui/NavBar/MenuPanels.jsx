@@ -9,7 +9,7 @@ const Badge = ({ text }) => (
   </span>
 );
 
-export function ProductPanel() {
+export function ProductPanel({ closeMenu }) {
   const { items } = menuData.product;
 
   return (
@@ -20,7 +20,7 @@ export function ProductPanel() {
           {items.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <a key={idx} href="#" className="block p-4 rounded-lg border border-gray-100 hover:border-gray-200 hover:shadow-md transition-all group group-hover:bg-gray-50 flex flex-col h-full bg-white">
+              <a key={idx} href="#" onClick={closeMenu} className="block p-4 rounded-lg border border-gray-100 hover:border-gray-200 hover:shadow-md transition-all group group-hover:bg-gray-50 flex flex-col h-full bg-white">
                 <div className="flex items-start gap-4 mb-2">
                   <div className="text-gray-400 group-hover:text-brand transition-colors">
                     <Icon strokeWidth={1.5} size={22} />
@@ -56,7 +56,7 @@ export function ProductPanel() {
           <div className="text-xs text-gray-500"><strong className="text-gray-700">EXPLORE</strong> Insights, Anomalies</div>
         </div>
 
-        <a href="#" className="flex justify-center items-center gap-2 w-full py-2.5 px-4 bg-white border border-gray-200 rounded-lg text-brand font-medium text-sm hover:border-brand transition-colors">
+        <a href="#" onClick={closeMenu} className="flex justify-center items-center gap-2 w-full py-2.5 px-4 bg-white border border-gray-200 rounded-lg text-brand font-medium text-sm hover:border-brand transition-colors">
           Learn more <ArrowRight size={16} />
         </a>
       </div>
@@ -64,7 +64,7 @@ export function ProductPanel() {
   );
 }
 
-export function SolutionsPanel() {
+export function SolutionsPanel({ closeMenu }) {
   const { industry, role, problems, whyDatabox } = menuData.solutions;
   const [activeTab, setActiveTab] = useState('who-were-for');
 
@@ -101,7 +101,7 @@ export function SolutionsPanel() {
                       </div>
                       <h3 className="font-semibold text-gray-900 text-sm mb-2">{item.title}</h3>
                       <p className="text-gray-500 text-xs mb-4 flex-1">{item.description}</p>
-                      <a href={item.link} className="inline-block mt-auto text-center w-full py-2 px-4 rounded-md border border-gray-200 text-brand text-sm font-medium hover:border-brand transition-colors">
+                      <a href={item.link} onClick={closeMenu} className="inline-block mt-auto text-center w-full py-2 px-4 rounded-md border border-gray-200 text-brand text-sm font-medium hover:border-brand transition-colors">
                         Learn more
                       </a>
                     </div>
@@ -122,7 +122,7 @@ export function SolutionsPanel() {
                       </div>
                       <h3 className="font-semibold text-gray-900 text-sm mb-2">{item.title}</h3>
                       <p className="text-gray-500 text-xs mb-4 flex-1">{item.description}</p>
-                      <a href={item.link} className="inline-block mt-auto text-center w-full py-2 px-4 rounded-md border border-gray-200 text-brand text-sm font-medium hover:border-brand transition-colors">
+                      <a href={item.link} onClick={closeMenu} className="inline-block mt-auto text-center w-full py-2 px-4 rounded-md border border-gray-200 text-brand text-sm font-medium hover:border-brand transition-colors">
                         Learn more
                       </a>
                     </div>
@@ -162,7 +162,7 @@ export function SolutionsPanel() {
                 })}
               </ul>
               <div className="mt-auto">
-                <a href="#" className="inline-flex items-center justify-center py-2 px-4 bg-white border border-gray-200 rounded-lg text-blue-600 font-medium text-sm hover:border-gray-300 transition-colors">
+                <a href="#" onClick={closeMenu} className="inline-flex items-center justify-center py-2 px-4 bg-white border border-gray-200 rounded-lg text-blue-600 font-medium text-sm hover:border-gray-300 transition-colors">
                   Learn more <ArrowRight size={14} className="ml-1.5" />
                 </a>
               </div>
@@ -174,7 +174,7 @@ export function SolutionsPanel() {
   );
 }
 
-export function IntegrationsPanel() {
+export function IntegrationsPanel({ closeMenu }) {
   const { columns } = menuData.integrations;
 
   return (
@@ -192,7 +192,7 @@ export function IntegrationsPanel() {
               <ul className="space-y-3">
                 {col.items.map((item, i) => (
                   <li key={i}>
-                    <a href="#" className="text-sm text-gray-600 hover:text-brand flex items-center gap-2 group">
+                    <a href="#" onClick={closeMenu} className="text-sm text-gray-600 hover:text-brand flex items-center gap-2 group">
                       <div className="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-brand/10 transition-colors">
                         {/* Placeholder for small brand icons */}
                         <div className="w-3 h-3 bg-gray-300 rounded-full group-hover:bg-brand"></div>
@@ -204,7 +204,7 @@ export function IntegrationsPanel() {
               </ul>
               {idx === 0 && (
                 <div className="mt-8 pt-4 border-t border-gray-100">
-                  <a href="#" className="w-full py-2 px-4 rounded-md border border-gray-200 text-brand text-sm font-medium flex justify-center hover:border-brand transition-colors">
+                  <a href="#" onClick={closeMenu} className="w-full py-2 px-4 rounded-md border border-gray-200 text-brand text-sm font-medium flex justify-center hover:border-brand transition-colors">
                     See all 130+ Integrations
                   </a>
                 </div>
@@ -224,7 +224,7 @@ export function IntegrationsPanel() {
           <p className="text-xs text-gray-500 mb-3">
             Build your own custom integration by connecting to any application via API. No coding required.
           </p>
-          <a href="#" className="text-sm font-medium text-brand hover:underline flex items-center gap-1">
+          <a href="#" onClick={closeMenu} className="text-sm font-medium text-brand hover:underline flex items-center gap-1">
             Learn more <ArrowRight size={14} />
           </a>
         </div>
@@ -237,7 +237,7 @@ export function IntegrationsPanel() {
           <p className="text-xs text-gray-500 mb-3">
             Push raw, structured data into Databox from anywhere, and build dashboards, reports and gather insights on top of it.
           </p>
-          <a href="#" className="text-sm font-medium text-brand hover:underline flex items-center gap-1">
+          <a href="#" onClick={closeMenu} className="text-sm font-medium text-brand hover:underline flex items-center gap-1">
             Explore Developer Documentation <ArrowRight size={14} />
           </a>
         </div>
@@ -246,7 +246,7 @@ export function IntegrationsPanel() {
   );
 }
 
-export function ResourcesPanel() {
+export function ResourcesPanel({ closeMenu }) {
   const { columns } = menuData.resources;
 
   return (
@@ -264,7 +264,7 @@ export function ResourcesPanel() {
               <ul className="space-y-4">
                 {col.items.map((item, i) => (
                   <li key={i}>
-                    <a href="#" className="text-sm text-gray-600 hover:text-brand transition-colors">
+                    <a href="#" onClick={closeMenu} className="text-sm text-gray-600 hover:text-brand transition-colors">
                       {item}
                     </a>
                   </li>
@@ -289,7 +289,7 @@ export function ResourcesPanel() {
         </h3>
         <div className="mt-auto flex justify-between items-center pt-4">
           <span className="text-xs text-gray-400">Apr 2</span>
-          <a href="#" className="text-sm font-medium text-brand hover:underline flex items-center gap-1">
+          <a href="#" onClick={closeMenu} className="text-sm font-medium text-brand hover:underline flex items-center gap-1">
             Read post <ArrowRight size={14} />
           </a>
         </div>
