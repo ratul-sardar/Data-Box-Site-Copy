@@ -15,7 +15,7 @@ export function ProductPanel({ closeMenu }) {
   return (
     <div className="flex flex-col lg:flex-row gap-8">
       {/* Left side: Grid of features */}
-      <div className="flex-[3]">
+      <div className="flex-3">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {items.map((item, idx) => {
             const Icon = item.icon;
@@ -72,13 +72,13 @@ export function SolutionsPanel({ closeMenu }) {
     <div className="flex flex-col lg:flex-row gap-8">
       {/* Left Sidebar */}
       <div className="w-full lg:w-[200px] flex lg:flex-col gap-2 shrink-0">
-        <button 
+        <button
           onClick={() => setActiveTab('who-were-for')}
           className={`text-left px-4 py-3 rounded-lg font-medium text-sm flex justify-between items-center group transition-colors ${activeTab === 'who-were-for' ? 'bg-gray-50 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}>
           Who We're For
           <ArrowRight size={16} className={`transition-colors ${activeTab === 'who-were-for' ? 'text-gray-400' : 'opacity-0 group-hover:opacity-100 text-gray-400 group-hover:text-blue-600'}`} />
         </button>
-        <button 
+        <button
           onClick={() => setActiveTab('problems-we-solve')}
           className={`text-left px-4 py-3 rounded-lg font-medium text-sm flex justify-between items-center group transition-colors ${activeTab === 'problems-we-solve' ? 'bg-gray-50 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}>
           Problems We Solve
@@ -180,7 +180,7 @@ export function IntegrationsPanel({ closeMenu }) {
   return (
     <div className="flex flex-col lg:flex-row gap-8">
       {/* 3 Columns */}
-      <div className="flex-[3] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="flex-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {columns.map((col, idx) => {
           const Icon = col.icon;
           return (
@@ -215,7 +215,7 @@ export function IntegrationsPanel({ closeMenu }) {
       </div>
 
       {/* Right Column */}
-      <div className="flex-[1] border-t lg:border-t-0 lg:border-l border-gray-100 pl-0 lg:pl-8 pt-6 lg:pt-0 flex flex-col gap-8">
+      <div className="flex-1 border-t lg:border-t-0 lg:border-l border-gray-100 pl-0 lg:pl-8 pt-6 lg:pt-0 flex flex-col gap-8">
         <div>
           <h4 className="font-semibold text-gray-900 text-sm mb-2 flex items-center gap-2">
             <Sparkles size={16} className="text-gray-400" />
@@ -252,7 +252,7 @@ export function ResourcesPanel({ closeMenu }) {
   return (
     <div className="flex flex-col lg:flex-row gap-8">
       {/* Columns */}
-      <div className="flex-[3] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="flex-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {columns.map((col, idx) => {
           const Icon = col.icon;
           return (
@@ -276,11 +276,11 @@ export function ResourcesPanel({ closeMenu }) {
       </div>
 
       {/* Right Column: Blog Card */}
-      <div className="flex-[1] bg-gray-50 rounded-xl p-6 border border-gray-100 flex flex-col">
+      <div className="flex-1 bg-gray-50 rounded-xl p-6 border border-gray-100 flex flex-col">
         <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">LATEST FROM BLOG</h4>
-        <div className="rounded-lg overflow-hidden mb-4 bg-gray-200 aspect-[16/9] relative">
+        <div className="rounded-lg overflow-hidden mb-4 bg-gray-200 aspect-video relative">
           {/* Add a simple placeholder visual for the blog image */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-indigo-900 to-purple-800 flex items-center justify-center">
+          <div className="absolute inset-0 bg-linear-to-tr from-indigo-900 to-purple-800 flex items-center justify-center">
             <Sparkles size={40} className="text-white/20" />
           </div>
         </div>

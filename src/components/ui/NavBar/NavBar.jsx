@@ -26,7 +26,8 @@ export default function NavBar() {
   return (
     <>
       <nav
-        className={`fixed top-0 z-50 left-0 right-0 transition-all duration-300 ${isScrolled ? "bg-white shadow-sm" : "bg-transparent"}`}
+        className={`fixed top-0 z-50 left-0 right-0 transition-all duration-300 ${isScrolled ? "bg-white" : "bg-transparent"
+          }`}
       >
         <div className="w-11/12 max-w-7xl mx-auto flex items-center justify-between h-20">
           {/* Logo */}
@@ -42,7 +43,7 @@ export default function NavBar() {
 
           {/* Desktop Mega Menu Navigation */}
           <div className="hidden xl:flex flex-1 justify-center h-full">
-            <MegaMenu isScrolled={isScrolled} />
+            <Mega Menu isScrolled={isScrolled} />
           </div>
 
           {/* Right side buttons */}
@@ -115,7 +116,6 @@ export default function NavBar() {
                         key={idx}
                         href="#"
                         className="block hover:text-brand text-sm"
-                        onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.title}
                       </a>
@@ -154,7 +154,6 @@ export default function NavBar() {
                         key={idx}
                         href={item.link}
                         className="block hover:text-brand text-sm"
-                        onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.title}
                       </a>
@@ -167,7 +166,6 @@ export default function NavBar() {
                         key={idx}
                         href={item.link}
                         className="block hover:text-brand text-sm"
-                        onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.title}
                       </a>
@@ -181,7 +179,6 @@ export default function NavBar() {
                 <a
                   href="#"
                   className="flex items-center gap-1 font-medium text-gray-900 py-2 cursor-pointer"
-                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   AI <Sparkles size={16} className="text-purple-500" />
                 </a>
@@ -219,14 +216,13 @@ export default function NavBar() {
                             key={j}
                             href="#"
                             className="block hover:text-brand"
-                            onClick={() => setIsMobileMenuOpen(false)}
                           >
                             {item}
                           </a>
                         ))}
                       </React.Fragment>
                     ))}
-                    <a href="#" className="font-medium text-brand mt-2 block" onClick={() => setIsMobileMenuOpen(false)}>
+                    <a href="#" className="font-medium text-brand mt-2 block">
                       See all Integrations
                     </a>
                   </div>
@@ -265,7 +261,6 @@ export default function NavBar() {
                             key={j}
                             href="#"
                             className="block hover:text-brand"
-                            onClick={() => setIsMobileMenuOpen(false)}
                           >
                             {item}
                           </a>
@@ -291,21 +286,18 @@ export default function NavBar() {
                 <a
                   href="#"
                   className="text-center font-medium text-gray-700 bg-gray-50 border border-gray-200 px-4 py-3 rounded-lg w-full"
-                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Book a Demo
                 </a>
                 <a
                   href="#"
                   className="text-center font-medium text-white bg-brand px-4 py-3 rounded-lg w-full"
-                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Try It Free
                 </a>
                 <a
                   href="#"
                   className="text-center font-medium text-gray-700 py-2 mt-2 w-full"
-                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Login
                 </a>
