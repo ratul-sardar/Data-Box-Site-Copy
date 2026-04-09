@@ -25,10 +25,22 @@ export default function NavBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <>
       <nav
-        className={`fixed top-0 z-50 left-0 right-0 transition-all duration-300 ${isScrolled ? "bg-white" : "bg-transparent"
+        className={`fixed top-0 z-50 left-0 right-0 transition-all duration-300 ${isScrolled || isMobileMenuOpen ? "bg-white" : "bg-transparent"
           }`}
       >
         <div className="w-11/12 max-w-7xl mx-auto flex items-center justify-between h-20">
@@ -38,7 +50,7 @@ export default function NavBar() {
               <img
                 src={Logo}
                 alt="Logo"
-                className={`w-32 transition-all duration-300 ${useWhiteText ? "invert contrast-200" : ""}`}
+                className={`w-32 transition-all duration-300 ${useWhiteText && !isMobileMenuOpen ? "invert contrast-200" : ""}`}
               />
             </Link>
           </div>
@@ -74,7 +86,7 @@ export default function NavBar() {
           <div className="flex xl:hidden items-center gap-4">
             <button
               type="button"
-              className={`transition-colors duration-300 ${useWhiteText ? "text-white" : "text-gray-700 hover:text-gray-900"}`}
+              className={`transition-colors duration-300 ${isMobileMenuOpen ? "text-black" : (useWhiteText ? "text-white" : "text-gray-700 hover:text-gray-900")}`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <span className="sr-only">Open main menu</span>
@@ -89,7 +101,7 @@ export default function NavBar() {
 
         {/* Mobile menu dropdown */}
         {isMobileMenuOpen && (
-          <div className="xl:hidden absolute top-full left-0 w-full bg-white shadow-lg border-b border-gray-100 z-40 max-h-[85vh] overflow-y-auto">
+          <div className="xl:hidden fixed top-20 left-0 w-full bg-white z-40 h-[calc(100vh-5rem)] overflow-y-auto">
             <div className="px-4 pt-2 pb-6 space-y-1 w-11/12 mx-auto">
               {/* Product */}
               <div className="py-2 border-b border-gray-50">
