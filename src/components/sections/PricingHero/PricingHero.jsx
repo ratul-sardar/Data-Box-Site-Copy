@@ -49,22 +49,20 @@ const PricingHero = () => {
             <div className="flex p-1 bg-white/15 backdrop-blur-md gap-2.5 rounded-full border border-white/20">
               <button
                 onClick={() => setActiveTab("businesses")}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer ${
-                  activeTab === "businesses"
-                    ? "bg-white text-[#7347ea] shadow-lg"
-                    : "text-white hover:bg-white/10"
-                }`}
+                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold max-md:text-[10px] max-md:px-2 max-md:py-1 transition-all duration-300 cursor-pointer ${activeTab === "businesses"
+                  ? "bg-white text-[#7347ea] shadow-lg"
+                  : "text-white hover:bg-white/10"
+                  }`}
               >
                 <Warehouse className="w-4 h-4" />
                 Plans for Businesses
               </button>
               <button
                 onClick={() => setActiveTab("agencies")}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer ${
-                  activeTab === "agencies"
-                    ? "bg-white text-[#7347ea] shadow-lg"
-                    : "text-white hover:bg-white/10"
-                }`}
+                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold max-md:text-[10px] transition-all duration-300 cursor-pointer ${activeTab === "agencies"
+                  ? "bg-white text-[#7347ea] shadow-lg"
+                  : "text-white hover:bg-white/10"
+                  }`}
               >
                 <UserPlus className="w-4 h-4" />
                 Plans for Agencies

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router";
 import Logo from "../../../assets/logo.svg";
-import { Sparkles, Menu as MenuIcon, X } from "lucide-react";
+import { Sparkles, Menu as MenuIcon, X, Calendar, CheckCircle2 } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 import MegaMenu from "./MegaMenu";
 import { menuData } from "./data";
 
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const location = useLocation();
   const isPricingPage = location.pathname === "/pricing";
 
@@ -43,7 +45,7 @@ export default function NavBar() {
 
           {/* Desktop Mega Menu Navigation */}
           <div className="hidden xl:flex flex-1 justify-center h-full">
-            <Mega Menu isScrolled={isScrolled} />
+            <MegaMenu isScrolled={isScrolled} />
           </div>
 
           {/* Right side buttons */}
@@ -57,12 +59,12 @@ export default function NavBar() {
             >
               Login
             </a>
-            <a
-              href="#"
-              className="text-sm font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 px-4 py-2 rounded-lg transition-colors"
+            <button
+              onClick={() => setIsDemoModalOpen(true)}
+              className="text-sm font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 px-4 py-2 rounded-lg transition-colors cursor-pointer"
             >
               Book a Demo
-            </a>
+            </button>
             <button className="btn btn-primary bg-[#E7FE29] hover:bg-[#E7FE29] border-[#E7FE29] hover:border-[#E7FE29] text-black text-[1rem] font-semibold px-4 py-2 rounded-lg transition-colors">
               Try It Free
             </button>
@@ -116,6 +118,7 @@ export default function NavBar() {
                         key={idx}
                         href="#"
                         className="block hover:text-brand text-sm"
+                        onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.title}
                       </a>
@@ -154,6 +157,7 @@ export default function NavBar() {
                         key={idx}
                         href={item.link}
                         className="block hover:text-brand text-sm"
+                        onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.title}
                       </a>
@@ -166,6 +170,7 @@ export default function NavBar() {
                         key={idx}
                         href={item.link}
                         className="block hover:text-brand text-sm"
+                        onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.title}
                       </a>
@@ -179,6 +184,7 @@ export default function NavBar() {
                 <a
                   href="#"
                   className="flex items-center gap-1 font-medium text-gray-900 py-2 cursor-pointer"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   AI <Sparkles size={16} className="text-purple-500" />
                 </a>
@@ -216,13 +222,14 @@ export default function NavBar() {
                             key={j}
                             href="#"
                             className="block hover:text-brand"
+                            onClick={() => setIsMobileMenuOpen(false)}
                           >
                             {item}
                           </a>
                         ))}
                       </React.Fragment>
                     ))}
-                    <a href="#" className="font-medium text-brand mt-2 block">
+                    <a href="#" className="font-medium text-brand mt-2 block" onClick={() => setIsMobileMenuOpen(false)}>
                       See all Integrations
                     </a>
                   </div>
@@ -261,6 +268,7 @@ export default function NavBar() {
                             key={j}
                             href="#"
                             className="block hover:text-brand"
+                            onClick={() => setIsMobileMenuOpen(false)}
                           >
                             {item}
                           </a>
@@ -283,21 +291,26 @@ export default function NavBar() {
 
               {/* Mobile Actions */}
               <div className="pt-6 pb-2 flex flex-col gap-3">
-                <a
-                  href="#"
-                  className="text-center font-medium text-gray-700 bg-gray-50 border border-gray-200 px-4 py-3 rounded-lg w-full"
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setIsDemoModalOpen(true);
+                  }}
+                  className="text-center font-medium text-gray-700 bg-gray-50 border border-gray-200 px-4 py-3 rounded-lg w-full cursor-pointer"
                 >
                   Book a Demo
-                </a>
+                </button>
                 <a
                   href="#"
                   className="text-center font-medium text-white bg-brand px-4 py-3 rounded-lg w-full"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Try It Free
                 </a>
                 <a
                   href="#"
                   className="text-center font-medium text-gray-700 py-2 mt-2 w-full"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Login
                 </a>
@@ -305,6 +318,93 @@ export default function NavBar() {
             </div>
           </div>
         )}
+        {/* Demo Modal */}
+        <AnimatePresence>
+          {isDemoModalOpen && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsDemoModalOpen(false)}
+                className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              />
+
+              {/* Modal Content */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden"
+              >
+                <div className="p-8">
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="bg-brand/10 p-3 rounded-xl text-brand">
+                      <Calendar size={28} />
+                    </div>
+                    <button
+                      onClick={() => setIsDemoModalOpen(false)}
+                      className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-gray-400 hover:text-gray-600"
+                    >
+                      <X size={24} />
+                    </button>
+                  </div>
+
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Book a Personalized Demo</h2>
+                  <p className="text-gray-600 mb-8">
+                    See how Databox can help your team turn business data into actionable insights instantly.
+                  </p>
+
+                  <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-1.5">
+                        <label className="text-sm font-semibold text-gray-700">First Name</label>
+                        <input
+                          type="text"
+                          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-brand focus:ring-2 focus:ring-brand/20 transition-all outline-none"
+                          placeholder="John"
+                        />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-sm font-semibold text-gray-700">Last Name</label>
+                        <input
+                          type="text"
+                          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-brand focus:ring-2 focus:ring-brand/20 transition-all outline-none"
+                          placeholder="Doe"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-sm font-semibold text-gray-700">Work Email</label>
+                      <input
+                        type="email"
+                        className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-brand focus:ring-2 focus:ring-brand/20 transition-all outline-none"
+                        placeholder="john@company.com"
+                      />
+                    </div>
+
+                    <button className="w-full py-3 bg-brand text-white font-bold rounded-lg hover:bg-brand/90 transition-all shadow-lg shadow-brand/20 mt-4">
+                      Schedule Demo
+                    </button>
+                  </form>
+
+                  <div className="mt-8 pt-8 border-t border-gray-100 flex items-center justify-center gap-6 text-xs text-gray-400 font-medium">
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 size={14} className="text-green-500" />
+                      14-day free trial
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 size={14} className="text-green-500" />
+                      No credit card needed
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </nav>
     </>
   );
