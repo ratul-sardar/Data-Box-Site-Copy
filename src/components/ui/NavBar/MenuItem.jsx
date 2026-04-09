@@ -1,8 +1,12 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
+import { useLocation } from 'react-router';
 
-export default function MenuItem({ title, menuKey, activeMenu, setActiveMenu, children, hideIcon = false }) {
+export default function MenuItem({ title, menuKey, activeMenu, setActiveMenu, children, hideIcon = false, isScrolled }) {
   const isOpen = activeMenu === menuKey;
+  const location = useLocation();
+  const isPricingPage = location.pathname === "/pricing";
+  const useWhiteText = isPricingPage && !isScrolled;
 
   const handleClick = (e) => {
     if (menuKey) {
@@ -15,12 +19,14 @@ export default function MenuItem({ title, menuKey, activeMenu, setActiveMenu, ch
     <div className="relative flex items-center h-full">
       <button
         onClick={handleClick}
-        className={`flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors hover:text-brand ${isOpen ? 'text-brand' : 'text-gray-700'} cursor-pointer`}
+        className={`flex items-center gap-1 px-3 py-2 text-sm transition-colors hover:text-brand font-bold ${
+          isOpen ? 'text-brand' : (useWhiteText ? 'text-white hover:text-white/80' : 'text-gray-700')
+        } cursor-pointer`}
         aria-expanded={isOpen}
       >
         {title}
         {!hideIcon && menuKey && (
-          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180 text-brand' : 'text-gray-400'}`} />
+          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180 text-brand' : (useWhiteText ? 'text-white' : 'text-gray-400')}`} />
         )}
       </button>
 

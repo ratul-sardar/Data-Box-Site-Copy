@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import MenuItem from './MenuItem';
 import { ProductPanel, SolutionsPanel, IntegrationsPanel, ResourcesPanel } from './MenuPanels';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 
-export default function MegaMenu() {
+export default function MegaMenu({ isScrolled }) {
+  const location = useLocation();
+  const isPricingPage = location.pathname === "/pricing";
+  const useWhiteText = isPricingPage && !isScrolled;
   const [activeMenu, setActiveMenu] = useState(null);
   const timeoutRef = useRef(null);
 
@@ -42,24 +45,26 @@ export default function MegaMenu() {
     <div className="mega-menu-container flex items-center h-full z-50">
       <ul className="flex items-center gap-2 h-full menu-horizontal px-1 relative">
         <li className="h-full" onMouseEnter={() => handleMouseEnter('product')} onMouseLeave={handleMouseLeave}>
-          <MenuItem title="Product" menuKey="product" activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+          <MenuItem title="Product" menuKey="product" activeMenu={activeMenu} setActiveMenu={setActiveMenu} isScrolled={isScrolled} />
         </li>
         <li className="h-full" onMouseEnter={() => handleMouseEnter('solutions')} onMouseLeave={handleMouseLeave}>
-          <MenuItem title="Solutions" menuKey="solutions" activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+          <MenuItem title="Solutions" menuKey="solutions" activeMenu={activeMenu} setActiveMenu={setActiveMenu} isScrolled={isScrolled} />
         </li>
         <li className="h-full" onMouseEnter={() => handleMouseEnter('ai')} onMouseLeave={handleMouseLeave}>
           {/* AI is just a link without a dropdown in the screenshot but has a little sparkle icon, wait, databox AI has a special icon */}
-          <MenuItem title="AI" activeMenu={activeMenu} setActiveMenu={setActiveMenu} hideIcon />
+          <MenuItem title="AI" activeMenu={activeMenu} setActiveMenu={setActiveMenu} hideIcon isScrolled={isScrolled} />
         </li>
         <li className="h-full" onMouseEnter={() => handleMouseEnter('integrations')} onMouseLeave={handleMouseLeave}>
-          <MenuItem title="Integrations" menuKey="integrations" activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+          <MenuItem title="Integrations" menuKey="integrations" activeMenu={activeMenu} setActiveMenu={setActiveMenu} isScrolled={isScrolled} />
         </li>
         <li className="h-full" onMouseEnter={() => handleMouseEnter('resources')} onMouseLeave={handleMouseLeave}>
-          <MenuItem title="Resources" menuKey="resources" activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+          <MenuItem title="Resources" menuKey="resources" activeMenu={activeMenu} setActiveMenu={setActiveMenu} isScrolled={isScrolled} />
         </li>
         <li className="h-full">
           <div className="relative flex items-center h-full">
-            <Link to="/pricing" className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand transition-colors">
+            <Link to="/pricing" className={`flex items-center gap-1 px-3 py-2 text-sm font-bold transition-colors ${
+              useWhiteText ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-brand'
+            }`}>
               Pricing
             </Link>
           </div>

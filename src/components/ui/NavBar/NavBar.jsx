@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import Logo from "../../../assets/logo.svg";
 import { Sparkles, Menu as MenuIcon, X } from "lucide-react";
 import MegaMenu from "./MegaMenu";
@@ -8,6 +8,11 @@ import { menuData } from "./data";
 export default function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  const isPricingPage = location.pathname === "/pricing";
+
+  // Use white text if on pricing page and NOT scrolled
+  const useWhiteText = isPricingPage && !isScrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,20 +31,22 @@ export default function NavBar() {
         <div className="w-11/12 max-w-7xl mx-auto flex items-center justify-between h-20">
 
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
+          <div className="shrink-0 flex items-center">
             <Link to="/" className="flex items-center">
-              <img src={Logo} alt="Logo" className="w-32" />
+              <img src={Logo} alt="Logo" className={`w-32 transition-all duration-300 ${useWhiteText ? 'brightness-0 invert' : ''}`} />
             </Link>
           </div>
 
           {/* Desktop Mega Menu Navigation */}
           <div className="hidden lg:flex flex-1 justify-center h-full">
-            <MegaMenu />
+            <MegaMenu isScrolled={isScrolled} />
           </div>
 
           {/* Right side buttons */}
           <div className="hidden lg:flex items-center gap-4">
-            <a href="#" className="text-sm font-medium text-gray-700 hover:text-brand transition-colors hover:bg-gray-50 px-4 py-2 rounded-lg">
+            <a href="#" className={`text-sm font-bold transition-colors px-4 py-2 rounded-lg ${
+              useWhiteText ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-brand hover:bg-gray-50'
+            }`}>
               Login
             </a>
             <a href="#" className="text-sm font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 px-4 py-2 rounded-lg transition-colors">
