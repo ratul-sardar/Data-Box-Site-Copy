@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import MenuItem from './MenuItem';
 import { ProductPanel, SolutionsPanel, IntegrationsPanel, ResourcesPanel } from './MenuPanels';
 import { Link, useLocation } from 'react-router';
+import { Sparkles } from 'lucide-react';
 
 export default function MegaMenu({ isScrolled }) {
   const location = useLocation();
@@ -50,9 +51,10 @@ export default function MegaMenu({ isScrolled }) {
         <li className="h-full" onMouseEnter={() => handleMouseEnter('solutions')} onMouseLeave={handleMouseLeave}>
           <MenuItem title="Solutions" menuKey="solutions" activeMenu={activeMenu} setActiveMenu={setActiveMenu} isScrolled={isScrolled} />
         </li>
-        <li className="h-full" onMouseEnter={() => handleMouseEnter('ai')} onMouseLeave={handleMouseLeave}>
+        <li className="h-full flex items-center font-medium py-2 cursor-pointer" onMouseEnter={() => handleMouseEnter('ai')} onMouseLeave={handleMouseLeave}>
           {/* AI is just a link without a dropdown in the screenshot but has a little sparkle icon, wait, databox AI has a special icon */}
           <MenuItem title="AI" activeMenu={activeMenu} setActiveMenu={setActiveMenu} hideIcon isScrolled={isScrolled} />
+          <Sparkles className="w-3 h-3 text-purple-950" />
         </li>
         <li className="h-full" onMouseEnter={() => handleMouseEnter('integrations')} onMouseLeave={handleMouseLeave}>
           <MenuItem title="Integrations" menuKey="integrations" activeMenu={activeMenu} setActiveMenu={setActiveMenu} isScrolled={isScrolled} />
@@ -62,9 +64,8 @@ export default function MegaMenu({ isScrolled }) {
         </li>
         <li className="h-full">
           <div className="relative flex items-center h-full">
-            <Link to="/pricing" className={`flex items-center gap-1 px-3 py-2 text-sm font-bold transition-colors ${
-              useWhiteText ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-brand'
-            }`}>
+            <Link to="/pricing" onClick={() => setActiveMenu(null)} className={`flex items-center gap-1 px-3 py-2 text-sm font-bold transition-colors ${useWhiteText ? 'text-white hover:text-white/80' : 'text-gray-700 hover:text-brand'
+              }`}>
               Pricing
             </Link>
           </div>
@@ -79,10 +80,10 @@ export default function MegaMenu({ isScrolled }) {
         onMouseLeave={handleMouseLeave}
       >
         <div className="p-8">
-          {activeMenu === 'product' && <ProductPanel />}
-          {activeMenu === 'solutions' && <SolutionsPanel />}
-          {activeMenu === 'integrations' && <IntegrationsPanel />}
-          {activeMenu === 'resources' && <ResourcesPanel />}
+          {activeMenu === 'product' && <ProductPanel closeMenu={() => setActiveMenu(null)} />}
+          {activeMenu === 'solutions' && <SolutionsPanel closeMenu={() => setActiveMenu(null)} />}
+          {activeMenu === 'integrations' && <IntegrationsPanel closeMenu={() => setActiveMenu(null)} />}
+          {activeMenu === 'resources' && <ResourcesPanel closeMenu={() => setActiveMenu(null)} />}
         </div>
       </div>
     </div>

@@ -53,7 +53,7 @@ export default function Hero() {
   }, [isHovered]);
 
   return (
-    <section id="Hero" className={`overflow-hidden pt-16`}
+    <section id="Hero" className={`overflow-hidden pt-20`}
       style={{
         backgroundImage: `url(${HeroBg})`,
         backgroundSize: "cover",

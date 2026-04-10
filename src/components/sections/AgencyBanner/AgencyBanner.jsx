@@ -35,8 +35,8 @@ const AgencyBanner = () => {
 
           {/* Label text */}
           <div className="space-y-3">
-            {features.map((item) => (
-              <div className="flex gap-2">
+            {features.map((item, index) => (
+              <div key={index} className="flex gap-2">
                 <span className="text-green-400">
                   <Check />
                 </span>
