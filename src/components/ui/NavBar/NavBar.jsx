@@ -77,7 +77,7 @@ export default function NavBar() {
             >
               Book a Demo
             </button>
-            <button className="btn btn-primary bg-[#E7FE29] hover:bg-[#E7FE29] border-[#E7FE29] hover:border-[#E7FE29] text-black text-[1rem] font-semibold px-4 py-2 rounded-lg transition-colors">
+            <button className="btn btn-primary bg-[#F2BD44] hover:bg-[#F2BD44] border-[#F2BD44] hover:border-[#F2BD44] text-black text-[1rem] font-semibold px-4 py-2 rounded-lg transition-colors">
               Try It Free
             </button>
           </div>
