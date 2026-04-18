@@ -72,14 +72,16 @@ const InteractiveCards = () => {
       <div className="cssContainer">
         {/* Restored Original Heading Section */}
         <header className="header">
-          <h2 className="max-w-200 mx-auto">
-            <span className="linearText">Self-serve analytics </span>
+          <h2 className="w-full max-w-200 mx-auto">
+            <span className="w-full break-all linearText">
+              Self-serve analytics{" "}
+            </span>
             for people who are tired of doing reporting
           </h2>
         </header>
 
         {/* Updated Cards Grid */}
-        <div className="flex flex-col md:flex-row gap-4 min-h-[600px] h-auto mt-12">
+        <div className="flex flex-col md:flex-row gap-4 min-h-150 h-auto mt-12">
           {cardData.map((card) => {
             const isActive = activeId === card.id;
 
