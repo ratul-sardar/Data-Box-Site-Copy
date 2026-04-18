@@ -48,7 +48,7 @@ const AgencyBanner = () => {
           </div>
 
           {/* Cta */}
-          <div className="space-y-3 space-x-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 flex-wrap">
             {/* Cta 1 */}
             <PrimaryButton brand={true} link={"#"}>
               Start an Agency Free Trial
@@ -56,10 +56,11 @@ const AgencyBanner = () => {
 
             {/* Cta 2 */}
             <PrimaryButton link={"#"}>Learn More</PrimaryButton>
-            <br />
-            <p className="">
+          </div>
+          <div className="mt-4">
+            <p className="text-gray-600">
               Or{" "}
-              <a href="#" className="text-blue-600 underline">
+              <a href="#" className="text-blue-600 font-semibold hover:underline">
                 book a call.
               </a>
             </p>

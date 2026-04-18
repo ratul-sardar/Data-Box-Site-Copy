@@ -46,31 +46,31 @@ const PricingHero = () => {
           {/* Controls */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12">
             {/* Tabs */}
-            <div className="flex p-1 bg-white/15 backdrop-blur-md gap-2.5 rounded-full border border-white/20">
+            <div className="flex p-1 bg-white/15 backdrop-blur-md gap-2 rounded-2xl md:rounded-full border border-white/20 flex-wrap justify-center">
               <button
                 onClick={() => setActiveTab("businesses")}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold max-md:text-[10px] max-md:px-2 max-md:py-1 transition-all duration-300 cursor-pointer ${activeTab === "businesses"
+                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-2xl md:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer min-h-[40px] ${activeTab === "businesses"
                   ? "bg-white text-[#7347ea] shadow-lg"
                   : "text-white hover:bg-white/10"
                   }`}
               >
-                <Warehouse className="w-4 h-4" />
-                Plans for Businesses
+                <Warehouse className="w-4 h-4 shrink-0" />
+                <span className="whitespace-normal text-center">Plans for Businesses</span>
               </button>
               <button
                 onClick={() => setActiveTab("agencies")}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold max-md:text-[10px] transition-all duration-300 cursor-pointer ${activeTab === "agencies"
+                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-2xl md:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer min-h-[40px] ${activeTab === "agencies"
                   ? "bg-white text-[#7347ea] shadow-lg"
                   : "text-white hover:bg-white/10"
                   }`}
               >
-                <UserPlus className="w-4 h-4" />
-                Plans for Agencies
+                <UserPlus className="w-4 h-4 shrink-0" />
+                <span className="whitespace-normal text-center">Plans for Agencies</span>
               </button>
             </div>
 
             {/* Toggle */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 sm:gap-4 flex-wrap justify-center">
               <span
                 className={`text-sm font-bold transition-all ${billingCycle === "monthly" ? "text-white" : "text-white/60"}`}
               >
@@ -78,11 +78,11 @@ const PricingHero = () => {
               </span>
               <div
                 onClick={handleToggle}
-                className="relative w-14 h-7 bg-white/25 rounded-full cursor-pointer p-1"
+                className="relative w-12 sm:w-14 h-6 sm:h-7 bg-white/25 rounded-full cursor-pointer p-1 shrink-0"
               >
                 <motion.div
-                  className="w-5 h-5 bg-white rounded-full shadow-md"
-                  animate={{ x: billingCycle === "monthly" ? 0 : 28 }}
+                  className="w-4 h-4 sm:w-5 sm:h-5 bg-white rounded-full shadow-md"
+                  animate={{ x: billingCycle === "monthly" ? 0 : (window.innerWidth < 640 ? 24 : 28) }}
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               </div>
@@ -91,7 +91,7 @@ const PricingHero = () => {
               >
                 Annual
               </span>
-              <span className="bg-[#ffeb3b] text-black text-[10px] font-black px-2 py-1 rounded-full animate-pulse">
+              <span className="bg-[#ffeb3b] text-black text-[9px] sm:text-[10px] font-black px-2 py-1 rounded-full animate-pulse shrink-0">
                 SAVE 20%
               </span>
             </div>

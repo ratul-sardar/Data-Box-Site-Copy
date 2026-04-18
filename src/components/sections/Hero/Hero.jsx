@@ -108,11 +108,11 @@ export default function Hero() {
           </p>
 
           {/* Cta*/}
-          <div className="flex gap-4">
-            <PrimaryButton link={"#"} brand={true}>
+          <div className="flex flex-col sm:flex-row gap-4 w-full justify-center items-center sm:items-stretch">
+            <PrimaryButton link={"#"} brand={true} className="w-full sm:w-auto min-w-[200px]">
               Try It Free
             </PrimaryButton>
-            <PrimaryButton link={"#"}>Book a Demo</PrimaryButton>
+            <PrimaryButton link={"#"} className="w-full sm:w-auto min-w-[200px]">Book a Demo</PrimaryButton>
           </div>
 
           <p className="text-sm w-full max-md:text-left">No credit card needed · Free-forever plan</p>
@@ -306,7 +306,7 @@ export default function Hero() {
             </div>
 
             <div className="px-2 mt-2">
-              <PrimaryButton link={"#"} brand={true}>
+              <PrimaryButton link={"#"} brand={true} className="w-full">
                 Try It Free
               </PrimaryButton>
             </div>

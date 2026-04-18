@@ -55,23 +55,23 @@ const PricingCard = ({ plan, billingCycle, isPopular, isBestValue }) => {
       }`}
     >
       {/* Badges */}
-      <div className="absolute top-4 right-4 flex flex-col gap-2 items-end">
+      <div className="flex flex-wrap gap-2 mb-4">
         {isPopular && (
-          <span className="px-4 py-1 text-xs font-black text-white bg-[#a855f7] rounded-md uppercase tracking-wide">
+          <span className="px-3 py-1 text-[10px] font-black text-white bg-[#a855f7] rounded-md uppercase tracking-wide">
             Most popular
           </span>
         )}
         {isBestValue && (
-          <span className="px-4 py-1 text-xs font-black text-white bg-[#7c3aed] rounded-md uppercase tracking-wide">
+          <span className="px-3 py-1 text-[10px] font-black text-white bg-[#7c3aed] rounded-md uppercase tracking-wide">
             Best value
           </span>
         )}
       </div>
 
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-6 grow-0">
         <h3
-          className={`text-2xl font-extrabold mb-4 ${
+          className={`text-2xl font-extrabold mb-3 break-words ${
             name === "Free"
               ? "text-[#22c55e]"
               : name === "Pro" || name.includes("Starter")
@@ -83,41 +83,41 @@ const PricingCard = ({ plan, billingCycle, isPopular, isBestValue }) => {
         >
           {name}
         </h3>
-        <p className="text-gray-500 text-sm leading-relaxed font-medium">
+        <p className="text-gray-500 text-sm leading-relaxed font-medium break-words">
           {description}
         </p>
       </div>
 
       {/* Pricing */}
-      <div className="mb-10">
-        <div className="flex items-start">
+      <div className="mb-8">
+        <div className="flex items-start flex-wrap">
           <span className="text-2xl font-bold mt-2 mr-1">$</span>
-          <div className="flex items-baseline">
+          <div className="flex items-baseline flex-wrap">
             <AnimatePresence mode="wait">
               <motion.span
                 key={price}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="text-5xl font-normal tracking-tighter"
+                className="text-4xl sm:text-5xl font-normal tracking-tighter"
               >
                 {price}
               </motion.span>
             </AnimatePresence>
-            <div className="ml-3 flex flex-col">
-              <span className="text-gray-500 text-sm font-semibold">
+            <div className="ml-2 flex flex-col">
+              <span className="text-gray-500 text-xs sm:text-sm font-semibold">
                 /month
               </span>
-              <span className="text-gray-400 text-[10px] font-bold uppercase tracking-wider">
+              <span className="text-gray-400 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider">
                 billed {billingCycle}
               </span>
             </div>
           </div>
         </div>
-        <div className="mt-6">
-          <p className="font-bold text-[#22c55e] text-lg">{dataSources}</p>
+        <div className="mt-4">
+          <p className="font-bold text-[#22c55e] text-lg break-words">{dataSources}</p>
           {additionalPrice && (
-            <p className="text-gray-600 text-sm mt-1 font-bold">
+            <p className="text-gray-600 text-sm mt-1 font-bold break-words">
               {additionalPrice}
             </p>
           )}
@@ -125,14 +125,14 @@ const PricingCard = ({ plan, billingCycle, isPopular, isBestValue }) => {
       </div>
 
       {/* CTAs */}
-      <div className="flex gap-2 mb-8">
+      <div className="flex flex-col gap-2 mb-8">
         <button
-          className={`flex-1 py-2 px-3 rounded-xl text-sm transition-all duration-200 cursor-pointer ${ctaClasses[ctaType] || ctaClasses.primary}`}
+          className={`w-full py-2.5 px-4 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer whitespace-normal break-words min-h-[44px] ${ctaClasses[ctaType] || ctaClasses.primary}`}
         >
           {cta}
         </button>
         {ctaSecondary && (
-          <button className="flex-1 py-2 px-3 border-2 border-transparent text-blue-600 text-sm hover:text-blue-700 transition-all duration-200 cursor-pointer">
+          <button className="w-full py-2 px-4 border-2 border-transparent text-blue-600 text-sm font-bold hover:text-blue-700 transition-all duration-200 cursor-pointer whitespace-normal break-words min-h-[44px]">
             {ctaSecondary}
           </button>
         )}

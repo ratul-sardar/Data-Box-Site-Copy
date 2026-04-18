@@ -79,7 +79,7 @@ const InteractiveCards = () => {
         </header>
 
         {/* Updated Cards Grid */}
-        <div className="flex flex-col md:flex-row gap-4 h-auto md:h-[600px] mt-12">
+        <div className="flex flex-col md:flex-row gap-4 min-h-[600px] h-auto mt-12">
           {cardData.map((card) => {
             const isActive = activeId === card.id;
 
@@ -93,9 +93,9 @@ const InteractiveCards = () => {
                 } ${isActive ? "md:flex-[3]" : "md:flex-1"}`}
               >
                 {/* Header: Title and Top-Right Icon */}
-                <div className="flex justify-between items-start">
+                <div className="flex justify-between items-start gap-4">
                   <h3
-                    className={`text-xl md:text-2xl font-bold leading-tight max-w-[140px] ${card.textColor}`}
+                    className={`text-xl md:text-2xl font-bold leading-tight break-words ${card.textColor}`}
                   >
                     {card.title}
                   </h3>

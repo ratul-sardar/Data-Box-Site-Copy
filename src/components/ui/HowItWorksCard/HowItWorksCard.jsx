@@ -21,30 +21,30 @@ export default function HowItWorksCard({ card }) {
       >
         <div className="card-body gap-4 px-6 py-8">
           {/* Icon */}
-          <div>{icon}</div>
+          <div className="shrink-0">{icon}</div>
 
           {/* Title */}
-          <h3 className="card-title mt-2 text-2xl font-bold text-black">
+          <h3 className="card-title mt-2 text-xl sm:text-2xl font-bold text-black break-words leading-tight">
             {title}
           </h3>
 
           {/* Description */}
-          <p className="font-semibold text-base-content leading-snug">
+          <p className="font-semibold text-base-content leading-snug break-words">
             {description}
           </p>
 
           {/* List */}
-          <ul className="text-base-content space-y-1 list-none">
+          <ul className="text-base-content space-y-2 list-none">
             {features.map((item) => (
-              <li key={item} className="flex items-center gap-2">
-                <div className="bg-purple-500 rounded-full w-1 h-1 "></div>
-                {item}
+              <li key={item} className="flex items-start gap-2">
+                <div className="bg-purple-500 rounded-full w-1.5 h-1.5 mt-2 shrink-0"></div>
+                <span className="text-sm sm:text-base leading-tight break-words">{item}</span>
               </li>
             ))}
           </ul>
 
           {/* Button */}
-          <div className="card-actions mt-2">
+          <div className="card-actions mt-4">
             <ButtonSm ctaLink={ctaLink}>{ctaText}</ButtonSm>
           </div>
         </div>

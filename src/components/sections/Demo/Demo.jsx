@@ -104,12 +104,12 @@ export default function Demo() {
 
           {/* CTA Buttons */}
 
-          <div className="flex flex-wrap items-center justify-center gap-6">
-            <PrimaryButton link={"#"} brand={true}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+            <PrimaryButton link={"#"} brand={true} className="w-full sm:w-auto min-w-[180px]">
               Learn more
             </PrimaryButton>
 
-            <PrimaryButton link={"#"}>Watch Full Video</PrimaryButton>
+            <PrimaryButton link={"#"} className="w-full sm:w-auto min-w-[180px]">Watch Full Video</PrimaryButton>
           </div>
         </div>
       </div>

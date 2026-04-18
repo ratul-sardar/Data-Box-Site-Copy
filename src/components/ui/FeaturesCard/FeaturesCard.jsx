@@ -33,20 +33,20 @@ export default function FeaturesCard({ card }) {
         {/* Overlay*/}
 
         <div
-          className={`absolute w-full h-full bg-main-linear p-8 z-20 transition-opacity duration-200 ease-in
+          className={`absolute w-full h-full bg-main-linear p-6 sm:p-8 z-20 transition-opacity duration-200 ease-in flex flex-col justify-center
             ${overlay ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         >
-          <p className="text-5xl mb-3 text-white">"</p>
-          <p className="text-white text-[18px] ">{hoverText}</p>
+          <p className="text-4xl sm:text-5xl mb-2 text-white">"</p>
+          <p className="text-white text-sm sm:text-lg overflow-y-auto">{hoverText}</p>
         </div>
 
-        <div className="card-body gap-0">
-          <span className="inline-block text-5xl mb-6 text-[#9061f9]">
+        <div className="card-body gap-0 p-6 sm:p-8">
+          <span className="inline-block text-4xl sm:text-5xl mb-4 sm:mb-6 text-[#9061f9] shrink-0">
             {icon}
           </span>
 
-          <h2 className="card-title mb-4">{title}</h2>
-          <p>{descriptoin}</p>
+          <h2 className="card-title mb-3 sm:mb-4 break-words">{title}</h2>
+          <p className="break-words">{descriptoin}</p>
         </div>
       </div>
     </>

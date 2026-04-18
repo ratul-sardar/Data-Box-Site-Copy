@@ -18,20 +18,22 @@ export default function WhoItsForCard({ card }) {
   return (
     <div className="">
       {/* Desktop*/}
-      <div class=" hidden xl:block bg-base-300 cursor-pointer p-8 rounded-2xl shadow-sm">
-        <div class="min-h-130 flex flex-col justify-between">
-          <h3 class="text-[18px] font-bold">{title}</h3>
-          <ChartLine size={100} />
+      <div className="hidden xl:block bg-base-300 cursor-pointer p-8 rounded-2xl shadow-sm h-auto">
+        <div className="flex flex-col justify-between h-full gap-8">
+          <h3 className="text-[18px] font-bold break-words">{title}</h3>
+          <div className="flex justify-center">
+            <ChartLine size={80} className="text-purple-600/80" />
+          </div>
         </div>
       </div>
 
       {/* Tablet*/}
-      <div class="hidden md:block xl:hidden  bg-red-300 cursor-pointer p-8 rounded-2xl shadow-sm">
-        <div class="min-h-130 flex flex-col ">
+      <div className="hidden md:block xl:hidden bg-red-300/20 border border-red-200 cursor-pointer p-8 rounded-2xl shadow-sm h-auto">
+        <div className="flex flex-col h-full">
           {/* Title*/}
-          <div className="flex justify-between mb-10 ">
-            <h3 class="text-[18px] font-bold">{title}</h3>
-            <ChartLine size={100} />
+          <div className="flex justify-between items-start mb-6 gap-4">
+            <h3 className="text-[18px] font-bold break-words">{title}</h3>
+            <ChartLine size={48} className="shrink-0 text-red-600/80" />
           </div>
 
           {/* description*/}

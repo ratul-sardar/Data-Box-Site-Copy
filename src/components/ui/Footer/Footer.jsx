@@ -80,16 +80,16 @@ export default function Footer() {
       >
         <div className="cssContainer py-16 text-white space-y-8">
           <header className="max-w-175 mx-auto text-center  lg:mb-23 flex flex-col gap-8 items-center justify-center ">
-            <h3 className="text-[2rem] lg:text-[3.375rem] font-bold ">
+            <h3 className="text-[1.75rem] sm:text-[2.25rem] lg:text-[3.375rem] font-bold leading-tight break-words">
               Make better decisions, together, faster.
             </h3>
 
             {/* Cta*/}
-            <div className="flex max-sm:flex-col gap-4">
-              <PrimaryButton link={"#"}>Try It Free</PrimaryButton>
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <PrimaryButton link={"#"} className="w-full sm:w-auto min-w-[180px]">Try It Free</PrimaryButton>
               <PrimaryButton
                 link={"#"}
-                className={`bg-transparent hover:bg-white text-white  hover:text-black`}
+                className={`bg-transparent border-2 border-white hover:bg-white text-white hover:text-black w-full sm:w-auto min-w-[180px] transition-all`}
               >
                 Book a demo
               </PrimaryButton>
@@ -221,15 +221,16 @@ export default function Footer() {
           {/* Footer Bottom part*/}
           <div className="text-gray-300 text-center grid justify-center gap-5">
             {/* Legal Links*/}
-            <ul className="space-x-4 text-sm ">
+            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
               {Ligal.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.link}
-                  className="hover:underline hover:underline-offset-1 w-fit"
-                >
-                  {item.name}
-                </a>
+                <li key={item.name}>
+                  <a
+                    href={item.link}
+                    className="hover:underline hover:underline-offset-1 text-gray-300 transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                </li>
               ))}
             </ul>
 
