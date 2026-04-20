@@ -21,7 +21,7 @@ const features = [
 const AgencyBanner = () => {
   return (
     <section id="AgencyBanner" className="bg-[#edf1fe]">
-      <div className="cssContainer py-20 relative flex flex-col xl:flex-row gap-8 lg:gap-12">
+      <div className="cssContainer break-normal py-20 relative flex flex-col xl:flex-row gap-8 lg:gap-12">
         {/* Agency Ribbon */}
         <div className="ribbon"></div>
 
@@ -60,7 +60,10 @@ const AgencyBanner = () => {
           <div className="mt-4">
             <p className="text-gray-600">
               Or{" "}
-              <a href="#" className="text-blue-600 font-semibold hover:underline">
+              <a
+                href="#"
+                className="text-blue-600 font-semibold hover:underline"
+              >
                 book a call.
               </a>
             </p>

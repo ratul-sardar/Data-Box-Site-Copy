@@ -21,14 +21,14 @@ const PricingHero = () => {
 
   return (
     <>
-      <section className="min-h-screen pt-32 pb-20 bg-linear-to-b from-[#7347ea] to-[#b253bd]">
+      <section className="min-h-screen pt-32 pb-20 bg-linear-to-b from-[#7347ea] to-[#b253bd] ">
         <div className="cssContainer">
           {/* Header */}
           <div className="header text-white mb-16 text-center">
             <motion.h1
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-white text-5xl md:text-6xl font-extrabold mb-6 tracking-tight"
+              className="min-w-0 text-white text-5xl md:text-6xl font-extrabold mb-6 tracking-tight "
             >
               Free to start, built to scale
             </motion.h1>
@@ -36,7 +36,7 @@ const PricingHero = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-white text-xl md:text-2xl max-w-3xl mx-auto opacity-90"
+              className="text-white text-xl md:text-2xl max-w-3xl mx-auto opacity-90 wrap-break-word"
             >
               Start on a 14-day free trial of the Growth plan, then choose the
               plan that's right for you.
@@ -44,28 +44,34 @@ const PricingHero = () => {
           </div>
 
           {/* Controls */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-12 break-normal">
             {/* Tabs */}
             <div className="flex p-1 bg-white/15 backdrop-blur-md gap-2 rounded-2xl md:rounded-full border border-white/20 flex-wrap justify-center">
               <button
                 onClick={() => setActiveTab("businesses")}
-                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-2xl md:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer min-h-[40px] ${activeTab === "businesses"
-                  ? "bg-white text-[#7347ea] shadow-lg"
-                  : "text-white hover:bg-white/10"
-                  }`}
+                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-2xl md:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer min-h-[40px] ${
+                  activeTab === "businesses"
+                    ? "bg-white text-[#7347ea] shadow-lg"
+                    : "text-white hover:bg-white/10"
+                }`}
               >
                 <Warehouse className="w-4 h-4 shrink-0" />
-                <span className="whitespace-normal text-center">Plans for Businesses</span>
+                <span className="whitespace-normal text-center">
+                  Plans for Businesses
+                </span>
               </button>
               <button
                 onClick={() => setActiveTab("agencies")}
-                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-2xl md:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer min-h-[40px] ${activeTab === "agencies"
-                  ? "bg-white text-[#7347ea] shadow-lg"
-                  : "text-white hover:bg-white/10"
-                  }`}
+                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-2xl md:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer min-h-[40px] ${
+                  activeTab === "agencies"
+                    ? "bg-white text-[#7347ea] shadow-lg"
+                    : "text-white hover:bg-white/10"
+                }`}
               >
                 <UserPlus className="w-4 h-4 shrink-0" />
-                <span className="whitespace-normal text-center">Plans for Agencies</span>
+                <span className="whitespace-normal text-center">
+                  Plans for Agencies
+                </span>
               </button>
             </div>
 
@@ -82,7 +88,14 @@ const PricingHero = () => {
               >
                 <motion.div
                   className="w-4 h-4 sm:w-5 sm:h-5 bg-white rounded-full shadow-md"
-                  animate={{ x: billingCycle === "monthly" ? 0 : (window.innerWidth < 640 ? 24 : 28) }}
+                  animate={{
+                    x:
+                      billingCycle === "monthly"
+                        ? 0
+                        : window.innerWidth < 640
+                          ? 24
+                          : 28,
+                  }}
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               </div>
@@ -98,7 +111,7 @@ const PricingHero = () => {
           </div>
 
           {/* Pricing Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 items-stretch break-normal">
             <AnimatePresence mode="popLayout">
               {currentPlans.map((plan) => (
                 <PricingCard

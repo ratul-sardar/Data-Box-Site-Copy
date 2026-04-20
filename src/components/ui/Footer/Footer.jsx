@@ -86,10 +86,15 @@ export default function Footer() {
 
             {/* Cta*/}
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <PrimaryButton link={"#"} className="w-full sm:w-auto min-w-[180px]">Try It Free</PrimaryButton>
               <PrimaryButton
                 link={"#"}
-                className={`bg-transparent border-2 border-white hover:bg-white text-white hover:text-black w-full sm:w-auto min-w-[180px] transition-all`}
+                className="w-full sm:w-auto min-w-[180px]"
+              >
+                Try It Free
+              </PrimaryButton>
+              <PrimaryButton
+                link={"#"}
+                className={`bg-transparent border-2 border-white hover:bg-white text-white hover:text-black w-full sm:w-auto min-w-45 transition-all`}
               >
                 Book a demo
               </PrimaryButton>
@@ -97,7 +102,7 @@ export default function Footer() {
           </header>
 
           {/* Footer Links*/}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 break-normal">
             {/* Brand panal*/}
             <div className="space-y-6">
               {/* Brand logo*/}
@@ -219,7 +224,7 @@ export default function Footer() {
           </div>
 
           {/* Footer Bottom part*/}
-          <div className="text-gray-300 text-center grid justify-center gap-5">
+          <div className="text-gray-300 text-center grid justify-center gap-5 break-normal">
             {/* Legal Links*/}
             <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
               {Ligal.map((item) => (
