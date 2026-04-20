@@ -17,7 +17,7 @@ export default function HowItWorksCard({ card }) {
   return (
     <>
       <div
-        className={`card rounded-3xl bg-base-100/65 border border-gray-200/10 w-full shadow-sm text-purple-500`}
+        className={`card min-w-0 rounded-3xl bg-base-100/65 border border-gray-200/10 w-full shadow-sm text-purple-500`}
       >
         <div className="card-body gap-4 px-6 py-8">
           {/* Icon */}
@@ -38,7 +38,9 @@ export default function HowItWorksCard({ card }) {
             {features.map((item) => (
               <li key={item} className="flex items-start gap-2">
                 <div className="bg-purple-500 rounded-full w-1.5 h-1.5 mt-2 shrink-0"></div>
-                <span className="text-sm sm:text-base leading-tight break-words">{item}</span>
+                <span className="text-sm sm:text-base leading-tight break-words">
+                  {item}
+                </span>
               </li>
             ))}
           </ul>

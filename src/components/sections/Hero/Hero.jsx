@@ -53,17 +53,20 @@ export default function Hero() {
   }, [isHovered]);
 
   return (
-    <section id="Hero" className={`overflow-hidden pt-20`}
+    <section
+      id="Hero"
+      className={`overflow-hidden pt-20`}
       style={{
         backgroundImage: `url(${HeroBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-      }}>
+      }}
+    >
       <div className="cssContainer">
         <header className="grid place-items-center gap-6 text-center max-md:text-left">
           {/* Icons*/}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center break-normal gap-4">
             {/* Item 1*/}
             <div className="flex items-center gap-2 p-1 border-r border-gray-400/70 ">
               <div className="rounded-full">
@@ -98,8 +101,8 @@ export default function Hero() {
             <p className="text-xs lg:text-sm">based on 1,000+ reviews</p>
           </div>
           <h1 className="max-w-220 mx-auto max-md:text-left">
-            <span className="linearText max-md:text-left">AI-powered</span> analytics for teams
-            that need answers now
+            <span className="linearText max-md:text-left">AI-powered</span>{" "}
+            analytics for teams that need answers now
           </h1>
 
           <p className="max-w-xl mx-auto max-md:text-left">
@@ -109,13 +112,24 @@ export default function Hero() {
 
           {/* Cta*/}
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center items-center sm:items-stretch">
-            <PrimaryButton link={"#"} brand={true} className="w-full sm:w-auto min-w-[200px]">
+            <PrimaryButton
+              link={"#"}
+              brand={true}
+              className="w-full sm:w-auto min-w-[200px]"
+            >
               Try It Free
             </PrimaryButton>
-            <PrimaryButton link={"#"} className="w-full sm:w-auto min-w-[200px]">Book a Demo</PrimaryButton>
+            <PrimaryButton
+              link={"#"}
+              className="w-full sm:w-auto min-w-[200px]"
+            >
+              Book a Demo
+            </PrimaryButton>
           </div>
 
-          <p className="text-sm w-full max-md:text-left">No credit card needed · Free-forever plan</p>
+          <p className="text-sm w-full max-md:text-left">
+            No credit card needed · Free-forever plan
+          </p>
         </header>
 
         {/* Interactive Feature Section */}
@@ -170,24 +184,27 @@ export default function Hero() {
                   <button
                     key={idx}
                     onClick={() => setActiveFeature(idx)}
-                    className={`group flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-300 cursor-pointer shadow-xm ${activeFeature === idx
-                      ? "bg-purple-50 border-purple-200 shadow-md ring-1 ring-purple-400"
-                      : "bg-white border-gray-100 hover:bg-gray-50"
-                      }`}
+                    className={`group flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-300 cursor-pointer shadow-xm ${
+                      activeFeature === idx
+                        ? "bg-purple-50 border-purple-200 shadow-md ring-1 ring-purple-400"
+                        : "bg-white border-gray-100 hover:bg-gray-50"
+                    }`}
                   >
                     <span
-                      className={`text-2xl mb-2 transition-transform duration-300 ${activeFeature === idx
-                        ? "scale-110 grayscale-0"
-                        : "group-hover:scale-110 grayscale"
-                        }`}
+                      className={`text-2xl mb-2 transition-transform duration-300 ${
+                        activeFeature === idx
+                          ? "scale-110 grayscale-0"
+                          : "group-hover:scale-110 grayscale"
+                      }`}
                     >
                       {feature.icon}
                     </span>
                     <span
-                      className={`text-[11px] lg:text-xs font-semibold leading-tight text-center transition-colors duration-300 ${activeFeature === idx
-                        ? "text-purple-600"
-                        : "text-gray-500"
-                        }`}
+                      className={`text-[11px] lg:text-xs font-semibold leading-tight text-center transition-colors duration-300 ${
+                        activeFeature === idx
+                          ? "text-purple-600"
+                          : "text-gray-500"
+                      }`}
                     >
                       {feature.title}
                     </span>
@@ -201,10 +218,11 @@ export default function Hero() {
                   <button
                     key={idx}
                     onClick={() => setActiveFeature(idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${activeFeature === idx
-                      ? "w-8 bg-purple-500"
-                      : "w-1.5 bg-gray-300 hover:bg-gray-400"
-                      }`}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      activeFeature === idx
+                        ? "w-8 bg-purple-500"
+                        : "w-1.5 bg-gray-300 hover:bg-gray-400"
+                    }`}
                     aria-label={`Go to feature ${idx + 1}`}
                   />
                 ))}
@@ -271,10 +289,11 @@ export default function Hero() {
                 <button
                   key={idx}
                   onClick={() => setActiveFeature(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${activeFeature === idx
-                    ? "w-6 bg-purple-500"
-                    : "w-1.5 bg-gray-300"
-                    }`}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeFeature === idx
+                      ? "w-6 bg-purple-500"
+                      : "w-1.5 bg-gray-300"
+                  }`}
                   aria-label={`Slide ${idx + 1}`}
                 />
               ))}
@@ -286,10 +305,11 @@ export default function Hero() {
                 <button
                   key={idx}
                   onClick={() => setActiveFeature(idx)}
-                  className={`flex-shrink-0 snap-center w-[120px] h-[110px] flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-300 ${activeFeature === idx
-                    ? "bg-purple-50 border-purple-300 shadow-md transform scale-105 z-10"
-                    : "bg-white border-gray-100 opacity-70 hover:opacity-100"
-                    }`}
+                  className={`flex-shrink-0 snap-center w-[120px] h-[110px] flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-300 ${
+                    activeFeature === idx
+                      ? "bg-purple-50 border-purple-300 shadow-md transform scale-105 z-10"
+                      : "bg-white border-gray-100 opacity-70 hover:opacity-100"
+                  }`}
                 >
                   <span
                     className={`text-3xl mb-2 transition-all duration-300 ${activeFeature === idx ? "scale-110 grayscale-0" : "grayscale"}`}

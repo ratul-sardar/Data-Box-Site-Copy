@@ -4,7 +4,7 @@ import logo1 from "../../../assets/imgi_55_MarketingAnalytics_HighPerformer_Mid-
 export default function Achivements() {
   return (
     <section id="achivements" className="">
-      <div className="cssContainer flex flex-col items-center justify-center gap-10">
+      <div className="cssContainer break-normal flex flex-col items-center justify-center gap-10">
         {/* Icons*/}
         <div className="flex items-center gap-4">
           {/* Item 1*/}
