@@ -73,7 +73,7 @@ const InteractiveCards = () => {
         {/* Restored Original Heading Section */}
         <header className="header">
           <h2 className="w-full max-w-200 mx-auto">
-            <span className="w-full break-all linearText">
+            <span className="w-full break-words linearText">
               Self-serve analytics{" "}
             </span>
             for people who are tired of doing reporting
