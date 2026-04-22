@@ -47,7 +47,7 @@ const PricingCard = ({ plan, billingCycle, isPopular, isBestValue }) => {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 20 }}
+      // initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
       className={`relative flex flex-col p-6 sm:p-4 bg-white rounded-2xl shadow-2xl transition-all duration-300 flex-1 w-full ${
@@ -115,7 +115,9 @@ const PricingCard = ({ plan, billingCycle, isPopular, isBestValue }) => {
           </div>
         </div>
         <div className="mt-4">
-          <p className="font-bold text-[#22c55e] text-lg break-words">{dataSources}</p>
+          <p className="font-bold text-[#22c55e] text-lg break-words">
+            {dataSources}
+          </p>
           {additionalPrice && (
             <p className="text-gray-600 text-sm mt-1 font-bold break-words">
               {additionalPrice}
