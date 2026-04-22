@@ -47,7 +47,6 @@ const PricingCard = ({ plan, billingCycle, isPopular, isBestValue }) => {
   return (
     <motion.div
       layout
-      // initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
       className={`relative flex flex-col p-6 sm:p-4 bg-white rounded-2xl shadow-2xl transition-all duration-300 flex-1 w-full ${
