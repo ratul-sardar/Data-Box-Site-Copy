@@ -72,15 +72,17 @@ export default function Info() {
                   </p>
 
                   {/* Bottom row */}
-                  <div className="flex items-center gap-4">
-                    <ButtonSm ctaLink={card.ctaLink}>
-                      Read case study →
-                    </ButtonSm>
-                    <div className="ml-auto">
+                  <div className="flex flex-wrap items-center justify-between gap-4 mt-auto">
+                    <div className="flex-1 min-w-[160px]">
+                      <ButtonSm ctaLink={card.ctaLink} className="w-full sm:w-fit">
+                        Read case study →
+                      </ButtonSm>
+                    </div>
+                    <div className="shrink-0">
                       <img
                         src={card.logoLink}
                         alt="business logo"
-                        className="max-h-8 "
+                        className="max-h-8 object-contain"
                       />
                     </div>
                   </div>
