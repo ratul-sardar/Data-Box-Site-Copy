@@ -112,17 +112,17 @@ const PricingHero = () => {
 
           {/* Pricing Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 items-stretch break-normal">
-            {/* <AnimatePresence mode="popLayout"> */}
-            {currentPlans.map((plan) => (
-              <PricingCard
-                key={`${activeTab}-${billingCycle}-${plan.name}`}
-                plan={plan}
-                billingCycle={billingCycle}
-                isPopular={plan.isPopular}
-                isBestValue={plan.isBestValue}
-              />
-            ))}
-            {/* </AnimatePresence> */}
+            <AnimatePresence mode="popLayout">
+              {currentPlans.map((plan) => (
+                <PricingCard
+                  key={`${activeTab}-${billingCycle}-${plan.name}`}
+                  plan={plan}
+                  billingCycle={billingCycle}
+                  isPopular={plan.isPopular}
+                  isBestValue={plan.isBestValue}
+                />
+              ))}
+            </AnimatePresence>
           </div>
 
           <div className="pt-20">
