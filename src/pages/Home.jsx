@@ -1,8 +1,9 @@
+import Hero from "../components/Hero";
+import Services from "../components/Services";
 import Achivements from "../components/sections/Achivements/Achivements";
 import Demo from "../components/sections/Demo/Demo";
 import Faq from "../components/sections/Faq/Faq";
 import Features from "../components/sections/Features/Features";
-import Hero from "../components/sections/Hero/Hero";
 import Info from "../components/sections/Hero/Info/Info";
 import HowItWorks from "../components/sections/HowItWorks/HowItWorks";
 import Insights from "../components/sections/Insights/Insights";
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Services />
       <Info />
       <Demo />
       <WhyUs />
