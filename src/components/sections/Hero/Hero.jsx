@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import PrimaryButton from "../../ui/Button/PrimaryButton";
 
 import AIAnalyst from "../../../assets/hero-explore-key-feature-image/genie-chat-with-prompt-selection-and-floating-integrations-2x.png";
@@ -13,6 +13,7 @@ import Mcp from "../../../assets/hero-explore-key-feature-image/mcp.png";
 import Integrations from "../../../assets/hero-explore-key-feature-image/integrations-2x.png";
 import DataPreparation from "../../../assets/hero-explore-key-feature-image/datasets-2x.png";
 import HeroBg from "../../../assets/data-workflow.png";
+import { client } from "../../../lib/sanityClient";
 import {
   BrainCog,
   ChartColumnIncreasing,
@@ -40,17 +41,40 @@ const features = [
 export default function Hero() {
   const [activeFeature, setActiveFeature] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [heroData, setHeroData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (isHovered) return;
 
-    // Switch features every 3.5 seconds
     const interval = setInterval(() => {
       setActiveFeature((prev) => (prev + 1) % features.length);
     }, 3500);
 
     return () => clearInterval(interval);
   }, [isHovered]);
+
+  useEffect(() => {
+    const query = `*[_type == "homePage"][0]{ hero }`;
+
+    client
+      .fetch(query)
+      .then((data) => {
+        console.log("Sanity Data 👉", data); // 👈 ADD THIS
+        setHeroData(data?.hero);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching hero data:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading)
+    return (
+      <div className="h-96 flex items-center justify-center">Loading...</div>
+    );
+  if (!heroData) return null;
 
   return (
     <section
@@ -76,7 +100,7 @@ export default function Hero() {
                 />
               </div>
 
-              <p className="font-bold text-gray-600">4.4</p>
+              <p className="font-bold text-gray-600">{heroData?.rating}</p>
               <span className="text-yellow-400">
                 <FaStar />
               </span>
@@ -91,23 +115,24 @@ export default function Hero() {
                 />
               </div>
 
-              <p className="font-bold text-gray-600">4.6</p>
+              <p className="font-bold text-gray-600">{heroData?.rating2}</p>
               <span className="text-yellow-400">
                 <FaStar />
               </span>
             </div>
 
             {/* Item 3*/}
-            <p className="text-xs lg:text-sm">based on 1,000+ reviews</p>
+            <p className="text-xs lg:text-sm">{heroData?.reviewText}</p>
           </div>
           <h1 className="max-w-220 mx-auto max-md:text-left">
-            <span className="linearText max-md:text-left">AI-powered</span>{" "}
-            analytics for teams that need answers now
+            <span className="linearText max-md:text-left">
+              {heroData?.headingFirstText}
+            </span>{" "}
+            {heroData?.headingSecondText}
           </h1>
 
           <p className="max-w-xl mx-auto max-md:text-left">
-            Turn business performance data into clear answers your team can
-            understand, explain, and act on – instantly.
+            {heroData?.subheading}
           </p>
 
           {/* Cta*/}
@@ -117,18 +142,18 @@ export default function Hero() {
               brand={true}
               className="w-full sm:w-auto min-w-[200px]"
             >
-              Try It Free
+              {heroData?.ctaText}
             </PrimaryButton>
             <PrimaryButton
               link={"#"}
               className="w-full sm:w-auto min-w-[200px]"
             >
-              Book a Demo
+              {heroData?.ctaText2}
             </PrimaryButton>
           </div>
 
           <p className="text-sm w-full max-md:text-left">
-            No credit card needed · Free-forever plan
+            {heroData?.underTheButtonsText}
           </p>
         </header>
 
