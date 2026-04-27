@@ -1,35 +1,11 @@
 import { MoveUp, TrendingUp, TrendingDown } from "lucide-react";
 import ButtonSm from "../../../ui/Button/ButtonSm";
 
-const cardInfo = [
-  {
-    title: "55%",
-    description: "increase in sales YoY",
-    ctaLink: "#",
-    logoLink:
-      "https://cdnwebsite.databox.com/wp-content/uploads/2024/01/25053353/First_Response_logo-1.png",
-    icon: TrendingUp,
-  },
+export default function Info({ homeData }) {
+  if (!homeData) return null;
+  console.log("Data fetched successfully", homeData);
 
-  {
-    title: "50%",
-    description: "decrease in overall reporting costs",
-    ctaLink: "#",
-    logoLink:
-      "https://cdnwebsite.databox.com/wp-content/uploads/2024/03/27030250/market_launcher_logo-1.png",
-    icon: TrendingDown,
-  },
-  {
-    title: "60%",
-    description: "reduction in time spent creating reports",
-    ctaLink: "#",
-    logoLink:
-      "https://cdnwebsite.databox.com/wp-content/uploads/2025/08/06082859/hero-factory-logo.png",
-    icon: TrendingDown,
-  },
-];
 
-export default function Info() {
   return (
     <>
       <section id="info" className="">
@@ -37,17 +13,18 @@ export default function Info() {
           <header className="header">
             <h2 className="max-w-175">
               <span className="linearText">
-                20,000+ scaling teams & agencies
+                {homeData.colorIntroHeading}
               </span>
               <br />
-              drive results that matter
+              {homeData.introHeadingSecoundPart}
             </h2>
           </header>
 
           {/* Cards*/}
           <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3 items-center justify-center">
-            {cardInfo.map((card, index) => {
-              let Icon = card.icon;
+            {homeData?.cards?.map((card, index) => {
+              const Icon = card.icon;
+              console.log("icon", Icon);
 
               return (
                 <div
@@ -74,13 +51,13 @@ export default function Info() {
                   {/* Bottom row */}
                   <div className="flex flex-wrap items-center justify-between gap-4 mt-auto">
                     <div className="flex-1 min-w-[160px]">
-                      <ButtonSm ctaLink={card.ctaLink} className="w-full sm:w-fit">
+                      <ButtonSm className="w-full sm:w-fit cursor-pointer">
                         Read case study →
                       </ButtonSm>
                     </div>
                     <div className="shrink-0">
                       <img
-                        src={card.logoLink}
+                        src={card.logo}
                         alt="business logo"
                         className="max-h-8 object-contain"
                       />
