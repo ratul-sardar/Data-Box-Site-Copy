@@ -33,7 +33,9 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.4, 0.25, 1] } },
 };
 
-export default function WhyUs() {
+export default function WhyUs({whyUsData}) {
+  console.log(whyUsData);
+
   return (
     <section id="whyUs" className="relative py-24 overflow-hidden">
       {/* Subtle Background glow effects */}
@@ -49,17 +51,14 @@ export default function WhyUs() {
           className="header text-center mb-16"
         >
           <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold mb-6">
-            Business intelligence,
+            {whyUsData?.headingLine1}
             <br />
             <span className="linearText">
-              without the baggage
+              {whyUsData?.headingHighlight}
             </span>
           </motion.h2>
           <motion.p variants={itemVariants} className="max-w-175 mx-auto text-lg leading-relaxed font-medium">
-            Databox removes the complicated setup, steep price, and long
-            learning curve. Your data finally works at the speed of your
-            business. With our self-service business intelligence, or DIY BI,
-            anyone on your team can build dashboards and reports in minutes.
+            {whyUsData?.description}
           </motion.p>
         </motion.header>
 
@@ -84,12 +83,12 @@ export default function WhyUs() {
                 <X className="text-red-400/80 w-6 h-6 group-hover:scale-110 group-hover:text-red-500 transition-all" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold transition-colors">Before Databox</h3>
-                <p className="text-sm text-red-400 font-bold uppercase tracking-wider mt-1">The Old Way</p>
+                <h3 className="text-2xl font-bold transition-colors">{whyUsData?.beforeSection?.title}</h3>
+                <p className="text-sm text-red-400 font-bold uppercase tracking-wider mt-1">{whyUsData?.beforeSection?.subtitle}</p>
               </div>
             </div>
             <ul className="space-y-6">
-              {beforeDataBox.map((item, index) => (
+              {whyUsData.beforeSection.items.map((item, index) => (
                 <motion.li
                   key={index}
                   variants={itemVariants}
@@ -134,13 +133,13 @@ export default function WhyUs() {
                 <Check className="text-purple-400 w-6 h-6 group-hover:scale-110 transition-transform" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold transition-colors">With Databox</h3>
-                <p className="text-sm text-brand font-bold uppercase tracking-wider mt-1">The Solution</p>
+                <h3 className="text-2xl font-bold transition-colors">{whyUsData?.afterSection?.title}</h3>
+                <p className="text-sm text-brand font-bold uppercase tracking-wider mt-1">{whyUsData?.afterSection?.subtitle}</p>
               </div>
             </div>
 
             <ul className="space-y-6 relative z-10">
-              {afterDataBox.map((item, index) => (
+              {whyUsData.afterSection.items.map((item, index) => (
                 <motion.li
                   key={index}
                   variants={itemVariants}
@@ -171,12 +170,12 @@ export default function WhyUs() {
             <div className="absolute -inset-2  rounded-full blur opacity-30 group-hover:opacity-75 transition duration-500 group-hover:duration-200"></div>
             <div className="relative">
               <PrimaryButton brand={true} className="px-10 py-5 text-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
-                Try It Free
+                {whyUsData?.cta?.buttonText}
               </PrimaryButton>
             </div>
           </motion.div>
           <motion.p variants={itemVariants} className="text-sm text-gray-400 font-semibold tracking-wide">
-            No credit card required
+            {whyUsData?.cta?.bottomText}
           </motion.p>
         </motion.div>
       </div>

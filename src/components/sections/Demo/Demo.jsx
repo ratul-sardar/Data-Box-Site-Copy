@@ -1,4 +1,3 @@
-import dashboard from "../../../assets/luke-chesser-JKUTrJ4vK00-unsplash.jpg";
 
 import {
   MessageSquare,
@@ -12,7 +11,6 @@ import PrimaryButton from "../../ui/Button/PrimaryButton";
 import { urlFor } from "../../../lib/sanityClient";
 
 export default function Demo({ demoData }) {
-  console.log("Demo DAta: ", demoData);
   return (
     <section id="demo" className="">
       <div className="cssContainer">

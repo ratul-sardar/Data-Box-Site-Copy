@@ -41,7 +41,7 @@ export default function Home() {
       <Hero heroData={homeData?.hero} loading={loading} />
       <Info homeData={homeData?.heroIntro} />
       <Demo demoData={homeData?.demoSecton} />
-      <WhyUs />
+      <WhyUs whyUsData={homeData?.whyUsSection} />
       <HowItWorks />
       <Features />
       <InteractiveCards />
