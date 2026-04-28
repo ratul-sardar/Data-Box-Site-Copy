@@ -1,10 +1,13 @@
 import { MoveUp, TrendingUp, TrendingDown } from "lucide-react";
+const iconMap = {
+  TrendingUp,
+  TrendingDown,
+};
+
 import ButtonSm from "../../../ui/Button/ButtonSm";
 
 export default function Info({ homeData }) {
   if (!homeData) return null;
-  console.log("Data fetched successfully", homeData);
-
 
   return (
     <>
@@ -12,9 +15,7 @@ export default function Info({ homeData }) {
         <div className="cssContainer pt-0">
           <header className="header">
             <h2 className="max-w-175">
-              <span className="linearText">
-                {homeData.colorIntroHeading}
-              </span>
+              <span className="linearText">{homeData.colorIntroHeading}</span>
               <br />
               {homeData.introHeadingSecoundPart}
             </h2>
@@ -23,8 +24,7 @@ export default function Info({ homeData }) {
           {/* Cards*/}
           <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3 items-center justify-center">
             {homeData?.cards?.map((card, index) => {
-              const Icon = card.icon;
-              console.log("icon", Icon);
+              const IconComponent = iconMap[card.icon];
 
               return (
                 <div
@@ -33,11 +33,13 @@ export default function Info({ homeData }) {
                 >
                   {/* Stat */}
                   <div className="flex items-center gap-2 mb-1">
-                    <Icon
-                      size={32}
-                      strokeWidth={2.5}
-                      className="text-violet-500 shrink-0"
-                    />
+                    {IconComponent && (
+                      <IconComponent
+                        size={32}
+                        strokeWidth={2.5}
+                        className="text-violet-500 shrink-0"
+                      />
+                    )}
                     <span className="text-5xl font-black text-violet-500 leading-none">
                       {card.title}
                     </span>

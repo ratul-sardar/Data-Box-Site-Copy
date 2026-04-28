@@ -25,6 +25,8 @@ export default function Home() {
 
         setHomeData(data); // ✅ store full data
         setLoading(false);
+        console.log("homeData : ", data);
+        
       })
       .catch((err) => {
         console.error("Error fetching data:", err);
@@ -32,11 +34,13 @@ export default function Home() {
       });
   }, []);
 
+
+  
   return (
     <>
       <Hero heroData={homeData?.hero} loading={loading} />
       <Info homeData={homeData?.heroIntro} />
-      <Demo />
+      <Demo demoData={homeData?.demoSecton} />
       <WhyUs />
       <HowItWorks />
       <Features />
