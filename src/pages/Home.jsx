@@ -42,7 +42,7 @@ export default function Home() {
       <Info homeData={homeData?.heroIntro} />
       <Demo demoData={homeData?.demoSecton} />
       <WhyUs whyUsData={homeData?.whyUsSection} />
-      <HowItWorks />
+      <HowItWorks howItWorksData={homeData?.howItWorksSection} />
       <Features />
       <InteractiveCards />
       <Testimonials />
