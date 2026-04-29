@@ -6,8 +6,8 @@ const iconMap = {
 
 import ButtonSm from "../../../ui/Button/ButtonSm";
 
-export default function Info({ homeData }) {
-  if (!homeData) return null;
+export default function Info({ infoData }) {
+  if (!infoData) return null;
 
   return (
     <>
@@ -15,15 +15,15 @@ export default function Info({ homeData }) {
         <div className="cssContainer pt-0">
           <header className="header">
             <h2 className="max-w-175">
-              <span className="linearText">{homeData.colorIntroHeading}</span>
+              <span className="linearText">{infoData?.colorIntroHeading}</span>
               <br />
-              {homeData.introHeadingSecoundPart}
+              {infoData?.introHeadingSecoundPart}
             </h2>
           </header>
 
           {/* Cards*/}
           <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3 items-center justify-center">
-            {homeData?.cards?.map((card, index) => {
+            {infoData?.cards?.map((card, index) => {
               const IconComponent = iconMap[card.icon];
 
               return (
@@ -41,13 +41,13 @@ export default function Info({ homeData }) {
                       />
                     )}
                     <span className="text-5xl font-black text-violet-500 leading-none">
-                      {card.title}
+                      {card?.title}
                     </span>
                   </div>
 
                   {/* Label */}
                   <p className="text-gray-700 font-semibold text-sm mt-2 mb-6">
-                    {card.description}
+                    {card?.description}
                   </p>
 
                   {/* Bottom row */}
@@ -59,7 +59,7 @@ export default function Info({ homeData }) {
                     </div>
                     <div className="shrink-0">
                       <img
-                        src={card.logo}
+                        src={card?.logo}
                         alt="business logo"
                         className="max-h-8 object-contain"
                       />

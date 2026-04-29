@@ -1,91 +1,80 @@
-import React from "react";
-// Import Swiper React components
+import React, { memo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-
-// import required modules
 import { Autoplay, Pagination } from "swiper/modules";
+import { urlFor } from "../../../lib/sanityClient";
 
-// --- Static Data Array ---
-const testimonialsData = [
-  {
-    id: 1,
-    name: "Nik Glanz",
-    title: "Marketing Intelligence",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg", // Placeholder image
-    quote:
-      "Maintaining all of our dashboards manually just wasn't sustainable. With Databox, I'm able to manage everything myself—and we have a lot of clients. It's essentially like having a whole data department in the platform.",
-  },
-  {
-    id: 2,
-    name: "Daniel Montalvo",
-    title: "Marketing Manager",
-    avatar: "https://randomuser.me/api/portraits/men/44.jpg", // Placeholder image
-    quote:
-      "I feel like I save at least 30% of my time using a preset dashboard. Everything's already there, I just integrate the backend and make tiny tweaks.",
-  },
-  {
-    id: 3,
-    name: "Martin Saunders",
-    title: "Managing Director",
-    avatar: "https://randomuser.me/api/portraits/men/65.jpg", // Placeholder image
-    quote:
-      "We've grown year on year over the last five years, and I think a big factor in that is business reporting and Databox.",
-  },
-  {
-    id: 4,
-    name: "Jason Spooner",
-    title: "President/Founder",
-    avatar: null, // No image, use initials
-    initials: "JS",
-    quote:
-      "I think it's safe to say Databox easily saved us 10 to 15 hours a month on reporting. If you quantify that in terms of salary, that's like a quarter of someone's annual salary we saved.",
-  },
-  {
-    id: 5,
-    name: "Elizabeth Kuerth",
-    title: "Senior Marketing Direct...",
-    avatar: null, // No image, use initials
-    initials: "EK",
-    quote:
-      "My business life has improved tremendously since implementing Databox because I am not sifting through so many reports anymore and I am able to make better marketing decisions based on the data I have in front of me.",
-  },
-  {
-    id: 6,
-    name: "Sumit Rai",
-    title: "Chief Product Officer",
-    avatar: "https://randomuser.me/api/portraits/men/78.jpg", // Placeholder image
-    quote:
-      "What Databox has provided us that we couldn't do before is visualize data from our own platform. It gives us that really useful overview—from marketing to the board, and even the DevOps team.",
-  },
-  {
-    id: 7,
-    name: "Mark...", // partial name from image
-    title: "Dire...", // partial title from image
-    avatar: null, // No image, use initials
-    initials: "M", // Partial initials
-    quote:
-      "It has really efficiency. In check five d... everything is standardize...", // partial text from image
-  },
-];
+function Testimonials({ testimonialsData, heading = true }) {
+  if (!testimonialsData) return null;
 
-// --- Sub-component for individual card ---
+  const data = testimonialsData?.testimonials || [];
+
+  return (
+    <section id="testimonial" className="py-16">
+      <style>{`
+        .mySwiper .swiper-wrapper {
+          transition-timing-function: linear !important;
+        }
+      `}</style>
+      <div className="cssContainer pb-0">
+        {heading && (
+          <header className="header">
+            <h2 className="text-center text-4xl md:text-5xl font-extrabold text-gray-950 mb-16 tracking-tight">
+              {testimonialsData?.heading?.split(testimonialsData?.highlightedText)[0]}
+              <span className="linearText">{testimonialsData?.highlightedText}</span>
+              {testimonialsData?.heading?.split(testimonialsData?.highlightedText)[1]}
+            </h2>
+          </header>
+        )}
+      </div>
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        spaceBetween={30}
+        slidesPerView={1}
+        loop={true}
+        autoplay={{
+          delay: 10,
+          disableOnInteraction: false,
+        }}
+        speed={5000}
+        pagination={{
+          clickable: true,
+          dynamicBullets: true,
+        }}
+        breakpoints={{
+          640: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+          1280: { slidesPerView: 4 },
+          1536: { slidesPerView: 5 },
+        }}
+        className="mySwiper !pb-14"
+      >
+        {data.map((testimonial, idx) => (
+          <SwiperSlide key={idx} className="h-full">
+            <TestimonialCard testimonial={testimonial} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </section>
+  );
+}
+
 const TestimonialCard = ({ testimonial }) => {
+  const imageUrl = testimonial.avatar ? urlFor(testimonial.avatar)?.url() : null;
+
   return (
     <div className="bg-white border border-gray-100 rounded-3xl p-8 flex flex-col h-full shadow-sm min-h-100">
-      {/* Header (Avatar + Name) */}
       <div className="flex items-center gap-4 mb-6">
-        {testimonial.avatar ? (
+        {imageUrl ? (
           <img
-            src={testimonial.avatar}
+            src={imageUrl}
             alt={testimonial.name}
             className="w-14 h-14 rounded-full object-cover"
           />
         ) : (
           <div className="w-14 h-14 rounded-full bg-sky-100 flex items-center justify-center text-sky-600 font-bold text-xl uppercase">
-            {testimonial.initials}
+            {testimonial.initials || testimonial.name?.charAt(0)}
           </div>
         )}
         <div>
@@ -97,8 +86,6 @@ const TestimonialCard = ({ testimonial }) => {
           </p>
         </div>
       </div>
-
-      {/* Quote Body */}
       <p className="text-gray-700 leading-relaxed text-[15px] flex-grow">
         {testimonial.quote}
       </p>
@@ -106,65 +93,4 @@ const TestimonialCard = ({ testimonial }) => {
   );
 };
 
-// --- Main Carousel Component ---
-
-export default function Testimonials({ heading = true }) {
-  return (
-    <section id="testimonial" className="">
-      <style>{`
-        .mySwiper .swiper-wrapper {
-          transition-timing-function: linear !important;
-        }
-      `}</style>
-      <div className="cssContainer pb-0">
-        {/* Section Heading */}
-        {heading && (
-          <header className="header">
-            <h2 className="text-center text-4xl md:text-5xl font-extrabold text-gray-950 mb-16 tracking-tight">
-              Why customers <span className="linearText">love Databox</span>
-            </h2>
-          </header>
-        )}
-      </div>
-      {/* Carousel Container */}
-      <Swiper
-        // Swiper configurations
-        modules={[Autoplay, Pagination]}
-        spaceBetween={30} // gap between cards
-        slidesPerView={1} // mobile default
-        loop={true} // infinite loop
-        autoplay={{
-          delay: 10,
-          disableOnInteraction: false,
-        }}
-        speed={5000}
-        pagination={{
-          clickable: true,
-          dynamicBullets: true, // matching the compact dots in image
-        }}
-        // Responsiveness Breakpoints
-        breakpoints={{
-          640: {
-            slidesPerView: 2,
-          },
-          1024: {
-            slidesPerView: 3,
-          },
-          1280: {
-            slidesPerView: 4,
-          },
-          1536: {
-            slidesPerView: 5, // Matching the wide view in the screenshot
-          },
-        }}
-        className="mySwiper !pb-14" // Extra padding at bottom for pagination dots
-      >
-        {testimonialsData.map((testimonial) => (
-          <SwiperSlide key={testimonial.id} className="h-full">
-            <TestimonialCard testimonial={testimonial} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </section>
-  );
-}
+export default memo(Testimonials);

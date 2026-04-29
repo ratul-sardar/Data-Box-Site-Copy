@@ -1,18 +1,19 @@
+import {
+  Blocks,
+  PlugZap,
+  Route,
+  ScanEye,
+  ScanSearch,
+  Waypoints,
+  Workflow,
+} from "lucide-react";
 import PrimaryButton from "../../ui/Button/PrimaryButton";
 import HowItWorksCard from "../../ui/HowItWorksCard/HowItWorksCard";
 import HowItWorksBg from "../../../assets/data-workflow.png";
 
+
 export default function HowItWorks({ howItWorksData }) {
-  if (!howItWorksData) return null;
-
-  const {
-    headingFirstPart,
-    headingHighlight,
-    subHeading,
-    cards = [],
-    bottomCTA,
-  } = howItWorksData;
-
+  console.log(howItWorksData);
   return (
     <>
       <section
@@ -26,30 +27,28 @@ export default function HowItWorks({ howItWorksData }) {
         }}
       >
         <div className="cssContainer ">
-          <header className="header text-center">
+          <header className="header">
             <h2 className="max-w-200 mx-auto ">
-              <span className="linearText">{headingFirstPart}</span>{" "}
-              {headingHighlight}
+              <span className="linearText">
+                {howItWorksData?.headingFirstPart}
+              </span>{" "}
+              {howItWorksData?.headingHighlight}
             </h2>
-            <p className="max-w-175 mx-auto whitespace-pre-line leading-relaxed">
-              {subHeading}
+            <p className="max-w-175 mx-auto ">
+              {howItWorksData?.subHeading}
             </p>
           </header>
-
-          {/* Cards */}
+          {/* Cards*/}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cards.map((card) => (
-              <HowItWorksCard key={card._key} card={card} />
-            ))}
+            {howItWorksData?.cards?.map((card) => {
+              return <HowItWorksCard key={card._key} card={card}></HowItWorksCard>;
+            })}
           </div>
-
-          {bottomCTA && (
-            <div className="flex items-center justify-center mt-12">
-              <PrimaryButton brand={true} link={bottomCTA.link || "#"}>
-                {bottomCTA.buttonText}
-              </PrimaryButton>
-            </div>
-          )}
+          <div className="flex items-center justify-center mt-12">
+            <PrimaryButton brand={true} link={"#"}>
+              Explore the platform
+            </PrimaryButton>
+          </div>
         </div>
       </section>
     </>

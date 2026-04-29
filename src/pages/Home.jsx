@@ -26,7 +26,7 @@ export default function Home() {
         setHomeData(data); // ✅ store full data
         setLoading(false);
         console.log("homeData : ", data);
-        
+
       })
       .catch((err) => {
         console.error("Error fetching data:", err);
@@ -35,20 +35,24 @@ export default function Home() {
   }, []);
 
 
-  
+
   return (
     <>
-      <Hero heroData={homeData?.hero} loading={loading} />
-      <Info homeData={homeData?.heroIntro} />
+      <Hero
+        heroData={homeData?.hero}
+        headerData={homeData?.header}
+        loading={loading}
+      />
+      <Info infoData={homeData?.heroIntro} />
       <Demo demoData={homeData?.demoSecton} />
       <WhyUs whyUsData={homeData?.whyUsSection} />
       <HowItWorks howItWorksData={homeData?.howItWorksSection} />
-      <Features />
-      <InteractiveCards />
-      <Testimonials />
-      <Insights />
-      <Achivements />
-      <Faq />
+      <Features featuresData={homeData?.featuresSection} />
+      <InteractiveCards interactiveCardsData={homeData?.interactiveCardsSection} />
+      <Testimonials testimonialsData={homeData?.testimonialsSection} />
+      <Insights insightsData={homeData?.insightsSection} />
+      <Achivements achievementsData={homeData?.achievementsSection} />
+      <Faq faqData={homeData?.faqSection} />
     </>
   );
 }
