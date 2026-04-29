@@ -1,7 +1,7 @@
 import React, { useEffect, useState, memo } from "react";
 import PrimaryButton from "../Button/PrimaryButton";
 import brandLogo from "../../../assets/dbx-logo-light.svg";
-import { FaFacebook, FaTwitter, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaLinkedin, FaYoutube, FaInstagram } from "react-icons/fa";
 import { client, urlFor } from "../../../lib/sanityClient";
 
 // Default images as fallbacks
@@ -13,6 +13,11 @@ const iconMap = {
   FaTwitter: <FaTwitter />,
   FaLinkedin: <FaLinkedin />,
   FaYoutube: <FaYoutube />,
+  Facebook: <FaFacebook />,
+  Twitter: <FaTwitter />,
+  Linkedin: <FaLinkedin />,
+  Youtube: <FaYoutube />,
+  Instagram: <FaInstagram />,
 };
 
 function Footer({ footerData: initialData }) {
@@ -43,69 +48,71 @@ function Footer({ footerData: initialData }) {
       <div className="cssContainer py-16 text-white space-y-8">
         <header className="max-w-175 mx-auto text-center lg:mb-23 flex flex-col gap-8 items-center justify-center">
           <h3 className="text-[1.75rem] sm:text-[2.25rem] lg:text-[3.375rem] font-bold leading-tight break-words">
-            {footerData.ctaHeading || "Make better decisions, together, faster."}
+            {footerData.heading || "Make better decisions, together, faster."}
           </h3>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <PrimaryButton
-              link={footerData.ctaButton1Link || "#"}
-              className="w-full sm:w-auto min-w-[180px]"
-            >
-              {footerData.ctaButton1Text || "Try It Free"}
-            </PrimaryButton>
-            <PrimaryButton
-              link={footerData.ctaButton2Link || "#"}
-              className={`bg-transparent border-2 border-white hover:bg-white text-white hover:text-black w-full sm:w-auto min-w-45 transition-all`}
-            >
-              {footerData.ctaButton2Text || "Book a demo"}
-            </PrimaryButton>
+            {footerData.ctaButtons?.length > 0 ? (
+              footerData.ctaButtons.map((btn, idx) => (
+                <PrimaryButton
+                  key={idx}
+                  link={btn.url || "#"}
+                  className={`w-full sm:w-auto min-w-[180px] ${
+                    btn.variant === 'secondary' || btn.variant === 'primar' // Handle typo 'primar' from data
+                      ? "bg-transparent border-2 border-white hover:bg-white text-white hover:text-black transition-all"
+                      : ""
+                  }`}
+                >
+                  {btn.text}
+                </PrimaryButton>
+              ))
+            ) : (
+              <>
+                <PrimaryButton className="w-full sm:w-auto min-w-[180px]">
+                  Try It Free
+                </PrimaryButton>
+                <PrimaryButton className="bg-transparent border-2 border-white hover:bg-white text-white hover:text-black transition-all">
+                  Book a demo
+                </PrimaryButton>
+              </>
+            )}
           </div>
         </header>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 break-normal">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 break-normal">
           <div className="space-y-6">
             <div className="space-y-4">
               <img src={brandLogo} alt="brand logo" className="" />
               <p className="text-sm text-gray-100">
-                {footerData.address || "Databox Inc. HQ: Boston, MA, USA"}
+                {footerData.brandInfo?.address || footerData.address || "Databox Inc. HQ: Boston, MA, USA"}
               </p>
               <p className="font-semibold text-gray-200">
-                {footerData.tagline || "Modern BI for teams that needs answers now"}
+                {footerData.brandInfo?.tagline || footerData.tagline || "Modern BI for teams that needs answers now"}
               </p>
 
-              <div className="flex gap-2">
+              <div className="flex gap-4">
                 {footerData.socialLinks?.map((social, idx) => (
-                  <a key={idx} href={social.url} className="text-xl hover:opacity-80 transition-opacity">
+                  <a key={idx} href={social.link || social.url} className="text-2xl hover:opacity-80 transition-opacity">
                     {iconMap[social.platform] || <FaFacebook />}
                   </a>
                 ))}
               </div>
             </div>
-
-            <div className="flex flex-wrap gap-4">
-              {footerData.awards?.map((award, idx) => (
-                <img
-                  key={idx}
-                  src={award.image ? urlFor(award.image).url() : ""}
-                  alt={award.altText || "Award"}
-                  className="max-w-20 object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                />
-              ))}
-            </div>
           </div>
 
           {footerData.linkGroups?.map((group, idx) => (
-            <div key={idx} className="space-y-2.5">
+            <div key={idx} className="space-y-4">
               <p className="font-extrabold text-[18px]">{group.title}</p>
-              <ul className="flex flex-col gap-1.5 text-sm">
+              <ul className="flex flex-col gap-2.5 text-sm">
                 {group.links?.map((link, lIdx) => (
-                  <a
-                    key={lIdx}
-                    href={link.url}
-                    className="hover:underline hover:underline-offset-1 w-fit text-gray-300 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </a>
+                  <li key={lIdx}>
+                    <a
+                      href={link.url || "#"}
+                      className="hover:underline hover:underline-offset-1 w-fit text-gray-300 hover:text-white transition-colors"
+                    >
+                      {link.name || link.label}
+                    </a>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -117,10 +124,10 @@ function Footer({ footerData: initialData }) {
             {footerData.legalLinks?.map((link, idx) => (
               <li key={idx}>
                 <a
-                  href={link.url}
+                  href={link.url || "#"}
                   className="hover:underline hover:underline-offset-1 text-gray-300 transition-colors"
                 >
-                  {link.label}
+                  {link.name || link.label}
                 </a>
               </li>
             ))}
@@ -134,6 +141,7 @@ function Footer({ footerData: initialData }) {
               <img src={appStoreImage} alt="App Store" className="w-36" />
             </a>
           </div>
+          <p className="text-xs opacity-60">© {new Date().getFullYear()} Databox, Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>
