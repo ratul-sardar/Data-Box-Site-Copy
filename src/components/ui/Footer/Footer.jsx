@@ -57,11 +57,10 @@ function Footer({ footerData: initialData }) {
                 <PrimaryButton
                   key={idx}
                   link={btn.url || "#"}
-                  className={`w-full sm:w-auto min-w-[180px] ${
-                    btn.variant === 'secondary' || btn.variant === 'primar' // Handle typo 'primar' from data
-                      ? "bg-transparent border-2 border-white hover:bg-white text-white hover:text-black transition-all"
-                      : ""
-                  }`}
+                  className={`w-full sm:w-auto min-w-[180px] ${btn.variant === 'secondary' || btn.variant === 'primar' // Handle typo 'primar' from data
+                    ? "bg-transparent border-2 border-white hover:bg-white text-white hover:text-black transition-all"
+                    : ""
+                    }`}
                 >
                   {btn.text}
                 </PrimaryButton>

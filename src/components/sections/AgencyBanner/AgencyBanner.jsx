@@ -14,7 +14,6 @@ const AgencyBanner = ({ agencyBannerData }) => {
       <div className="cssContainer break-normal py-20 relative flex flex-col xl:flex-row gap-8 lg:gap-12">
         {/* Agency Ribbon */}
         <div className="ribbon">
-
         </div>
 
         {/* Left Side */}

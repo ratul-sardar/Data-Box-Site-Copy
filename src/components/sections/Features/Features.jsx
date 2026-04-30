@@ -18,16 +18,16 @@ const fallbackCards = [
 function Features({ featuresData }) {
   if (!featuresData) return null;
 
-  const cards = featuresData?.cards?.length > 0 
+  const cards = featuresData?.cards?.length > 0
     ? featuresData.cards.map(card => ({
-        ...card,
-        // Map icon string to component if it exists in lucide-react or fallback to LuNetwork
-        icon: LucideIcons[card.icon] ? React.createElement(LucideIcons[card.icon]) : <LuNetwork />
-      }))
+      ...card,
+      // Map icon string to component if it exists in lucide-react or fallback to LuNetwork
+      icon: LucideIcons[card.icon] ? React.createElement(LucideIcons[card.icon]) : <LuNetwork />
+    }))
     : fallbackCards.map(card => ({
-        ...card,
-        icon: <LuNetwork />
-      }));
+      ...card,
+      icon: <LuNetwork />
+    }));
 
   return (
     <section
@@ -38,7 +38,7 @@ function Features({ featuresData }) {
       <div className="cssContainer">
         <header className="header">
           <h2 className="max-w-200 mx-auto">
-            {featuresData?.heading?.split(featuresData?.highlightedText)[0]}
+            {featuresData?.heading?.split(featuresData?.highlightedText)[0] + " "}
             <span className="linearText">{featuresData?.highlightedText}</span>
             {featuresData?.heading?.split(featuresData?.highlightedText)[1]}
           </h2>

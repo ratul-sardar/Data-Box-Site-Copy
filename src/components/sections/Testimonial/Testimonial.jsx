@@ -22,7 +22,7 @@ function Testimonials({ testimonialsData, heading = true }) {
           <header className="header">
             <h2 className="text-center text-4xl md:text-5xl font-extrabold text-gray-950 mb-16 tracking-tight">
               {testimonialsData?.heading?.split(testimonialsData?.highlightedText)[0]}
-              <span className="linearText">{testimonialsData?.highlightedText}</span>
+              <span className="linearText"> {testimonialsData?.highlightedText}</span>
               {testimonialsData?.heading?.split(testimonialsData?.highlightedText)[1]}
             </h2>
           </header>

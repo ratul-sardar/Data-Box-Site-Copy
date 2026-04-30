@@ -18,10 +18,10 @@ function InteractiveCards({ interactiveCardsData }) {
     // Check for Tailwind arbitrary value format: bg-[#...], text-[#...], etc.
     const arbitraryMatch = str.match(new RegExp(`${prefix}-\\[(.*?)\\]`));
     if (arbitraryMatch) return arbitraryMatch[1];
-    
+
     // Check if it's already a CSS color
     if (str.startsWith('#') || str.startsWith('rgb') || str.startsWith('hsl')) return str;
-    
+
     return null;
   };
 
@@ -30,8 +30,8 @@ function InteractiveCards({ interactiveCardsData }) {
       <div className="cssContainer">
         <header className="header">
           <h2 className="w-full max-w-200 mx-auto">
-            {interactiveCardsData?.heading?.split(interactiveCardsData?.highlightedText)[0]}
-            <span className="w-full break-words linearText">
+            {interactiveCardsData?.heading?.split(interactiveCardsData?.highlightedText)[0] + " "}
+            <span className="w-full wrap-break-word linearText">
               {interactiveCardsData?.highlightedText}
             </span>
             {interactiveCardsData?.heading?.split(interactiveCardsData?.highlightedText)[1]}
@@ -55,25 +55,22 @@ function InteractiveCards({ interactiveCardsData }) {
                 layout
                 onClick={() => setActiveId(idx)}
                 style={{ backgroundColor: bgColor }}
-                className={`relative cursor-pointer rounded-3xl p-6 md:p-10 overflow-hidden flex flex-col transition-all duration-500 ease-in-out ${
-                  !bgColor ? (card.color || 'bg-gray-100') : ''
-                } ${isActive ? "md:flex-[3]" : "md:flex-1"}`}
+                className={`relative cursor-pointer rounded-3xl p-6 md:p-10 overflow-hidden flex flex-col transition-all duration-500 ease-in-out ${!bgColor ? (card.color || 'bg-gray-100') : ''
+                  } ${isActive ? "md:flex-[3]" : "md:flex-1"}`}
               >
                 <div className="flex justify-between items-start gap-4">
                   <h3
                     style={{ color: textColor }}
-                    className={`text-xl md:text-2xl font-bold leading-tight break-words ${
-                      !textColor ? (card.textColor || 'text-gray-900') : ''
-                    }`}
+                    className={`text-xl md:text-2xl font-bold leading-tight break-words ${!textColor ? (card.textColor || 'text-gray-900') : ''
+                      }`}
                   >
                     {card.title}
                   </h3>
 
                   <div
                     style={{ color: iconColor }}
-                    className={`transition-opacity duration-300 ${
-                      !iconColor ? (card.iconColor || 'text-gray-600') : ''
-                    }
+                    className={`transition-opacity duration-300 ${!iconColor ? (card.iconColor || 'text-gray-600') : ''
+                      }
                     ${isActive ? "opacity-100 block" : "opacity-0 md:hidden"}
                     block`}
                   >
@@ -107,9 +104,8 @@ function InteractiveCards({ interactiveCardsData }) {
                 {!isActive && (
                   <div
                     style={{ color: iconColor }}
-                    className={`mt-auto hidden md:flex justify-center ${
-                      !iconColor ? (card.iconColor || 'text-gray-400') : ''
-                    } `}
+                    className={`mt-auto hidden md:flex justify-center ${!iconColor ? (card.iconColor || 'text-gray-400') : ''
+                      } `}
                   >
                     <Icon size={isActive ? 50 : 30} />
                   </div>
@@ -149,7 +145,7 @@ const CardContent = ({ card, textColor: textColorProp }) => {
       >
         {card.description}
       </p>
-      <ul 
+      <ul
         style={{ color: textColorValue }}
         className={`space-y-4 ${!textColorValue ? (textColorProp || 'text-gray-700') : ''}`}
       >
