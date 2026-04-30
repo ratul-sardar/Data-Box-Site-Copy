@@ -48,9 +48,8 @@ function FaqCard({ faq }) {
       </button>
 
       <div
-        className={`transition-all duration-300 ease-in-out overflow-hidden ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="px-6 pb-6 pt-2 text-gray-600 leading-relaxed">
           {faq.answer}

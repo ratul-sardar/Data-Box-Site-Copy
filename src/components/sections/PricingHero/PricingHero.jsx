@@ -9,23 +9,9 @@ import logo3 from "../../../assets/pricing/logo3.svg";
 import logo4 from "../../../assets/pricing/logo4.svg";
 import logo5 from "../../../assets/pricing/logo5.svg";
 
-const PricingHero = () => {
+const PricingHero = ({ sanityData, loading }) => {
   const [activeTab, setActiveTab] = useState("businesses"); // 'businesses' or 'agencies'
   const [billingCycle, setBillingCycle] = useState("monthly"); // 'monthly' or 'annual'
-  const [sanityData, setSanityData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    client.fetch(`*[_type == "pricingPage"][0]`)
-      .then((data) => {
-        setSanityData(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching pricing data:", error);
-        setLoading(false);
-      });
-  }, []);
 
   const handleToggle = () => {
     setBillingCycle((prev) => (prev === "monthly" ? "annual" : "monthly"));
@@ -81,11 +67,10 @@ const PricingHero = () => {
             <div className="flex p-1 bg-white/15 backdrop-blur-md gap-2 rounded-2xl md:rounded-full border border-white/20 flex-wrap justify-center">
               <button
                 onClick={() => setActiveTab("businesses")}
-                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-2xl md:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer min-h-[40px] ${
-                  activeTab === "businesses"
-                    ? "bg-white text-[#7347ea] shadow-lg"
-                    : "text-white hover:bg-white/10"
-                }`}
+                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-2xl md:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer min-h-[40px] ${activeTab === "businesses"
+                  ? "bg-white text-[#7347ea] shadow-lg"
+                  : "text-white hover:bg-white/10"
+                  }`}
               >
                 <Warehouse className="w-4 h-4 shrink-0" />
                 <span className="whitespace-normal text-center">
@@ -94,11 +79,10 @@ const PricingHero = () => {
               </button>
               <button
                 onClick={() => setActiveTab("agencies")}
-                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-2xl md:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer min-h-[40px] ${
-                  activeTab === "agencies"
-                    ? "bg-white text-[#7347ea] shadow-lg"
-                    : "text-white hover:bg-white/10"
-                }`}
+                className={`flex items-center justify-center gap-2 px-4 py-2 sm:px-6 sm:py-2.5 rounded-2xl md:rounded-full text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer min-h-[40px] ${activeTab === "agencies"
+                  ? "bg-white text-[#7347ea] shadow-lg"
+                  : "text-white hover:bg-white/10"
+                  }`}
               >
                 <UserPlus className="w-4 h-4 shrink-0" />
                 <span className="whitespace-normal text-center">
