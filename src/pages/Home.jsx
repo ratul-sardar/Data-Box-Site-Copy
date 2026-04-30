@@ -12,27 +12,12 @@ import Testimonials from "../components/sections/Testimonial/Testimonial";
 import WhyUs from "../components/sections/WhyUs/WhyUs";
 import { client } from "../lib/sanityClient";
 
+import { useSanityData } from "../hooks/useSanityData";
+
 export default function Home() {
-  const [homeData, setHomeData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const query = `*[_type == "homePage"][0]`;
+  const { data: homeData, loading } = useSanityData(query);
 
-  useEffect(() => {
-    const query = `*[_type == "homePage"][0]`;
-
-    client
-      .fetch(query)
-      .then((data) => {
-
-        setHomeData(data); // ✅ store full data
-        setLoading(false);
-        console.log("homeData : ", data);
-
-      })
-      .catch((err) => {
-        console.error("Error fetching data:", err);
-        setLoading(false);
-      });
-  }, []);
 
 
 

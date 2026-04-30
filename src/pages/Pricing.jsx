@@ -7,32 +7,14 @@ import Achivements from "../components/sections/Achivements/Achivements";
 import Testimonials from "../components/sections/Testimonial/Testimonial";
 import Faq from "../components/sections/Faq/Faq";
 
+import { useSanityData } from "../hooks/useSanityData";
+
 export default function Pricing() {
-  const [sanityData, setSanityData] = useState(null);
-  const [homeData, setHomeData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { data: sanityData, loading: pricingLoading } = useSanityData(`*[_type == "pricingPage"][0]`);
+  const { data: homeData, loading: homeLoading } = useSanityData(`*[_type == "homePage"][0]`);
 
-  useEffect(() => {
-    client.fetch(`*[_type == "pricingPage"][0]`)
-      .then((data) => {
-        setSanityData(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching pricing data:", error);
-        setLoading(false);
-      });
-  }, []);
+  const loading = pricingLoading || homeLoading;
 
-  useEffect(() => {
-    client.fetch(`*[_type == "homePage"][0]`)
-      .then((data) => {
-        setHomeData(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching home data:", error);
-      });
-  }, []);
 
 
 
