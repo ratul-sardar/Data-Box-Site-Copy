@@ -1,4 +1,3 @@
-import dashboard from "../../../assets/luke-chesser-JKUTrJ4vK00-unsplash.jpg";
 
 import {
   MessageSquare,
@@ -9,22 +8,19 @@ import {
 } from "lucide-react";
 
 import PrimaryButton from "../../ui/Button/PrimaryButton";
+import { urlFor } from "../../../lib/sanityClient";
 
-export default function Demo() {
+export default function Demo({ demoData }) {
   return (
     <section id="demo" className="">
       <div className="cssContainer">
         <header className="header">
           <h2 className="max-w-200 mx-auto ">
-            Get answers from your data{" "}
-            <span className="linearText">instantly</span>
+            {demoData?.blackHeading}
+            <span className="linearText"> {demoData?.colorHeading}</span>
           </h2>
 
-          <p className="max-w-175 mx-auto ">
-            Getting answers from your data used to take hours. Not anymore. With
-            Genie, our AI analyst, you can ask a question and get a clear answer
-            in seconds.
-          </p>
+          <p className="max-w-175 mx-auto ">{demoData?.subHeading}</p>
         </header>
 
         {/* Background Gradient Wrapper */}
@@ -41,11 +37,13 @@ export default function Demo() {
         >
           {/* Dashboard Image Container */}
           <div className="relative mx-auto max-w-4xl bg-white rounded-xl  overflow-hidden border border-gray-100 mb-16">
-            <img
-              src={dashboard}
-              alt="Genie Dashboard Interface"
-              className="w-full h-auto object-cover"
-            />
+            {demoData?.img && (
+              <img
+                src={urlFor(demoData.img)?.url()}
+                alt="Genie Dashboard Interface"
+                className="w-full h-auto object-cover"
+              />
+            )}
           </div>
 
           {/* Features Grid */}
@@ -105,11 +103,20 @@ export default function Demo() {
           {/* CTA Buttons */}
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-            <PrimaryButton link={"#"} brand={true} className="w-full sm:w-auto min-w-[180px]">
+            <PrimaryButton
+              link={"#"}
+              brand={true}
+              className="w-full sm:w-auto min-w-[180px]"
+            >
               Learn more
             </PrimaryButton>
 
-            <PrimaryButton link={"#"} className="w-full sm:w-auto min-w-[180px]">Watch Full Video</PrimaryButton>
+            <PrimaryButton
+              link={"#"}
+              className="w-full sm:w-auto min-w-[180px]"
+            >
+              Watch Full Video
+            </PrimaryButton>
           </div>
         </div>
       </div>

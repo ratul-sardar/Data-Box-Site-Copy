@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Achivements from "../components/sections/Achivements/Achivements";
 import Demo from "../components/sections/Demo/Demo";
 import Faq from "../components/sections/Faq/Faq";
@@ -9,21 +10,34 @@ import Insights from "../components/sections/Insights/Insights";
 import InteractiveCards from "../components/sections/InteractiveCards/InteractiveCards";
 import Testimonials from "../components/sections/Testimonial/Testimonial";
 import WhyUs from "../components/sections/WhyUs/WhyUs";
+import { client } from "../lib/sanityClient";
+
+import { useSanityData } from "../hooks/useSanityData";
 
 export default function Home() {
+  const query = `*[_type == "homePage"][0]`;
+  const { data: homeData, loading } = useSanityData(query);
+
+
+
+
   return (
     <>
-      <Hero />
-      <Info />
-      <Demo />
-      <WhyUs />
-      <HowItWorks />
-      <Features />
-      <InteractiveCards />
-      <Testimonials />
-      <Insights />
-      <Achivements />
-      <Faq />
+      <Hero
+        heroData={homeData?.hero}
+        headerData={homeData?.header}
+        loading={loading}
+      />
+      <Info infoData={homeData?.heroIntro} />
+      <Demo demoData={homeData?.demoSecton} />
+      <WhyUs whyUsData={homeData?.whyUsSection} />
+      <HowItWorks howItWorksData={homeData?.howItWorksSection} />
+      <Features featuresData={homeData?.featuresSection} />
+      <InteractiveCards interactiveCardsData={homeData?.interactiveCardsSection} />
+      <Testimonials testimonialsData={homeData?.testimonialsSection} />
+      <Insights insightsData={homeData?.insightsSection} />
+      <Achivements achievementsData={homeData?.achievementsSection} />
+      <Faq faqData={homeData?.faqSection} />
     </>
   );
 }

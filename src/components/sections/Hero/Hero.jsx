@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import PrimaryButton from "../../ui/Button/PrimaryButton";
+import { urlFor } from "../../../lib/sanityClient";
+import React from "react";
 
 import AIAnalyst from "../../../assets/hero-explore-key-feature-image/genie-chat-with-prompt-selection-and-floating-integrations-2x.png";
 import Dashboards from "../../../assets/hero-explore-key-feature-image/dashboards-2x.png";
@@ -13,6 +15,7 @@ import Mcp from "../../../assets/hero-explore-key-feature-image/mcp.png";
 import Integrations from "../../../assets/hero-explore-key-feature-image/integrations-2x.png";
 import DataPreparation from "../../../assets/hero-explore-key-feature-image/datasets-2x.png";
 import HeroBg from "../../../assets/data-workflow.png";
+
 import {
   BrainCog,
   ChartColumnIncreasing,
@@ -25,32 +28,64 @@ import {
   Wallpaper,
 } from "lucide-react";
 
-const features = [
-  { title: "AI Analyst", icon: <BrainCog />, image: AIAnalyst },
-  { title: "Dashboards", icon: <Wallpaper />, image: Dashboards },
-  { title: "Reports", icon: <FileText />, image: Reports },
-  { title: "Metrics & KPIs", icon: <KeyboardIcon />, image: MetricsKPIs },
-  { title: "Goals & OKRs", icon: <Target />, image: GoalsOKRs },
-  { title: "Forecasts", icon: <ChartColumnIncreasing />, image: Forecasts },
-  { title: "MCP", icon: <Save />, image: Mcp },
-  { title: "Integrations", icon: <Plug />, image: Integrations },
-  { title: "Data Preparation", icon: <DatabaseZap />, image: DataPreparation },
+const iconMap = {
+  BrainCog,
+  Wallpaper,
+  FileText,
+  KeyboardIcon,
+  Target,
+  ChartColumnIncreasing,
+  Save,
+  Plug,
+  DatabaseZap,
+};
+
+// Fallback features in case Sanity data is not yet available
+const fallbackFeatures = [
+  { title: "AI Analyst", icon: "BrainCog", image: AIAnalyst },
+  { title: "Dashboards", icon: "Wallpaper", image: Dashboards },
+  { title: "Reports", icon: "FileText", image: Reports },
+  { title: "Metrics & KPIs", icon: "KeyboardIcon", image: MetricsKPIs },
+  { title: "Goals & OKRs", icon: "Target", image: GoalsOKRs },
+  { title: "Forecasts", icon: "ChartColumnIncreasing", image: Forecasts },
+  { title: "MCP", icon: "Save", image: Mcp },
+  { title: "Integrations", icon: "Plug", image: Integrations },
+  { title: "Data Preparation", icon: "DatabaseZap", image: DataPreparation },
 ];
 
-export default function Hero() {
+export default function Hero({ heroData, headerData, loading }) {
   const [activeFeature, setActiveFeature] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+
+  // Use dynamic features from Sanity or fallback to local static ones
+  const features = heroData?.features?.length > 0
+    ? heroData.features
+        .map(f => ({
+          title: f.title,
+          icon: f.icon,
+          image: f.image ? urlFor(f.image)?.url() : null
+        }))
+        .filter(f => f.image)
+    : fallbackFeatures;
+
+  // Use fallback if Sanity returned features but they had no images
+  const activeFeatures = features.length > 0 ? features : fallbackFeatures;
 
   useEffect(() => {
     if (isHovered) return;
 
-    // Switch features every 3.5 seconds
     const interval = setInterval(() => {
-      setActiveFeature((prev) => (prev + 1) % features.length);
+      setActiveFeature((prev) => (prev + 1) % activeFeatures.length);
     }, 3500);
 
     return () => clearInterval(interval);
-  }, [isHovered]);
+  }, [isHovered, activeFeatures.length]);
+
+  if (loading)
+    return (
+      <div className="h-96 flex items-center justify-center">Loading...</div>
+    );
+  if (!heroData) return null;
 
   return (
     <section
@@ -76,7 +111,7 @@ export default function Hero() {
                 />
               </div>
 
-              <p className="font-bold text-gray-600">4.4</p>
+              <p className="font-bold text-gray-600">{headerData?.rating}</p>
               <span className="text-yellow-400">
                 <FaStar />
               </span>
@@ -91,23 +126,24 @@ export default function Hero() {
                 />
               </div>
 
-              <p className="font-bold text-gray-600">4.6</p>
+              <p className="font-bold text-gray-600">{headerData?.rating2}</p>
               <span className="text-yellow-400">
                 <FaStar />
               </span>
             </div>
 
             {/* Item 3*/}
-            <p className="text-xs lg:text-sm">based on 1,000+ reviews</p>
+            <p className="text-xs lg:text-sm">{headerData?.reviewText}</p>
           </div>
           <h1 className="max-w-220 mx-auto max-md:text-left">
-            <span className="linearText max-md:text-left">AI-powered</span>{" "}
-            analytics for teams that need answers now
+            <span className="linearText max-md:text-left">
+              {heroData?.headingFirstText}
+            </span>{" "}
+            {heroData?.headingSecondText}
           </h1>
 
           <p className="max-w-xl mx-auto max-md:text-left">
-            Turn business performance data into clear answers your team can
-            understand, explain, and act on – instantly.
+            {heroData?.subheading}
           </p>
 
           {/* Cta*/}
@@ -117,18 +153,18 @@ export default function Hero() {
               brand={true}
               className="w-full sm:w-auto min-w-[200px]"
             >
-              Try It Free
+              {heroData?.ctaText}
             </PrimaryButton>
             <PrimaryButton
               link={"#"}
               className="w-full sm:w-auto min-w-[200px]"
             >
-              Book a Demo
+              {heroData?.ctaText2}
             </PrimaryButton>
           </div>
 
           <p className="text-sm w-full max-md:text-left">
-            No credit card needed · Free-forever plan
+            {heroData?.underTheButtonsText}
           </p>
         </header>
 
@@ -145,12 +181,12 @@ export default function Hero() {
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeFeature}
-                  src={features[activeFeature].image}
+                  src={activeFeatures[activeFeature].image}
                   initial={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
                   animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                   exit={{ opacity: 0, scale: 1.05 }}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
-                  alt={features[activeFeature].title}
+                  alt={activeFeatures[activeFeature].title}
                   loading="lazy"
                   className="w-[140%] h-auto max-h-[110%] object-contain object-left"
                   style={{
@@ -180,31 +216,31 @@ export default function Hero() {
               </h3>
 
               <div className="grid grid-cols-3 gap-3 mb-6">
-                {features.map((feature, idx) => (
+                {activeFeatures.map((feature, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveFeature(idx)}
-                    className={`group flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-300 cursor-pointer shadow-xm ${
-                      activeFeature === idx
-                        ? "bg-purple-50 border-purple-200 shadow-md ring-1 ring-purple-400"
-                        : "bg-white border-gray-100 hover:bg-gray-50"
-                    }`}
+                    className={`group flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-300 cursor-pointer shadow-xm ${activeFeature === idx
+                      ? "bg-purple-50 border-purple-200 shadow-md ring-1 ring-purple-400"
+                      : "bg-white border-gray-100 hover:bg-gray-50"
+                      }`}
                   >
                     <span
-                      className={`text-2xl mb-2 transition-transform duration-300 ${
-                        activeFeature === idx
-                          ? "scale-110 grayscale-0"
-                          : "group-hover:scale-110 grayscale"
-                      }`}
+                      className={`text-2xl mb-2 transition-transform duration-300 ${activeFeature === idx
+                        ? "scale-110 grayscale-0"
+                        : "group-hover:scale-110 grayscale"
+                        }`}
                     >
-                      {feature.icon}
+                      {(() => {
+                        const Icon = iconMap[feature.icon];
+                        return Icon ? <Icon /> : feature.icon;
+                      })()}
                     </span>
                     <span
-                      className={`text-[11px] lg:text-xs font-semibold leading-tight text-center transition-colors duration-300 ${
-                        activeFeature === idx
-                          ? "text-purple-600"
-                          : "text-gray-500"
-                      }`}
+                      className={`text-[11px] lg:text-xs font-semibold leading-tight text-center transition-colors duration-300 ${activeFeature === idx
+                        ? "text-purple-600"
+                        : "text-gray-500"
+                        }`}
                     >
                       {feature.title}
                     </span>
@@ -214,15 +250,14 @@ export default function Hero() {
 
               {/* Progress indicators */}
               <div className="flex justify-center gap-2 mb-6">
-                {features.map((_, idx) => (
+                {activeFeatures.map((_, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveFeature(idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      activeFeature === idx
-                        ? "w-8 bg-purple-500"
-                        : "w-1.5 bg-gray-300 hover:bg-gray-400"
-                    }`}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${activeFeature === idx
+                      ? "w-8 bg-purple-500"
+                      : "w-1.5 bg-gray-300 hover:bg-gray-400"
+                      }`}
                     aria-label={`Go to feature ${idx + 1}`}
                   />
                 ))}
@@ -247,12 +282,12 @@ export default function Hero() {
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeFeature}
-                  src={features[activeFeature].image}
+                  src={activeFeatures[activeFeature].image}
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  alt={features[activeFeature].title}
+                  alt={activeFeatures[activeFeature].title}
                   loading="lazy"
                   className="max-w-[95%] max-h-[95%] object-contain"
                   style={{
@@ -273,11 +308,14 @@ export default function Hero() {
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="text-3xl mb-2">
-                    {features[activeFeature].icon}
+                  <div className="text-3xl mb-2 flex justify-center">
+                    {(() => {
+                      const Icon = iconMap[activeFeatures[activeFeature].icon];
+                      return Icon ? <Icon /> : activeFeatures[activeFeature].icon;
+                    })()}
                   </div>
                   <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-brand">
-                    {features[activeFeature].title}
+                    {activeFeatures[activeFeature].title}
                   </h3>
                 </motion.div>
               </AnimatePresence>
@@ -285,15 +323,14 @@ export default function Hero() {
 
             {/* Dots */}
             <div className="flex justify-center gap-2">
-              {features.map((_, idx) => (
+              {activeFeatures.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveFeature(idx)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    activeFeature === idx
-                      ? "w-6 bg-purple-500"
-                      : "w-1.5 bg-gray-300"
-                  }`}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${activeFeature === idx
+                    ? "w-6 bg-purple-500"
+                    : "w-1.5 bg-gray-300"
+                    }`}
                   aria-label={`Slide ${idx + 1}`}
                 />
               ))}
@@ -301,20 +338,22 @@ export default function Hero() {
 
             {/* Cards Slider Below Info */}
             <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 pb-8 pt-4 px-6 md:px-4 -mx-4 hide-scroll relative">
-              {features.map((feature, idx) => (
+              {activeFeatures.map((feature, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveFeature(idx)}
-                  className={`flex-shrink-0 snap-center w-[120px] h-[110px] flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-300 ${
-                    activeFeature === idx
-                      ? "bg-purple-50 border-purple-300 shadow-md transform scale-105 z-10"
-                      : "bg-white border-gray-100 opacity-70 hover:opacity-100"
-                  }`}
+                  className={`flex-shrink-0 snap-center w-[120px] h-[110px] flex flex-col items-center justify-center p-3 rounded-xl border transition-all duration-300 ${activeFeature === idx
+                    ? "bg-purple-50 border-purple-300 shadow-md transform scale-105 z-10"
+                    : "bg-white border-gray-100 opacity-70 hover:opacity-100"
+                    }`}
                 >
                   <span
-                    className={`text-3xl mb-2 transition-all duration-300 ${activeFeature === idx ? "scale-110 grayscale-0" : "grayscale"}`}
+                    className={`text-3xl mb-2 transition-all duration-300 flex justify-center ${activeFeature === idx ? "scale-110 grayscale-0" : "grayscale"}`}
                   >
-                    {feature.icon}
+                    {(() => {
+                      const Icon = iconMap[feature.icon];
+                      return Icon ? <Icon /> : feature.icon;
+                    })()}
                   </span>
                   <span
                     className={`text-[11px] font-semibold leading-tight text-center ${activeFeature === idx ? "text-purple-700" : "text-gray-500"}`}
